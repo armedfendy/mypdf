@@ -2,6 +2,7 @@ import {
   supportedLanguages,
   languageNames,
   getLanguageFromUrl,
+  getLockedLanguage,
   changeLanguage,
   t,
 } from './i18n';
@@ -164,6 +165,7 @@ export const createLanguageSwitcher = (): HTMLElement => {
 };
 
 export const injectLanguageSwitcher = (): void => {
+  if (getLockedLanguage()) return;
   const simpleModeContainer = document.getElementById(
     'simple-mode-language-switcher'
   );

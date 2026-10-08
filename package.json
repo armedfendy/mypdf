@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate-blog.mjs && node scripts/generate-static-tool-links.mjs && tsc && vite build && node scripts/enhance-seo-pages.mjs && NODE_OPTIONS='--max-old-space-size=3072' node scripts/generate-i18n-pages.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-security-headers.mjs && node scripts/seo-audit.mjs",
+    "dev:mypdf": "VITE_LOCK_LANGUAGE=id VITE_DEFAULT_LANGUAGE=id VITE_BRAND_NAME=mypdf.id vite",
+    "build": "node scripts/generate-blog.mjs && node scripts/generate-static-tool-links.mjs && tsc && vite build && node scripts/enhance-seo-pages.mjs && NODE_OPTIONS='--max-old-space-size=3072' node scripts/generate-i18n-pages.mjs && node scripts/generate-sitemap.mjs && node scripts/mypdf-single-locale.mjs && node scripts/generate-security-headers.mjs && node scripts/seo-audit.mjs",
+    "build:mypdf": "SITE_URL=https://mypdf.id VITE_LOCK_LANGUAGE=id VITE_DEFAULT_LANGUAGE=id VITE_BRAND_NAME=mypdf.id npm run build",
     "seo-audit": "node scripts/seo-audit.mjs",
     "build:with-docs": "npm run build && npm run docs:build && node scripts/include-docs-in-dist.js",
     "build:gzip": "COMPRESSION_MODE=g npm run build",

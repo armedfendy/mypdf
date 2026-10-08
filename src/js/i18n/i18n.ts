@@ -56,7 +56,19 @@ export const languageNames: Record<SupportedLanguage, string> = {
   sk: 'Slovenčina',
 };
 
+// mypdf.id: VITE_LOCK_LANGUAGE mengunci seluruh situs ke satu bahasa di root
+// (tanpa prefix /<lang>/). Tidak di-set = perilaku BentoPDF asli.
+export const getLockedLanguage = (): SupportedLanguage | null => {
+  const locked = import.meta.env?.VITE_LOCK_LANGUAGE;
+  return locked && supportedLanguages.includes(locked as SupportedLanguage)
+    ? (locked as SupportedLanguage)
+    : null;
+};
+
 export const getLanguageFromUrl = (): SupportedLanguage => {
+  const lockedLang = getLockedLanguage();
+  if (lockedLang) return lockedLang;
+
   const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
   let path = window.location.pathname;
 
@@ -150,6 +162,7 @@ export const t = (key: string, options?: Record<string, unknown>): string => {
 };
 
 export const changeLanguage = (lang: SupportedLanguage): void => {
+  if (getLockedLanguage()) return;
   if (!supportedLanguages.includes(lang)) return;
   setStoredItem('i18nextLng', lang);
 
@@ -233,6 +246,7 @@ export const applyTranslations = (): void => {
 };
 
 export const rewriteLinks = (): void => {
+  if (getLockedLanguage()) return;
   const currentLang = getLanguageFromUrl();
   if (currentLang === 'en') return;
 
