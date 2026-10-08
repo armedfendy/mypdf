@@ -70,7 +70,7 @@
     "vite-plugin-node-polyfills": "^0.26.0",
     "vitepress": "^1.6.4",
     "vitest": "^4.0.18",
-    "vue": "^3.5.29"
+    "vue": "^3.5.43"
   },
   "dependencies": {
     "@fontsource/cedarville-cursive": "^5.2.7",
