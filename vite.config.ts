@@ -552,6 +552,7 @@ export default defineConfig(() => {
           brandName: process.env.VITE_BRAND_NAME || '',
           brandLogo: process.env.VITE_BRAND_LOGO || '',
           footerText: process.env.VITE_FOOTER_TEXT || '',
+          mypdf: process.env.MYPDF === 'true',
           appVersion: process.env.npm_package_version || 'Unknown',
         },
       }),

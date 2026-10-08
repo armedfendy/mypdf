@@ -12,7 +12,7 @@
     "noLanguagesFound": "Bahasa tidak ditemukan"
   },
   "donation": {
-    "message": "Suka BentoPDF? Bantu kami menjaganya tetap gratis dan sumber terbuka!",
+    "message": "Suka mypdf.id? Bantu kami menjaganya tetap gratis dan sumber terbuka!",
     "button": "Donasi"
   },
   "hero": {
@@ -29,7 +29,7 @@
   },
   "features": {
     "title": "Mengapa memilih",
-    "bentoPdf": "BentoPDF?",
+    "bentoPdf": "mypdf.id?",
     "noSignup": {
       "title": "Tidak Ada Pendaftaran",
       "description": "Mulai seketika, tanpa akun atau email."
@@ -187,8 +187,8 @@
     "questions": "Pertanyaan",
     "sectionTitle": "Pertanyaan yang Sering Diajukan",
     "isFree": {
-      "question": "Apakah BentoPDF benar-benar gratis?",
-      "answer": "Ya, tentu saja. Semua alat di BentoPDF 100% gratis digunakan, tanpa batas file, tanpa pendaftaran, dan tanpa watermark. Kami percaya semua orang berhak mendapatkan akses ke alat PDF sederhana dan kuat tanpa paywall."
+      "question": "Apakah mypdf.id benar-benar gratis?",
+      "answer": "Ya, tentu saja. Semua alat di mypdf.id 100% gratis digunakan, tanpa batas file, tanpa pendaftaran, dan tanpa watermark. Kami percaya semua orang berhak mendapatkan akses ke alat PDF sederhana dan kuat tanpa paywall."
     },
     "areFilesSecure": {
       "question": "Apakah file saya aman? Di mana file diproses?",
@@ -196,27 +196,27 @@
     },
     "platforms": {
       "question": "Apakah ini bekerja di Mac, Windows, dan Mobile?",
-      "answer": "Ya! Karena BentoPDF berjalan sepenuhnya di browser Anda, ini bekerja di sistem operasi apa pun dengan browser web modern, termasuk Windows, macOS, Linux, iOS, dan Android."
+      "answer": "Ya! Karena mypdf.id berjalan sepenuhnya di browser Anda, ini bekerja di sistem operasi apa pun dengan browser web modern, termasuk Windows, macOS, Linux, iOS, dan Android."
     },
     "gdprCompliant": {
-      "question": "Apakah BentoPDF patuh GDPR?",
-      "answer": "Ya. BentoPDF sepenuhnya patuh GDPR. Karena semua pemrosesan file terjadi secara lokal di browser Anda dan kami tidak pernah mengumpulkan atau mentransmisikan file Anda ke server mana pun, kami tidak memiliki akses ke data Anda. Ini memastikan Anda selalu mengontrol dokumen Anda."
+      "question": "Bagaimana mypdf.id menangani data pribadi saya?",
+      "answer": "File Anda diproses sepenuhnya di browser dan tidak pernah dikirim ke server mana pun, jadi kami tidak pernah melihat isinya. Data lain yang mungkin dikumpulkan, seperti cookie iklan dan statistik kunjungan anonim, dijelaskan di halaman Kebijakan Privasi."
     },
     "dataStorage": {
       "question": "Apakah Anda menyimpan atau melacak file saya?",
-      "answer": "Tidak. Kami tidak pernah menyimpan, melacak, atau mencatat file Anda. Semua yang Anda lakukan di BentoPDF terjadi di memori browser Anda dan hilang setelah Anda menutup halaman. Tidak ada unggahan, tidak ada log riwayat, dan tidak ada server yang terlibat."
+      "answer": "Tidak. Kami tidak pernah menyimpan, melacak, atau mencatat file Anda. Semua yang Anda lakukan di mypdf.id terjadi di memori browser Anda dan hilang setelah Anda menutup halaman. Tidak ada unggahan, tidak ada log riwayat, dan tidak ada server yang terlibat."
     },
     "different": {
-      "question": "Apa yang membuat BentoPDF berbeda dari alat PDF lainnya?",
-      "answer": "Kebanyakan alat PDF mengunggah file Anda ke server untuk diproses. BentoPDF nggak pernah begitu. Kami pakai teknologi web modern dan aman buat memproses file Anda langsung di browser Anda. Ini berarti performa lebih cepat, privasi lebih kuat, dan ketenangan pikiran."
+      "question": "Apa yang membuat mypdf.id berbeda dari alat PDF lainnya?",
+      "answer": "Kebanyakan alat PDF mengunggah file Anda ke server untuk diproses. mypdf.id nggak pernah begitu. Kami pakai teknologi web modern dan aman buat memproses file Anda langsung di browser Anda. Ini berarti performa lebih cepat, privasi lebih kuat, dan ketenangan pikiran."
     },
     "browserBased": {
       "question": "Bagaimana pemrosesan berbasis browser menjaga keamanan saya?",
-      "answer": "Dengan berjalan sepenuhnya di dalam browser Anda, BentoPDF memastikan file Anda tidak pernah meninggalkan perangkat Anda. Ini menghilangkan risiko peretasan server, pelanggaran data, atau akses tidak sah. File Anda tetap milik Anda, selalu."
+      "answer": "Dengan berjalan sepenuhnya di dalam browser Anda, mypdf.id memastikan file Anda tidak pernah meninggalkan perangkat Anda. Ini menghilangkan risiko peretasan server, pelanggaran data, atau akses tidak sah. File Anda tetap milik Anda, selalu."
     },
     "analytics": {
-      "question": "Apakah Anda menggunakan cookie atau analitik untuk melacak saya?",
-      "answer": "Tidak. BentoPDF sama sekali tidak melacak Anda. Kami tidak menggunakan cookie, analitik, atau skrip pelacakan apa pun, bahkan di situs web langsung bentopdf.com. Kami tidak pernah tahu siapa Anda atau apa yang Anda lakukan dengan alat-alat ini."
+      "question": "Apakah Anda menggunakan cookie atau analitik?",
+      "answer": "File Anda tidak pernah dilacak atau dikirim ke mana pun. Agar tetap gratis, mypdf.id dibiayai iklan Google AdSense dan memakai statistik kunjungan anonim. Iklan dan statistik tersebut dapat menggunakan cookie. Selengkapnya ada di halaman Kebijakan Privasi."
     }
   },
   "testimonials": {
@@ -226,11 +226,11 @@
   },
   "support": {
     "title": "Suka Karya Saya?",
-    "description": "BentoPDF adalah proyek yang dibuat dengan sepenuh hati, untuk menyediakan toolkit PDF gratis, pribadi, dan kuat untuk semua orang. Kalau kamu merasa ini berguna, pertimbangkan untuk mendukung pengembangannya. Setiap secangkir kopi membantu!",
+    "description": "mypdf.id adalah proyek sumber terbuka berbasis BentoPDF yang dibiayai iklan, supaya semua alatnya tetap gratis untuk semua orang.",
     "buyMeCoffee": "Beli Kopi untuk Saya"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Hak cipta dilindungi.",
+    "copyright": "© 2026 mypdf.id",
     "version": "Versi",
     "company": "Perusahaan",
     "aboutUs": "Tentang Kami",
@@ -295,7 +295,7 @@
     "philosophy": {
       "label": "Filosofi Inti Kami",
       "title": "Privasi Yang Utama. Selalu.",
-      "description": "Di era di mana data adalah komoditas, kami mengambil pendekatan berbeda. Semua pemrosesan untuk alat BentoPDF terjadi secara lokal di browser Anda. Ini berarti file Anda tidak pernah menyentuh server kami, kami tidak pernah melihat dokumen Anda, dan kami tidak melacak apa yang Anda lakukan. Dokumen Anda tetap utuh dan privat secara tegas. Ini bukan hanya fitur; ini adalah fondasi kami."
+      "description": "Di era di mana data adalah komoditas, kami mengambil pendekatan berbeda. Semua pemrosesan untuk alat mypdf.id terjadi secara lokal di browser Anda. Ini berarti file Anda tidak pernah menyentuh server kami, kami tidak pernah melihat dokumen Anda, dan kami tidak melacak apa yang Anda lakukan. Dokumen Anda tetap utuh dan privat secara tegas. Ini bukan hanya fitur; ini adalah fondasi kami."
     },
     "whyBentopdf": {
       "title": "Mengapa",
@@ -318,7 +318,7 @@
     },
     "cta": {
       "title": "Siap untuk memulai?",
-      "description": "Bergabunglah dengan ribuan pengguna yang percaya BentoPDF untuk kebutuhan dokumen harian mereka. Rasakan bedanya privasi dan performa yang ditawarkan.",
+      "description": "Coba sekarang dan rasakan sendiri: cepat, gratis, dan file Anda tetap berada di perangkat Anda.",
       "button": "Jelajahi Semua Alat"
     }
   },

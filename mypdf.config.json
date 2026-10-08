@@ -1,0 +1,17 @@
+{
+  "siteName": "mypdf.id",
+  "sourceUrl": "https://github.com/armedfendy/mypdf",
+  "pages": {
+    "index": {
+      "title": "mypdf.id - Alat PDF Gratis Tanpa Upload, 100% di Browser",
+      "description": "Gabung, kompres, ubah, dan tanda tangani PDF langsung di browser. Gratis, tanpa daftar, dan file Anda tidak pernah di-upload ke server."
+    }
+  },
+  "removePages": ["licensing", "kura", "hyper-compress"],
+  "removeSelectors": [
+    "#donation-ribbon",
+    "#testimonials-section",
+    "[data-i18n=\"usedBy.title\"]",
+    "#security-compliance-section"
+  ]
+}
