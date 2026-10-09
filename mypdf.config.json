@@ -129,6 +129,42 @@
     "ocr-pdf": {
       "title": "OCR PDF Online Gratis - Scan Jadi Teks Bisa Dicari | mypdf.id",
       "description": "Ubah PDF hasil scan menjadi teks yang bisa dicari dan disalin, mendukung bahasa Indonesia. Gratis, tanpa daftar, dan dokumen tidak di-upload."
+    },
+    "pdf-to-excel": {
+      "title": "Ubah PDF ke Excel Online Gratis - Ambil Tabel PDF | mypdf.id",
+      "description": "Ambil tabel dari PDF menjadi file Excel XLSX, satu sheet per tabel. Gratis, tanpa daftar, dan data keuangan Anda tidak di-upload ke server."
+    },
+    "edit-pdf": {
+      "title": "Edit PDF Online Gratis - Sorot, Komentar, Tambah Teks | mypdf.id",
+      "description": "Edit PDF langsung di browser: sorot, beri komentar, tambahkan teks dan gambar, serta sensor informasi sensitif. Gratis, tanpa daftar, tanpa upload."
+    },
+    "extract-pages": {
+      "title": "Ekstrak Halaman PDF Online Gratis | mypdf.id",
+      "description": "Ambil halaman tertentu dari PDF, setiap halaman disimpan sebagai file sendiri. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "unlock-pdf": {
+      "title": "Buka Kunci PDF - Hapus Password PDF Online Gratis | mypdf.id",
+      "description": "Hapus password dari PDF milik Anda dengan kata sandi yang Anda ketahui. Gratis, dan file maupun kata sandi tidak pernah di-upload."
+    },
+    "header-footer": {
+      "title": "Tambah Header dan Footer PDF Online Gratis | mypdf.id",
+      "description": "Tambahkan teks di bagian atas dan bawah halaman PDF, termasuk Halaman X dari Y. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "pdf-converter": {
+      "title": "Konverter PDF Gratis - Ubah PDF ke Word, Excel, JPG | mypdf.id",
+      "description": "Ubah PDF ke Word, Excel, JPG, PNG, dan teks, atau ubah dokumen Office dan gambar ke PDF. Gratis, tanpa daftar, dan diproses di browser."
+    },
+    "pdf-editor": {
+      "title": "Editor PDF Gratis - Edit dan Rapikan PDF Online | mypdf.id",
+      "description": "Lebih dari 20 alat edit PDF: sorot, ubah teks, kompres, putar, watermark, nomor halaman, dan lainnya. Gratis dan tanpa upload."
+    },
+    "pdf-security": {
+      "title": "Keamanan PDF Gratis - Kunci dan Tanda Tangani PDF | mypdf.id",
+      "description": "Kunci PDF dengan password, atur izin, tanda tangani, dan hapus data sensitif. Gratis, dan dokumen tidak pernah keluar dari perangkat Anda."
+    },
+    "pdf-merge-split": {
+      "title": "Gabung dan Pisah PDF Gratis - Susun Halaman PDF | mypdf.id",
+      "description": "Gabungkan, pisahkan, ekstrak, hapus, dan susun ulang halaman PDF. Gratis, tanpa daftar, dan file diproses di browser tanpa upload."
     }
   },
   "removePages": ["licensing", "kura", "hyper-compress"],

@@ -808,7 +808,7 @@
     "subtitle": "Hapus metadata, anotasi, skrip, dan lainnya."
   },
   "decryptPdf": {
-    "name": "Dekripsi PDF",
+    "name": "Buka Kunci PDF",
     "subtitle": "Buka kunci PDF dengan menghapus perlindungan kata sandi."
   },
   "flattenPdf": {
@@ -1318,11 +1318,11 @@
     "faqPrivacyAnswer": "Tentu saja! Semua pemrosesan terjadi di browser Anda. File Anda tidak pernah meninggalkan perangkat Anda, memastikan privasi penuh."
   },
   "unlockPdf": {
-    "name": "Dekripsi PDF",
+    "name": "Buka Kunci PDF",
     "subtitle": "Buka kunci PDF dengan menghapus perlindungan kata sandi."
   },
   "protectPdf": {
-    "name": "Enkripsi PDF",
+    "name": "Kunci PDF",
     "subtitle": "Kunci PDF Anda dengan menambahkan kata sandi."
   }
 }
