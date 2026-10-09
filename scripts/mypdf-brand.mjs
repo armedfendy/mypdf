@@ -7,6 +7,7 @@
  *   - memasang judul & deskripsi khusus untuk halaman di config.pages
  *   - mengganti JSON-LD Organization dan membuang FAQPage berbahasa Inggris
  *   - membuang elemen yang khusus milik BentoPDF (config.removeSelectors)
+ *   - mengganti isi #app dengan content/pages/<halaman>.html bila ada
  * Halaman produk/lisensi BentoPDF (config.removePages) dihapus dari dist/ dan
  * sitemap.xml. File HTML upstream tidak diubah sama sekali.
  */
@@ -99,10 +100,20 @@ function setMeta(document, selector, value) {
   });
 }
 
+const CONTENT_DIR = path.join(ROOT, 'content', 'pages');
+
 function transform(html, pageKey) {
   const dom = new JSDOM(html);
   const { document } = dom.window;
   const page = config.pages[pageKey] || {};
+
+  // Isi halaman milik mypdf.id (content/pages/<halaman>.html) menggantikan
+  // isi #app bawaan BentoPDF.
+  const contentFile = path.join(CONTENT_DIR, `${pageKey}.html`);
+  const app = document.getElementById('app');
+  if (app && fs.existsSync(contentFile)) {
+    app.innerHTML = fs.readFileSync(contentFile, 'utf-8');
+  }
 
   // Judul & meta
   document.title = page.title || rebrand(document.title);
@@ -134,8 +145,12 @@ function transform(html, pageKey) {
   setMeta(document, 'meta[name="author"]', NAME);
   setMeta(document, 'meta[name="apple-mobile-web-app-title"]', NAME);
   setMeta(document, 'meta[name="application-name"]', NAME);
+  // twitter:site/creator milik akun BentoPDF; meta keywords berbahasa Inggris
+  // dan tidak dipakai Google.
   document
-    .querySelectorAll('meta[name="twitter:site"], meta[name="twitter:creator"]')
+    .querySelectorAll(
+      'meta[name="twitter:site"], meta[name="twitter:creator"], meta[name="keywords"]'
+    )
     .forEach((el) => el.remove());
   for (const sel of [
     'meta[property="og:image"]',
@@ -166,7 +181,12 @@ function transform(html, pageKey) {
       } else if (data['@type'] === 'FAQPage') {
         s.remove(); // dibuat ulang dari FAQ yang terlihat (lihat di bawah)
       } else {
-        s.textContent = rebrand(s.textContent);
+        if (page.title && typeof data.name === 'string') {
+          data.name = page.title;
+          s.textContent = rebrand(JSON.stringify(data, null, 2));
+        } else {
+          s.textContent = rebrand(s.textContent);
+        }
       }
     });
 

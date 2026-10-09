@@ -5,6 +5,26 @@
     "index": {
       "title": "mypdf.id - Alat PDF Gratis Tanpa Upload, 100% di Browser",
       "description": "Gabung, kompres, ubah, dan tanda tangani PDF langsung di browser. Gratis, tanpa daftar, dan file Anda tidak pernah di-upload ke server."
+    },
+    "about": {
+      "title": "Tentang mypdf.id - Alat PDF Gratis yang Menjaga Privasi",
+      "description": "Kenal lebih dekat mypdf.id: alat PDF gratis berbahasa Indonesia yang memproses file langsung di browser, sumber terbuka, dan berbasis BentoPDF."
+    },
+    "faq": {
+      "title": "FAQ - Pertanyaan Seputar mypdf.id",
+      "description": "Jawaban untuk pertanyaan umum tentang mypdf.id: keamanan file, iklan, batas ukuran file, pemakaian di HP, dan cara kompres PDF untuk CPNS."
+    },
+    "contact": {
+      "title": "Kontak - mypdf.id",
+      "description": "Hubungi mypdf.id lewat email kontak@mypdf.id atau GitHub untuk pertanyaan, saran, dan laporan masalah."
+    },
+    "privacy": {
+      "title": "Kebijakan Privasi - mypdf.id",
+      "description": "Kebijakan privasi mypdf.id: file Anda tidak pernah di-upload. Penjelasan tentang cookie iklan Google AdSense, analitik, dan hak Anda sesuai UU PDP."
+    },
+    "terms": {
+      "title": "Syarat Layanan - mypdf.id",
+      "description": "Syarat dan ketentuan penggunaan mypdf.id, layanan alat PDF gratis yang berjalan di browser."
     }
   },
   "removePages": ["licensing", "kura", "hyper-compress"],
