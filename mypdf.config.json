@@ -57,6 +57,30 @@
     "compress-pdf-for-email": {
       "title": "Kompres PDF untuk Email - Kecilkan Lampiran PDF | mypdf.id",
       "description": "Kecilkan PDF agar muat sebagai lampiran email Gmail atau email kantor. Gratis, tanpa daftar, dan file diproses di browser tanpa upload."
+    },
+    "split-pdf": {
+      "title": "Pisah PDF Online Gratis - Ambil Halaman Tertentu | mypdf.id",
+      "description": "Pisahkan PDF berdasarkan rentang halaman, halaman genap/ganjil, bookmark, atau per halaman. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "pdf-to-jpg": {
+      "title": "Ubah PDF ke JPG Online Gratis - Kualitas Tinggi | mypdf.id",
+      "description": "Ubah setiap halaman PDF menjadi gambar JPG berkualitas tinggi. Gratis, tanpa daftar, tanpa watermark, dan diproses langsung di browser."
+    },
+    "jpg-to-pdf": {
+      "title": "Ubah JPG ke PDF Online Gratis - Foto Jadi PDF | mypdf.id",
+      "description": "Satukan foto dan gambar JPG menjadi satu file PDF. Gratis, tanpa daftar, tanpa watermark, dan file tidak di-upload ke server."
+    },
+    "word-to-pdf": {
+      "title": "Ubah Word ke PDF Online Gratis - DOCX ke PDF | mypdf.id",
+      "description": "Konversi dokumen Word DOCX, DOC, ODT, dan RTF ke PDF dengan tata letak terjaga. Gratis, tanpa daftar, dan dokumen tidak di-upload ke server."
+    },
+    "pdf-to-word": {
+      "title": "Ubah PDF ke Word Online Gratis - PDF ke DOCX | mypdf.id",
+      "description": "Ubah PDF menjadi dokumen Word DOCX yang bisa diedit. Gratis, tanpa daftar, dan file diproses di browser tanpa di-upload."
+    },
+    "sign-pdf": {
+      "title": "Tanda Tangan PDF Online Gratis - TTD Dokumen | mypdf.id",
+      "description": "Tambahkan tanda tangan ke PDF dengan menggambar, mengetik, atau mengunggah foto tanda tangan. Gratis, tanpa daftar, dan dokumen tidak di-upload."
     }
   },
   "removePages": ["licensing", "kura", "hyper-compress"],
