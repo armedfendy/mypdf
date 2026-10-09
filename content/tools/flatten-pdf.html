@@ -1,19 +1,19 @@
-<!-- Konten SEO mypdf.id untuk /ocr-pdf. Menggantikan semua bagian SEO bawaan. -->
+<!-- Konten SEO mypdf.id untuk /flatten-pdf. Menggantikan semua bagian SEO bawaan. -->
 
 <section class="max-w-4xl mx-auto px-4 pt-12">
   <div class="legal-content">
     <p>
-      OCR PDF di mypdf.id mengubah PDF hasil scan atau foto menjadi PDF yang
-      teksnya bisa dicari, dipilih, dan disalin. Mendukung bahasa Indonesia dan
-      lebih dari 100 bahasa lain. Gratis, tanpa daftar, dan dokumen tidak
-      di-upload ke server.
+      Ratakan (flatten) PDF di mypdf.id untuk mengunci isian formulir, tanda
+      tangan, komentar, dan stempel ke dalam halaman sehingga tidak bisa diubah
+      lagi. Cocok sebelum mengirim formulir yang sudah diisi. Gratis, tanpa
+      daftar, dan file tidak di-upload.
     </p>
   </div>
 </section>
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Cara Menjalankan OCR pada PDF
+    Cara Meratakan PDF
   </h2>
   <div class="space-y-6">
     <div class="flex items-start gap-4">
@@ -23,12 +23,10 @@
         1
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-white mb-1">
-          Pilih file PDF hasil scan
-        </h3>
+        <h3 class="text-lg font-semibold text-white mb-1">Pilih file PDF</h3>
         <p class="text-gray-400">
-          Klik kotak di atas atau seret satu file PDF yang teksnya belum bisa
-          dipilih.
+          Klik kotak di atas atau seret satu atau beberapa PDF yang formulirnya
+          sudah diisi.
         </p>
       </div>
     </div>
@@ -39,12 +37,10 @@
         2
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-white mb-1">
-          Pilih bahasa dokumen
-        </h3>
+        <h3 class="text-lg font-semibold text-white mb-1">Klik Ratakan PDF</h3>
         <p class="text-gray-400">
-          Centang semua bahasa yang ada di dokumen, misalnya Indonesia dan
-          Inggris. Paket bahasa diunduh saat pertama kali dipakai.
+          Kolom formulir, kotak centang, komentar, dan anotasi lain disatukan ke
+          isi halaman.
         </p>
       </div>
     </div>
@@ -55,26 +51,10 @@
         3
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-white mb-1">
-          Pilih resolusi lalu mulai
-        </h3>
-        <p class="text-gray-400">
-          Tinggi (bawaan) cocok untuk dokumen kantor biasa. Pilih Ultra untuk
-          tulisan kecil atau scan buram, Standar bila ingin lebih cepat.
-        </p>
-      </div>
-    </div>
-    <div class="flex items-start gap-4">
-      <div
-        class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
-      >
-        4
-      </div>
-      <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">Unduh hasilnya</h3>
         <p class="text-gray-400">
-          Unduh PDF yang sudah bisa dicari, atau salin dan unduh teks hasil OCR
-          sebagai file .txt.
+          Satu file diunduh dengan awalan "flattened_" di namanya. Beberapa file
+          diunduh sekaligus dalam satu ZIP.
         </p>
       </div>
     </div>
@@ -83,26 +63,28 @@
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Tips Agar Hasil OCR Akurat
+    Kapan Perlu Meratakan PDF?
   </h2>
   <div class="legal-content">
     <ul>
       <li>
-        Gunakan scan yang terang, jelas, dan lurus. Halaman miring sebaiknya
-        diluruskan dulu dengan <a href="/deskew-pdf">Luruskan PDF</a>.
+        Setelah mengisi formulir pendaftaran, agar jawaban tidak bisa diubah
+        penerima.
       </li>
       <li>
-        Aktifkan opsi binarisasi untuk scan yang pudar atau kontrasnya rendah.
+        Setelah menempelkan gambar tanda tangan, agar tidak bisa dipindah atau
+        dihapus.
       </li>
       <li>
-        OCR bekerja paling baik pada teks cetak. Tulisan tangan umumnya tidak
-        terbaca dengan baik.
-      </li>
-      <li>
-        Foto dokumen dari HP? Ubah dulu menjadi PDF dengan
-        <a href="/jpg-to-pdf">JPG ke PDF</a>.
+        Saat formulir tampil berbeda di aplikasi lain; setelah diratakan,
+        tampilannya sama di semua aplikasi.
       </li>
     </ul>
+    <p>
+      Ratakan dulu, baru tanda tangani secara digital. Meratakan setelah tanda
+      tangan digital akan membuat dokumen dianggap sudah diubah. Simpan juga
+      file aslinya, karena PDF yang sudah diratakan tidak bisa dikembalikan.
+    </p>
   </div>
 </section>
 
@@ -112,18 +94,18 @@
   </h2>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
     <a
-      href="/jpg-to-pdf"
+      href="/sign-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">JPG ke PDF</h3>
-      <p class="text-gray-400 text-sm">Ubah foto atau scan jadi PDF</p>
+      <h3 class="text-white font-semibold mb-1">Tanda Tangan PDF</h3>
+      <p class="text-gray-400 text-sm">Tambahkan tanda tangan ke dokumen</p>
     </a>
     <a
-      href="/pdf-to-word"
+      href="/protect-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">PDF ke Word</h3>
-      <p class="text-gray-400 text-sm">Ubah PDF jadi DOCX yang bisa diedit</p>
+      <h3 class="text-white font-semibold mb-1">Kunci PDF</h3>
+      <p class="text-gray-400 text-sm">Tambahkan kata sandi ke PDF</p>
     </a>
     <a
       href="/compress-pdf"
@@ -140,91 +122,86 @@
       <p class="text-gray-400 text-sm">Satukan beberapa PDF jadi satu</p>
     </a>
     <a
-      href="/deskew-pdf"
+      href="/edit-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Luruskan PDF</h3>
-      <p class="text-gray-400 text-sm">
-        Luruskan halaman hasil scan yang miring
-      </p>
+      <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
+      <p class="text-gray-400 text-sm">Coret, sorot, tambah teks dan gambar</p>
     </a>
     <a
-      href="/split-pdf"
+      href="/change-permissions"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Pisah PDF</h3>
-      <p class="text-gray-400 text-sm">Ambil halaman tertentu jadi file baru</p>
+      <h3 class="text-white font-semibold mb-1">Ubah Izin</h3>
+      <p class="text-gray-400 text-sm">Atur izin cetak, salin, dan edit</p>
     </a>
   </div>
 </section>
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Pertanyaan Seputar OCR PDF
+    Pertanyaan Seputar Ratakan PDF
   </h2>
   <div class="faq-list">
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bagaimana tahu PDF saya perlu OCR?
+        Apa yang terjadi saat PDF diratakan?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Coba blok satu baris teks di aplikasi pembaca. Kalau tidak bisa dipilih
-        atau pencarian tidak menemukan apa pun, halamannya hanya gambar dan
-        perlu OCR.
+        Kolom formulir, kotak centang, pilihan, kolom tanda tangan, komentar,
+        sorotan, stempel, dan coretan disatukan ke isi halaman. Tampilannya
+        sama, tetapi tidak bisa diedit, dipindah, atau dihapus.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah bahasa Indonesia didukung?
+        Apakah teks masih bisa dipilih dan dicari?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Ya. Tersedia lebih dari 100 bahasa, termasuk Indonesia. Centang semua
-        bahasa yang muncul di dokumen agar halaman berbahasa campuran terbaca
-        sekaligus.
+        Ya. Halaman tidak diubah menjadi gambar. Teks, gambar, bookmark, dan
+        ukuran halaman tetap seperti semula.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah tampilan dokumen berubah setelah OCR?
+        Kenapa muncul pesan formulir tidak ditemukan?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Tidak. Halaman asli tetap sama, lalu ditambahkan lapisan teks tak
-        terlihat tepat di atas tulisan pada scan. Tampilannya sama, tetapi teks
-        kini bisa dicari dan disalin.
+        Pesan itu muncul bila PDF punya anotasi tetapi tidak punya kolom
+        formulir. Bukan kesalahan; anotasinya tetap diratakan dan file tetap
+        diunduh.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah membaca tulisan tangan?
+        Apakah tautan masih bisa diklik?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Kurang andal. Mesin OCR dilatih untuk teks cetak, jadi tulisan tangan
-        umumnya menghasilkan teks yang kacau.
+        Tautan termasuk anotasi, jadi bisa tidak berfungsi lagi meskipun teksnya
+        tetap terlihat.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah hanya mengambil teksnya saja?
+        Bisakah meratakan beberapa PDF sekaligus?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Bisa. Setelah OCR selesai, teks hasil pengenalan tampil di kotak yang
-        bisa disalin atau diunduh sebagai file .txt, terpisah dari unduhan PDF.
+        Bisa. Pilih beberapa file, lalu semuanya diunduh dalam satu ZIP.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah scan saya di-upload?
+        Apakah file saya di-upload ke server?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Tidak. Mesin OCR berjalan di browser Anda. Yang diunduh hanya mesin OCR
-        dan paket bahasa yang dipilih; halaman scan dan teksnya tetap di
-        perangkat Anda.
+        Tidak. Semua proses berjalan di browser, di perangkat Anda sendiri.
+        Dokumen tidak pernah dikirim ke server mypdf.id maupun pihak lain.
       </p>
     </details>
     <details class="faq-d">

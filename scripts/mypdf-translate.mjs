@@ -416,6 +416,16 @@ const runtime = `/* Dibuat otomatis oleh scripts/mypdf-translate.mjs. Jangan die
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
+  // Penampil PDF.js di dalam iframe (Tanda Tangan PDF, Isi Formulir, Stempel)
+  // memilih bahasa dari browser. Paksa memakai bahasa situs.
+  document.addEventListener('webviewerloaded', (e) => {
+    try {
+      const o = e.detail && e.detail.source && e.detail.source.PDFViewerApplicationOptions;
+      if (!o) return;
+      o.set('localeProperties', { lang: ${JSON.stringify(LANG)} });
+      o.set('locale', ${JSON.stringify(LANG)});
+    } catch (_) {}
+  });
 })();
 `;
 fs.writeFileSync(path.join(DIST_DIR, 'mypdf-i18n.js'), runtime);

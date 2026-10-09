@@ -1,19 +1,19 @@
-<!-- Konten SEO mypdf.id untuk /rotate-pdf. Menggantikan semua bagian SEO bawaan. -->
+<!-- Konten SEO mypdf.id untuk /crop-pdf. Menggantikan semua bagian SEO bawaan. -->
 
 <section class="max-w-4xl mx-auto px-4 pt-12">
   <div class="legal-content">
     <p>
-      Putar PDF di mypdf.id untuk membetulkan halaman yang miring, menyamping,
-      atau terbalik, misalnya hasil scan yang masuk dengan posisi salah. Putar
-      satu halaman saja atau semuanya sekaligus. Gratis, tanpa daftar, dan file
-      tidak di-upload ke server.
+      Potong (crop) PDF di mypdf.id untuk membuang margin putih, tepi hitam
+      hasil scan, atau bagian halaman yang tidak perlu. Atur area potong per
+      halaman atau terapkan ke semua halaman. Gratis, tanpa daftar, dan file
+      tidak di-upload.
     </p>
   </div>
 </section>
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Cara Memutar Halaman PDF
+    Cara Memotong Halaman PDF
   </h2>
   <div class="space-y-6">
     <div class="flex items-start gap-4">
@@ -25,8 +25,7 @@
       <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">Pilih file PDF</h3>
         <p class="text-gray-400">
-          Klik kotak di atas atau seret satu file PDF. Setiap halaman tampil
-          sebagai thumbnail.
+          Klik kotak di atas atau seret satu file PDF.
         </p>
       </div>
     </div>
@@ -38,11 +37,11 @@
       </div>
       <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">
-          Putar halaman yang salah posisi
+          Tentukan area potong
         </h3>
         <p class="text-gray-400">
-          Klik tombol putar kiri atau kanan di bawah thumbnail halaman tersebut.
-          Tombol di bagian atas memutar semua halaman sekaligus.
+          Seret sudut atau tepi kotak di pratinjau halaman. Pindah halaman untuk
+          memotong halaman lain dengan ukuran berbeda.
         </p>
       </div>
     </div>
@@ -53,10 +52,12 @@
         3
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-white mb-1">Periksa hasilnya</h3>
+        <h3 class="text-lg font-semibold text-white mb-1">
+          Terapkan ke semua halaman (opsional)
+        </h3>
         <p class="text-gray-400">
-          Setiap klik memutar 90 derajat dan thumbnail langsung berubah, jadi
-          Anda bisa melihat posisi akhir sebelum menyimpan.
+          Centang opsi terapkan ke semua halaman untuk memakai kotak yang sama
+          di setiap halaman.
         </p>
       </div>
     </div>
@@ -67,9 +68,9 @@
         4
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-white mb-1">Unduh PDF-nya</h3>
+        <h3 class="text-lg font-semibold text-white mb-1">Unduh hasilnya</h3>
         <p class="text-gray-400">
-          PDF yang sudah diputar tersimpan dengan nama file aslinya.
+          PDF yang sudah dipotong tersimpan dengan nama file aslinya.
         </p>
       </div>
     </div>
@@ -78,23 +79,20 @@
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Kapan Perlu Memutar PDF?
+    Potong Biasa atau Potong Permanen?
   </h2>
   <div class="legal-content">
-    <ul>
-      <li>Hasil scan atau foto dokumen masuk menyamping atau terbalik.</li>
-      <li>
-        Satu halaman tabel lebar (landscape) terselip di tengah dokumen tegak.
-      </li>
-      <li>
-        Dokumen perlu dikirim atau dicetak dengan posisi halaman yang benar,
-        tidak hanya diputar sementara di aplikasi pembaca.
-      </li>
-    </ul>
     <p>
-      Halaman yang miring beberapa derajat saja lebih cocok diluruskan dengan
-      <a href="/deskew-pdf">Luruskan PDF</a> atau
-      <a href="/rotate-custom">Putar dengan Derajat Kustom</a>.
+      Mode bawaan hanya menyembunyikan area di luar kotak, sehingga teks tetap
+      bisa dipilih dan kualitas tidak berubah. Isi yang tersembunyi masih ada di
+      dalam file.
+    </p>
+    <p>
+      Bila bagian yang dipotong harus benar-benar hilang, misalnya sebelum
+      membagikan potongan dokumen, aktifkan <strong>Potong permanen</strong>.
+      Halaman akan diubah menjadi gambar, sehingga teks tidak bisa dipilih lagi
+      dan ukuran file biasanya bertambah. Untuk scan yang miring, luruskan dulu
+      dengan <a href="/deskew-pdf">Luruskan PDF</a>.
     </p>
   </div>
 </section>
@@ -105,32 +103,20 @@
   </h2>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
     <a
-      href="/organize-pdf"
+      href="/fix-page-size"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Atur Halaman</h3>
-      <p class="text-gray-400 text-sm">Urutkan, gandakan, hapus halaman</p>
+      <h3 class="text-white font-semibold mb-1">Perbaiki Ukuran Halaman</h3>
+      <p class="text-gray-400 text-sm">Seragamkan ukuran halaman jadi A4</p>
     </a>
     <a
-      href="/delete-pages"
+      href="/rotate-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Hapus Halaman</h3>
-      <p class="text-gray-400 text-sm">Buang halaman yang tidak perlu</p>
-    </a>
-    <a
-      href="/merge-pdf"
-      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
-    >
-      <h3 class="text-white font-semibold mb-1">Gabung PDF</h3>
-      <p class="text-gray-400 text-sm">Satukan beberapa PDF jadi satu</p>
-    </a>
-    <a
-      href="/split-pdf"
-      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
-    >
-      <h3 class="text-white font-semibold mb-1">Pisah PDF</h3>
-      <p class="text-gray-400 text-sm">Ambil halaman tertentu jadi file baru</p>
+      <h3 class="text-white font-semibold mb-1">Putar PDF</h3>
+      <p class="text-gray-400 text-sm">
+        Putar halaman yang miring atau terbalik
+      </p>
     </a>
     <a
       href="/compress-pdf"
@@ -140,86 +126,93 @@
       <p class="text-gray-400 text-sm">Kecilkan ukuran file PDF</p>
     </a>
     <a
-      href="/deskew-pdf"
+      href="/split-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Luruskan PDF</h3>
-      <p class="text-gray-400 text-sm">
-        Luruskan halaman hasil scan yang miring
-      </p>
+      <h3 class="text-white font-semibold mb-1">Pisah PDF</h3>
+      <p class="text-gray-400 text-sm">Ambil halaman tertentu jadi file baru</p>
+    </a>
+    <a
+      href="/organize-pdf"
+      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+    >
+      <h3 class="text-white font-semibold mb-1">Atur Halaman</h3>
+      <p class="text-gray-400 text-sm">Urutkan, gandakan, hapus halaman</p>
+    </a>
+    <a
+      href="/edit-pdf"
+      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+    >
+      <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
+      <p class="text-gray-400 text-sm">Coret, sorot, tambah teks dan gambar</p>
     </a>
   </div>
 </section>
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Pertanyaan Seputar Putar PDF
+    Pertanyaan Seputar Potong PDF
   </h2>
   <div class="faq-list">
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah memutar satu halaman saja?
+        Apakah bagian di luar kotak terhapus permanen?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Bisa. Setiap thumbnail punya tombol putar sendiri, jadi satu halaman
-        yang menyamping di dokumen 40 halaman bisa dibetulkan tanpa mengubah
-        halaman lain.
+        Pada mode bawaan tidak; bagian itu hanya disembunyikan. Aktifkan Potong
+        permanen bila bagian tersebut harus benar-benar hilang.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bagaimana memutar halaman 180 derajat?
+        Apakah teks masih bisa dipilih setelah dipotong?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Klik tombol putar dengan arah yang sama dua kali. Setiap klik memutar 90
-        derajat, sehingga dua klik menjadi 180 derajat.
+        Ya pada mode bawaan, karena isi halaman tidak dirender ulang. Potong
+        permanen mengubah halaman menjadi gambar sehingga teks tidak bisa
+        dipilih.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah kualitas halaman berkurang setelah diputar?
+        Bisakah memotong setiap halaman dengan ukuran berbeda?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Tidak. Yang diubah hanya pengaturan rotasi di setiap halaman, bukan
-        isinya. Teks tetap bisa dipilih, gambar tetap tajam, dan ukuran file
-        hampir sama.
+        Bisa. Pindah antarhalaman dan atur kotak sendiri di setiap halaman.
+        Halaman yang tidak diatur tetap berukuran asli.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah posisi baru tetap tersimpan saat dibuka di aplikasi lain atau
-        dicetak?
+        Bisakah mengetik ukuran potong secara tepat?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Ya. Rotasi disimpan di dalam file PDF, jadi berlaku di semua aplikasi
-        pembaca dan printer, berbeda dengan tombol putar sementara di aplikasi
-        pembaca.
+        Tidak. Area potong diatur dengan menyeret sudut atau tepi kotak di
+        pratinjau. Perbesar tampilan browser untuk margin yang sangat tipis.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah memutar dengan sudut selain 90 derajat?
+        Berapa ukuran halaman setelah dipotong?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Tidak di alat ini. Untuk sudut bebas gunakan Putar dengan Derajat
-        Kustom, dan untuk meluruskan scan yang miring otomatis gunakan Luruskan
-        Scan.
+        Setiap halaman mengikuti ukuran kotaknya. Gunakan Perbaiki Ukuran
+        Halaman bila setelahnya butuh ukuran A4.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah bookmark tetap ada?
+        Bisakah membuang tepi hitam hasil scan?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Isi halaman, gambar, dan anotasi tetap utuh. Bookmark (daftar isi di
-        panel samping) tidak ikut terbawa karena file baru disusun dari salinan
-        halaman. Bila perlu, tambahkan lagi dengan alat Bookmark.
+        Bisa. Atur kotak di dalam tepi hitam, lalu terapkan ke semua halaman
+        bila semua scan punya tepi yang sama.
       </p>
     </details>
     <details class="faq-d">
