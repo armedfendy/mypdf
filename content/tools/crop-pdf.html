@@ -1,19 +1,19 @@
-<!-- Konten SEO mypdf.id untuk /add-watermark. Menggantikan semua bagian SEO bawaan. -->
+<!-- Konten SEO mypdf.id untuk /crop-pdf. Menggantikan semua bagian SEO bawaan. -->
 
 <section class="max-w-4xl mx-auto px-4 pt-12">
   <div class="legal-content">
     <p>
-      Tambah watermark ke PDF di mypdf.id: cap teks seperti RAHASIA, DRAFT, atau
-      SALINAN, atau logo perusahaan di setiap halaman. Atur ukuran, sudut,
-      transparansi, dan posisinya dengan pratinjau langsung. Gratis, tanpa
-      daftar, dan file tidak di-upload.
+      Potong (crop) PDF di mypdf.id untuk membuang margin putih, tepi hitam
+      hasil scan, atau bagian halaman yang tidak perlu. Atur area potong per
+      halaman atau terapkan ke semua halaman. Gratis, tanpa daftar, dan file
+      tidak di-upload.
     </p>
   </div>
 </section>
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Cara Menambahkan Watermark ke PDF
+    Cara Memotong Halaman PDF
   </h2>
   <div class="space-y-6">
     <div class="flex items-start gap-4">
@@ -37,11 +37,11 @@
       </div>
       <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">
-          Pilih jenis watermark
+          Tentukan area potong
         </h3>
         <p class="text-gray-400">
-          Mode Teks untuk tulisan seperti RAHASIA, atau mode Gambar untuk logo
-          PNG atau JPG.
+          Seret sudut atau tepi kotak di pratinjau halaman. Pindah halaman untuk
+          memotong halaman lain dengan ukuran berbeda.
         </p>
       </div>
     </div>
@@ -52,11 +52,12 @@
         3
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-white mb-1">Atur tampilannya</h3>
+        <h3 class="text-lg font-semibold text-white mb-1">
+          Terapkan ke semua halaman (opsional)
+        </h3>
         <p class="text-gray-400">
-          Ubah ukuran, sudut (bawaan -45 derajat), dan transparansi, lalu seret
-          watermark ke posisi yang diinginkan di pratinjau. Pilih tata letak
-          Ubin untuk mengulang watermark di seluruh halaman.
+          Centang opsi terapkan ke semua halaman untuk memakai kotak yang sama
+          di setiap halaman.
         </p>
       </div>
     </div>
@@ -69,7 +70,7 @@
       <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">Unduh hasilnya</h3>
         <p class="text-gray-400">
-          PDF dengan watermark langsung tersimpan di perangkat Anda.
+          PDF yang sudah dipotong tersimpan dengan nama file aslinya.
         </p>
       </div>
     </div>
@@ -78,27 +79,21 @@
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Tips Watermark yang Rapi
+    Potong Biasa atau Potong Permanen?
   </h2>
   <div class="legal-content">
-    <ul>
-      <li>
-        Transparansi 0,2 sampai 0,4 membuat watermark terlihat tanpa menutupi
-        isi dokumen.
-      </li>
-      <li>
-        Untuk logo, PNG berlatar transparan menyatu paling baik dengan halaman.
-      </li>
-      <li>
-        Watermark hanya untuk halaman tertentu? Isi rentang halaman, misalnya
-        1-3, 5.
-      </li>
-      <li>
-        Agar watermark lebih sulit dihapus, pilih tata letak Ubin atau aktifkan
-        opsi ratakan (flatten). Opsi ratakan mengubah halaman menjadi gambar
-        sehingga teks tidak bisa dipilih lagi.
-      </li>
-    </ul>
+    <p>
+      Mode bawaan hanya menyembunyikan area di luar kotak, sehingga teks tetap
+      bisa dipilih dan kualitas tidak berubah. Isi yang tersembunyi masih ada di
+      dalam file.
+    </p>
+    <p>
+      Bila bagian yang dipotong harus benar-benar hilang, misalnya sebelum
+      membagikan potongan dokumen, aktifkan <strong>Potong permanen</strong>.
+      Halaman akan diubah menjadi gambar, sehingga teks tidak bisa dipilih lagi
+      dan ukuran file biasanya bertambah. Untuk scan yang miring, luruskan dulu
+      dengan <a href="/deskew-pdf">Luruskan PDF</a>.
+    </p>
   </div>
 </section>
 
@@ -108,34 +103,20 @@
   </h2>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
     <a
-      href="/protect-pdf"
+      href="/fix-page-size"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Kunci PDF</h3>
-      <p class="text-gray-400 text-sm">Tambahkan kata sandi ke PDF</p>
+      <h3 class="text-white font-semibold mb-1">Perbaiki Ukuran Halaman</h3>
+      <p class="text-gray-400 text-sm">Seragamkan ukuran halaman jadi A4</p>
     </a>
     <a
-      href="/page-numbers"
+      href="/rotate-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Nomor Halaman</h3>
-      <p class="text-gray-400 text-sm">Tambahkan nomor di setiap halaman</p>
-    </a>
-    <a
-      href="/header-footer"
-      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
-    >
-      <h3 class="text-white font-semibold mb-1">Header & Footer</h3>
+      <h3 class="text-white font-semibold mb-1">Putar PDF</h3>
       <p class="text-gray-400 text-sm">
-        Tambahkan teks di atas dan bawah halaman
+        Putar halaman yang miring atau terbalik
       </p>
-    </a>
-    <a
-      href="/sign-pdf"
-      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
-    >
-      <h3 class="text-white font-semibold mb-1">Tanda Tangan PDF</h3>
-      <p class="text-gray-400 text-sm">Tambahkan tanda tangan ke dokumen</p>
     </a>
     <a
       href="/compress-pdf"
@@ -145,72 +126,93 @@
       <p class="text-gray-400 text-sm">Kecilkan ukuran file PDF</p>
     </a>
     <a
-      href="/merge-pdf"
+      href="/split-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Gabung PDF</h3>
-      <p class="text-gray-400 text-sm">Satukan beberapa PDF jadi satu</p>
+      <h3 class="text-white font-semibold mb-1">Pisah PDF</h3>
+      <p class="text-gray-400 text-sm">Ambil halaman tertentu jadi file baru</p>
+    </a>
+    <a
+      href="/organize-pdf"
+      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+    >
+      <h3 class="text-white font-semibold mb-1">Atur Halaman</h3>
+      <p class="text-gray-400 text-sm">Urutkan, gandakan, hapus halaman</p>
+    </a>
+    <a
+      href="/edit-pdf"
+      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+    >
+      <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
+      <p class="text-gray-400 text-sm">Coret, sorot, tambah teks dan gambar</p>
     </a>
   </div>
 </section>
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Pertanyaan Seputar Watermark PDF
+    Pertanyaan Seputar Potong PDF
   </h2>
   <div class="faq-list">
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah watermark hanya di halaman tertentu?
+        Apakah bagian di luar kotak terhapus permanen?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Bisa. Tulis rentang seperti 1-3, 5, 7-9 di kolom rentang halaman. Untuk
-        teks atau posisi berbeda per halaman, matikan opsi terapkan ke semua
-        halaman lalu atur setiap halaman lewat pratinjau.
+        Pada mode bawaan tidak; bagian itu hanya disembunyikan. Aktifkan Potong
+        permanen bila bagian tersebut harus benar-benar hilang.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bagaimana membuat watermark diagonal seperti RAHASIA?
+        Apakah teks masih bisa dipilih setelah dipotong?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Gunakan mode Teks, ketik kata yang diinginkan, lalu perbesar ukuran
-        huruf. Sudut bawaan sudah -45 derajat, jadi tinggal seret ke tengah
-        halaman.
+        Ya pada mode bawaan, karena isi halaman tidak dirender ulang. Potong
+        permanen mengubah halaman menjadi gambar sehingga teks tidak bisa
+        dipilih.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah memakai logo sebagai watermark?
+        Bisakah memotong setiap halaman dengan ukuran berbeda?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Bisa. Pilih mode Gambar lalu unggah logo PNG atau JPG. Ukuran bisa
-        diatur 10% sampai 200%, beserta transparansi dan sudutnya.
+        Bisa. Pindah antarhalaman dan atur kotak sendiri di setiap halaman.
+        Halaman yang tidak diatur tetap berukuran asli.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah watermark bisa dihapus orang lain?
+        Bisakah mengetik ukuran potong secara tepat?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Watermark digambar langsung ke isi halaman, jadi tidak bisa dihapus
-        dengan sekali klik di aplikasi pembaca. Untuk perlindungan lebih kuat,
-        gunakan tata letak Ubin atau opsi ratakan.
+        Tidak. Area potong diatur dengan menyeret sudut atau tepi kotak di
+        pratinjau. Perbesar tampilan browser untuk margin yang sangat tipis.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah kualitas dokumen berubah?
+        Berapa ukuran halaman setelah dipotong?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Tidak. Teks dan gambar asli tetap utuh dan teks tetap bisa dipilih.
-        Pengecualiannya opsi ratakan, yang mengubah setiap halaman menjadi
-        gambar.
+        Setiap halaman mengikuti ukuran kotaknya. Gunakan Perbaiki Ukuran
+        Halaman bila setelahnya butuh ukuran A4.
+      </p>
+    </details>
+    <details class="faq-d">
+      <summary class="faq-d-q">
+        Bisakah membuang tepi hitam hasil scan?
+        <i data-lucide="plus" class="faq-d-icon"></i>
+      </summary>
+      <p class="faq-d-a">
+        Bisa. Atur kotak di dalam tepi hitam, lalu terapkan ke semua halaman
+        bila semua scan punya tepi yang sama.
       </p>
     </details>
     <details class="faq-d">

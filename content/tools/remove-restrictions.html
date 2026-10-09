@@ -1,19 +1,19 @@
-<!-- Konten SEO mypdf.id untuk /add-watermark. Menggantikan semua bagian SEO bawaan. -->
+<!-- Konten SEO mypdf.id untuk /remove-restrictions. Menggantikan semua bagian SEO bawaan. -->
 
 <section class="max-w-4xl mx-auto px-4 pt-12">
   <div class="legal-content">
     <p>
-      Tambah watermark ke PDF di mypdf.id: cap teks seperti RAHASIA, DRAFT, atau
-      SALINAN, atau logo perusahaan di setiap halaman. Atur ukuran, sudut,
-      transparansi, dan posisinya dengan pratinjau langsung. Gratis, tanpa
-      daftar, dan file tidak di-upload.
+      Hapus pembatasan PDF di mypdf.id untuk PDF yang bisa dibuka tetapi tidak
+      bisa dicetak, disalin, atau diedit. Semua batasan dihapus dan file
+      disimpan tanpa enkripsi. Gratis, dan file maupun kata sandi tidak pernah
+      di-upload.
     </p>
   </div>
 </section>
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Cara Menambahkan Watermark ke PDF
+    Cara Menghapus Pembatasan PDF
   </h2>
   <div class="space-y-6">
     <div class="flex items-start gap-4">
@@ -25,7 +25,7 @@
       <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">Pilih file PDF</h3>
         <p class="text-gray-400">
-          Klik kotak di atas atau seret satu file PDF.
+          Klik kotak di atas atau seret PDF yang dibatasi.
         </p>
       </div>
     </div>
@@ -37,11 +37,10 @@
       </div>
       <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">
-          Pilih jenis watermark
+          Isi kata sandi pemilik bila ada
         </h3>
         <p class="text-gray-400">
-          Mode Teks untuk tulisan seperti RAHASIA, atau mode Gambar untuk logo
-          PNG atau JPG.
+          Kalau PDF terbuka tanpa kata sandi, kosongkan kolom ini.
         </p>
       </div>
     </div>
@@ -52,11 +51,11 @@
         3
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-white mb-1">Atur tampilannya</h3>
+        <h3 class="text-lg font-semibold text-white mb-1">
+          Klik Hapus Pembatasan
+        </h3>
         <p class="text-gray-400">
-          Ubah ukuran, sudut (bawaan -45 derajat), dan transparansi, lalu seret
-          watermark ke posisi yang diinginkan di pratinjau. Pilih tata letak
-          Ubin untuk mengulang watermark di seluruh halaman.
+          Batasan cetak, salin, edit, dan komentar dihapus seluruhnya.
         </p>
       </div>
     </div>
@@ -69,7 +68,7 @@
       <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">Unduh hasilnya</h3>
         <p class="text-gray-400">
-          PDF dengan watermark langsung tersimpan di perangkat Anda.
+          PDF tanpa batasan tersimpan dengan nama file aslinya.
         </p>
       </div>
     </div>
@@ -78,27 +77,20 @@
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Tips Watermark yang Rapi
+    Gunakan dengan Bijak
   </h2>
   <div class="legal-content">
-    <ul>
-      <li>
-        Transparansi 0,2 sampai 0,4 membuat watermark terlihat tanpa menutupi
-        isi dokumen.
-      </li>
-      <li>
-        Untuk logo, PNG berlatar transparan menyatu paling baik dengan halaman.
-      </li>
-      <li>
-        Watermark hanya untuk halaman tertentu? Isi rentang halaman, misalnya
-        1-3, 5.
-      </li>
-      <li>
-        Agar watermark lebih sulit dihapus, pilih tata letak Ubin atau aktifkan
-        opsi ratakan (flatten). Opsi ratakan mengubah halaman menjadi gambar
-        sehingga teks tidak bisa dipilih lagi.
-      </li>
-    </ul>
+    <p>
+      Alat ini ditujukan untuk dokumen milik Anda atau yang Anda punya hak untuk
+      memakainya, misalnya agar bisa mencetak formulir sendiri atau menyalin
+      kutipan untuk catatan. Jangan gunakan untuk melanggar hak cipta atau
+      lisensi orang lain.
+    </p>
+    <p>
+      PDF meminta kata sandi saat dibuka? Itu kata sandi pembuka; gunakan
+      <a href="/unlock-pdf">Buka Kunci PDF</a>. Ingin tetap berkata sandi tetapi
+      mengizinkan cetak? Gunakan <a href="/change-permissions">Ubah Izin</a>.
+    </p>
   </div>
 </section>
 
@@ -108,6 +100,20 @@
   </h2>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
     <a
+      href="/unlock-pdf"
+      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+    >
+      <h3 class="text-white font-semibold mb-1">Buka Kunci PDF</h3>
+      <p class="text-gray-400 text-sm">Hapus kata sandi dari PDF</p>
+    </a>
+    <a
+      href="/change-permissions"
+      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+    >
+      <h3 class="text-white font-semibold mb-1">Ubah Izin</h3>
+      <p class="text-gray-400 text-sm">Atur izin cetak, salin, dan edit</p>
+    </a>
+    <a
       href="/protect-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
@@ -115,34 +121,18 @@
       <p class="text-gray-400 text-sm">Tambahkan kata sandi ke PDF</p>
     </a>
     <a
-      href="/page-numbers"
+      href="/edit-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Nomor Halaman</h3>
-      <p class="text-gray-400 text-sm">Tambahkan nomor di setiap halaman</p>
+      <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
+      <p class="text-gray-400 text-sm">Coret, sorot, tambah teks dan gambar</p>
     </a>
     <a
-      href="/header-footer"
+      href="/pdf-to-word"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Header & Footer</h3>
-      <p class="text-gray-400 text-sm">
-        Tambahkan teks di atas dan bawah halaman
-      </p>
-    </a>
-    <a
-      href="/sign-pdf"
-      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
-    >
-      <h3 class="text-white font-semibold mb-1">Tanda Tangan PDF</h3>
-      <p class="text-gray-400 text-sm">Tambahkan tanda tangan ke dokumen</p>
-    </a>
-    <a
-      href="/compress-pdf"
-      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
-    >
-      <h3 class="text-white font-semibold mb-1">Kompres PDF</h3>
-      <p class="text-gray-400 text-sm">Kecilkan ukuran file PDF</p>
+      <h3 class="text-white font-semibold mb-1">PDF ke Word</h3>
+      <p class="text-gray-400 text-sm">Ubah PDF jadi DOCX yang bisa diedit</p>
     </a>
     <a
       href="/merge-pdf"
@@ -156,71 +146,70 @@
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Pertanyaan Seputar Watermark PDF
+    Pertanyaan Seputar Hapus Pembatasan PDF
   </h2>
   <div class="faq-list">
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah watermark hanya di halaman tertentu?
+        Apa beda Hapus Pembatasan dan Buka Kunci PDF?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Bisa. Tulis rentang seperti 1-3, 5, 7-9 di kolom rentang halaman. Untuk
-        teks atau posisi berbeda per halaman, matikan opsi terapkan ke semua
-        halaman lalu atur setiap halaman lewat pratinjau.
+        Buka Kunci PDF untuk PDF yang meminta kata sandi saat dibuka. Hapus
+        Pembatasan untuk PDF yang bisa dibuka tetapi tidak bisa dicetak,
+        disalin, diedit, atau dikomentari.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bagaimana membuat watermark diagonal seperti RAHASIA?
+        Apakah perlu kata sandi pemilik?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Gunakan mode Teks, ketik kata yang diinginkan, lalu perbesar ukuran
-        huruf. Sudut bawaan sudah -45 derajat, jadi tinggal seret ke tengah
-        halaman.
+        Bila PDF terbuka tanpa kata sandi, kosongkan kolomnya. Bila perlu kata
+        sandi, masukkan kata sandinya. Alat ini tidak membobol atau menebak kata
+        sandi.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah memakai logo sebagai watermark?
+        Batasan apa saja yang dihapus?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Bisa. Pilih mode Gambar lalu unggah logo PNG atau JPG. Ukuran bisa
-        diatur 10% sampai 200%, beserta transparansi dan sudutnya.
+        Kata sandi, batasan cetak, kunci edit, larangan menyalin teks dan
+        gambar, batasan komentar, serta batasan pada sebagian PDF bertanda
+        tangan digital. Hasilnya tanpa enkripsi sama sekali.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah watermark bisa dihapus orang lain?
+        Apakah isi PDF berubah?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Watermark digambar langsung ke isi halaman, jadi tidak bisa dihapus
-        dengan sekali klik di aplikasi pembaca. Untuk perlindungan lebih kuat,
-        gunakan tata letak Ubin atau opsi ratakan.
+        Tidak. Hanya lapisan enkripsi yang ditulis ulang. Halaman, teks, gambar,
+        bookmark, dan formulir tetap utuh.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah kualitas dokumen berubah?
+        Kenapa muncul pesan perlu kata sandi pemilik yang benar?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Tidak. Teks dan gambar asli tetap utuh dan teks tetap bisa dipilih.
-        Pengecualiannya opsi ratakan, yang mengubah setiap halaman menjadi
-        gambar.
+        File tidak bisa dibuka dengan kata sandi yang dimasukkan atau tanpa kata
+        sandi. Periksa salah ketik dan Caps Lock.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah file saya di-upload ke server?
+        Apakah file atau kata sandi saya di-upload?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Tidak. Semua proses berjalan di browser, di perangkat Anda sendiri.
-        Dokumen tidak pernah dikirim ke server mypdf.id maupun pihak lain.
+        Tidak. Proses berjalan di browser Anda, jadi file dan kata sandi tetap
+        di perangkat.
       </p>
     </details>
     <details class="faq-d">

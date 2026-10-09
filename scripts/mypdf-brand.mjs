@@ -195,18 +195,43 @@ function transform(html, pageKey) {
       } else if (data['@type'] === 'FAQPage') {
         s.remove(); // dibuat ulang dari FAQ yang terlihat (lihat di bawah)
       } else {
+        // Data upstream yang tidak berlaku untuk mypdf.id: deskripsi dan daftar
+        // fitur berbahasa Inggris, nama alternatif, dan profil pembuat BentoPDF.
+        const metaDesc = document
+          .querySelector('meta[name="description"]')
+          ?.getAttribute('content');
+        delete data.featureList;
+        delete data.alternateName;
+        if (data.mainEntity && data.mainEntity['@type'] === 'Person') {
+          const { '@context': _ctx, ...org } = organizationLd;
+          data.mainEntity = org;
+        }
+        const fixNested = (o) => {
+          if (Array.isArray(o)) return o.forEach(fixNested);
+          if (!o || typeof o !== 'object') return;
+          if (o['@type'] === 'ListItem' && o.name === 'Home')
+            o.name = 'Beranda';
+          if (o['@type'] === 'Offer' && o.price === '0')
+            o.priceCurrency = 'IDR';
+          Object.values(o).forEach(fixNested);
+        };
+        fixNested(data);
+        // Ganti merek dulu, baru isi nama dan deskripsi milik mypdf.id agar
+        // kalimat seperti "berbasis BentoPDF" tidak ikut diganti.
+        data = JSON.parse(rebrand(JSON.stringify(data)));
+        if (typeof data.description === 'string' && metaDesc) {
+          data.description = metaDesc;
+        }
         if (page.title && typeof data.name === 'string') {
           data.name = page.title;
-          s.textContent = rebrand(JSON.stringify(data, null, 2));
-        } else {
-          s.textContent = rebrand(s.textContent);
         }
+        s.textContent = JSON.stringify(data, null, 2);
       }
     });
 
   // FAQPage harus sama dengan FAQ yang terlihat di halaman
   const faqItems = [];
-  for (const details of document.querySelectorAll('details.faq-d')) {
+  for (const details of document.querySelectorAll('.faq-list details.faq-d')) {
     const q = details.querySelector('summary');
     const a = details.querySelector('p');
     const question = q ? q.textContent.replace(/\s+/g, ' ').trim() : '';

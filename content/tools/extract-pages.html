@@ -1,19 +1,19 @@
-<!-- Konten SEO mypdf.id untuk /add-watermark. Menggantikan semua bagian SEO bawaan. -->
+<!-- Konten SEO mypdf.id untuk /extract-pages. Menggantikan semua bagian SEO bawaan. -->
 
 <section class="max-w-4xl mx-auto px-4 pt-12">
   <div class="legal-content">
     <p>
-      Tambah watermark ke PDF di mypdf.id: cap teks seperti RAHASIA, DRAFT, atau
-      SALINAN, atau logo perusahaan di setiap halaman. Atur ukuran, sudut,
-      transparansi, dan posisinya dengan pratinjau langsung. Gratis, tanpa
-      daftar, dan file tidak di-upload.
+      Ekstrak halaman PDF di mypdf.id untuk mengambil halaman tertentu dari
+      dokumen panjang, misalnya halaman KTP, ijazah, atau lampiran dari kumpulan
+      scan. Setiap halaman disimpan sebagai PDF sendiri. Gratis, tanpa daftar,
+      dan file tidak di-upload.
     </p>
   </div>
 </section>
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Cara Menambahkan Watermark ke PDF
+    Cara Mengekstrak Halaman PDF
   </h2>
   <div class="space-y-6">
     <div class="flex items-start gap-4">
@@ -25,7 +25,8 @@
       <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">Pilih file PDF</h3>
         <p class="text-gray-400">
-          Klik kotak di atas atau seret satu file PDF.
+          Klik kotak di atas atau seret satu file PDF. Jumlah halamannya tampil
+          di samping nama file.
         </p>
       </div>
     </div>
@@ -37,11 +38,10 @@
       </div>
       <div class="flex-1">
         <h3 class="text-lg font-semibold text-white mb-1">
-          Pilih jenis watermark
+          Tulis halaman yang diambil
         </h3>
         <p class="text-gray-400">
-          Mode Teks untuk tulisan seperti RAHASIA, atau mode Gambar untuk logo
-          PNG atau JPG.
+          Pisahkan dengan koma, misalnya 2, 4-6, 9. Penomoran dimulai dari 1.
         </p>
       </div>
     </div>
@@ -52,11 +52,9 @@
         3
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-white mb-1">Atur tampilannya</h3>
+        <h3 class="text-lg font-semibold text-white mb-1">Klik Ekstrak</h3>
         <p class="text-gray-400">
-          Ubah ukuran, sudut (bawaan -45 derajat), dan transparansi, lalu seret
-          watermark ke posisi yang diinginkan di pratinjau. Pilih tata letak
-          Ubin untuk mengulang watermark di seluruh halaman.
+          Halaman disalin apa adanya tanpa mengubah kualitas.
         </p>
       </div>
     </div>
@@ -67,9 +65,10 @@
         4
       </div>
       <div class="flex-1">
-        <h3 class="text-lg font-semibold text-white mb-1">Unduh hasilnya</h3>
+        <h3 class="text-lg font-semibold text-white mb-1">Unduh file ZIP</h3>
         <p class="text-gray-400">
-          PDF dengan watermark langsung tersimpan di perangkat Anda.
+          Setiap halaman menjadi PDF sendiri, misalnya laporan_page_4.pdf, dan
+          semuanya diunduh dalam satu ZIP.
         </p>
       </div>
     </div>
@@ -78,25 +77,24 @@
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Tips Watermark yang Rapi
+    Ekstrak, Hapus, atau Pisah?
   </h2>
   <div class="legal-content">
     <ul>
       <li>
-        Transparansi 0,2 sampai 0,4 membuat watermark terlihat tanpa menutupi
-        isi dokumen.
+        <strong>Ekstrak Halaman</strong>: setiap halaman yang dipilih menjadi
+        file PDF sendiri.
       </li>
       <li>
-        Untuk logo, PNG berlatar transparan menyatu paling baik dengan halaman.
+        <strong><a href="/delete-pages">Hapus Halaman</a></strong
+        >: butuh satu PDF yang hanya berisi halaman tertentu? Hapus halaman
+        lainnya.
       </li>
       <li>
-        Watermark hanya untuk halaman tertentu? Isi rentang halaman, misalnya
-        1-3, 5.
-      </li>
-      <li>
-        Agar watermark lebih sulit dihapus, pilih tata letak Ubin atau aktifkan
-        opsi ratakan (flatten). Opsi ratakan mengubah halaman menjadi gambar
-        sehingga teks tidak bisa dipilih lagi.
+        <strong><a href="/split-pdf">Pisah PDF</a></strong
+        >: memecah dokumen menjadi beberapa bagian berdasarkan rentang,
+        bookmark, atau setiap N halaman, termasuk opsi menggabungkan rentang
+        menjadi satu file.
       </li>
     </ul>
   </div>
@@ -108,41 +106,25 @@
   </h2>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
     <a
-      href="/protect-pdf"
+      href="/split-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Kunci PDF</h3>
-      <p class="text-gray-400 text-sm">Tambahkan kata sandi ke PDF</p>
+      <h3 class="text-white font-semibold mb-1">Pisah PDF</h3>
+      <p class="text-gray-400 text-sm">Ambil halaman tertentu jadi file baru</p>
     </a>
     <a
-      href="/page-numbers"
+      href="/delete-pages"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Nomor Halaman</h3>
-      <p class="text-gray-400 text-sm">Tambahkan nomor di setiap halaman</p>
+      <h3 class="text-white font-semibold mb-1">Hapus Halaman</h3>
+      <p class="text-gray-400 text-sm">Buang halaman yang tidak perlu</p>
     </a>
     <a
-      href="/header-footer"
+      href="/organize-pdf"
       class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
     >
-      <h3 class="text-white font-semibold mb-1">Header & Footer</h3>
-      <p class="text-gray-400 text-sm">
-        Tambahkan teks di atas dan bawah halaman
-      </p>
-    </a>
-    <a
-      href="/sign-pdf"
-      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
-    >
-      <h3 class="text-white font-semibold mb-1">Tanda Tangan PDF</h3>
-      <p class="text-gray-400 text-sm">Tambahkan tanda tangan ke dokumen</p>
-    </a>
-    <a
-      href="/compress-pdf"
-      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
-    >
-      <h3 class="text-white font-semibold mb-1">Kompres PDF</h3>
-      <p class="text-gray-400 text-sm">Kecilkan ukuran file PDF</p>
+      <h3 class="text-white font-semibold mb-1">Atur Halaman</h3>
+      <p class="text-gray-400 text-sm">Urutkan, gandakan, hapus halaman</p>
     </a>
     <a
       href="/merge-pdf"
@@ -151,66 +133,78 @@
       <h3 class="text-white font-semibold mb-1">Gabung PDF</h3>
       <p class="text-gray-400 text-sm">Satukan beberapa PDF jadi satu</p>
     </a>
+    <a
+      href="/pdf-to-jpg"
+      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+    >
+      <h3 class="text-white font-semibold mb-1">PDF ke JPG</h3>
+      <p class="text-gray-400 text-sm">Ubah halaman PDF jadi gambar</p>
+    </a>
+    <a
+      href="/compress-pdf"
+      class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+    >
+      <h3 class="text-white font-semibold mb-1">Kompres PDF</h3>
+      <p class="text-gray-400 text-sm">Kecilkan ukuran file PDF</p>
+    </a>
   </div>
 </section>
 
 <section class="max-w-4xl mx-auto px-4 py-12">
   <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-    Pertanyaan Seputar Watermark PDF
+    Pertanyaan Seputar Ekstrak Halaman PDF
   </h2>
   <div class="faq-list">
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah watermark hanya di halaman tertentu?
+        Apakah hasilnya satu PDF atau beberapa file?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Bisa. Tulis rentang seperti 1-3, 5, 7-9 di kolom rentang halaman. Untuk
-        teks atau posisi berbeda per halaman, matikan opsi terapkan ke semua
-        halaman lalu atur setiap halaman lewat pratinjau.
+        Beberapa file. Setiap halaman yang dipilih menjadi PDF satu halaman, dan
+        semuanya diunduh dalam satu ZIP. Untuk satu PDF berisi halaman tertentu
+        saja, gunakan Hapus Halaman atau Pisah PDF.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bagaimana membuat watermark diagonal seperti RAHASIA?
+        Apakah kualitasnya berubah?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Gunakan mode Teks, ketik kata yang diinginkan, lalu perbesar ukuran
-        huruf. Sudut bawaan sudah -45 derajat, jadi tinggal seret ke tengah
-        halaman.
+        Tidak. Halaman disalin, bukan dirender ulang, jadi teks, gambar, dan
+        font sama persis dengan aslinya dan teks tetap bisa dicari.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Bisakah memakai logo sebagai watermark?
+        Bisakah mengambil halaman yang sama dua kali atau dengan urutan lain?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Bisa. Pilih mode Gambar lalu unggah logo PNG atau JPG. Ukuran bisa
-        diatur 10% sampai 200%, beserta transparansi dan sudutnya.
+        Setiap halaman hanya muncul sekali di ZIP dan diberi nama sesuai nomor
+        halaman aslinya. Gunakan Atur Halaman untuk menggandakan atau mengubah
+        urutan.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah watermark bisa dihapus orang lain?
+        Bagaimana dengan PDF berkata sandi?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Watermark digambar langsung ke isi halaman, jadi tidak bisa dihapus
-        dengan sekali klik di aplikasi pembaca. Untuk perlindungan lebih kuat,
-        gunakan tata letak Ubin atau opsi ratakan.
+        Masukkan kata sandinya saat diminta. File hasil ekstrak tidak memakai
+        kata sandi.
       </p>
     </details>
     <details class="faq-d">
       <summary class="faq-d-q">
-        Apakah kualitas dokumen berubah?
+        Apakah bookmark dan komentar ikut?
         <i data-lucide="plus" class="faq-d-icon"></i>
       </summary>
       <p class="faq-d-a">
-        Tidak. Teks dan gambar asli tetap utuh dan teks tetap bisa dipilih.
-        Pengecualiannya opsi ratakan, yang mengubah setiap halaman menjadi
-        gambar.
+        Komentar dan sorotan di halaman ikut terbawa. Bookmark tidak ikut karena
+        setiap hasil adalah file baru.
       </p>
     </details>
     <details class="faq-d">
