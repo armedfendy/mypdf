@@ -3,8 +3,9 @@
  *
  * Aktif hanya bila MYPDF=true. Dijalankan setelah
  * generate-security-headers.mjs. Yang dilakukan:
- *   1. dist/_headers   : header keamanan (CSP, COOP/COEP, dll.) dari
- *                        security-headers.conf + aturan cache.
+ *   1. dist/_headers   : header keamanan (CSP, dll.) dari
+ *                        security-headers.conf + aturan cache. COOP/COEP
+ *                        hanya di halaman `isolatedPages` (mypdf.config.json).
  *   2. dist/_redirects : redirect URL lama dan prefix bahasa (/id/, /en/).
  *   3. File LibreOffice WASM (> 25 MiB) dikeluarkan dari dist/, karena
  *      Cloudflare Pages menolak file di atas 25 MiB. File tersebut di-host
@@ -57,41 +58,79 @@ if (!fs.existsSync(confPath)) {
   process.exit(1);
 }
 const loOrigin = LO_DATA_URL ? originOf(LO_DATA_URL) : null;
-const securityHeaders = fs
+const mypdfConfig = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'mypdf.config.json'), 'utf-8')
+);
+// COOP/COEP (cross-origin isolation) hanya dipasang di halaman yang butuh
+// SharedArrayBuffer (LibreOffice, wasm-vips). Halaman lain tanpa COEP agar
+// iklan Google AdSense bisa tampil (AdSense tidak mendukung halaman ber-COEP).
+const ISOLATION_HEADERS = new Set([
+  'Cross-Origin-Opener-Policy',
+  'Cross-Origin-Embedder-Policy',
+]);
+const isolatedPages = mypdfConfig.isolatedPages || [];
+// Proxy CORS bawaan BentoPDF hanya dipakai di domain bentopdf.com; tanpa
+// VITE_CORS_PROXY_URL, origin itu tidak perlu ada di CSP mypdf.id.
+const BENTO_PROXY = 'https://bentopdf-cors-proxy.bentopdf.workers.dev';
+const hasOwnProxy = Boolean((process.env.VITE_CORS_PROXY_URL || '').trim());
+const parsedHeaders = fs
   .readFileSync(confPath, 'utf-8')
   .split('\n')
   .map((line) => line.match(/^add_header\s+(\S+)\s+"(.*)"\s+always;$/))
   .filter(Boolean)
   .map(([, name, value]) => {
-    if (name === 'Content-Security-Policy' && loOrigin) {
-      value = value.replace(
-        /connect-src ([^;]*)/,
-        `connect-src $1 ${loOrigin}`
-      );
+    if (name === 'Content-Security-Policy') {
+      if (loOrigin) {
+        value = value.replace(
+          /connect-src ([^;]*)/,
+          `connect-src $1 ${loOrigin}`
+        );
+      }
+      if (!hasOwnProxy) value = value.split(` ${BENTO_PROXY}`).join('');
     }
-    return `  ${name}: ${value}`;
+    return [name, value];
   });
+const securityHeaders = parsedHeaders
+  .filter(([name]) => !ISOLATION_HEADERS.has(name))
+  .map(([name, value]) => `  ${name}: ${value}`);
+const isolationHeaders = parsedHeaders
+  .filter(([name]) => ISOLATION_HEADERS.has(name))
+  .map(([name, value]) => `  ${name}: ${value}`);
+// Worker, WASM, dan iframe yang dimuat halaman ber-COEP juga wajib membawa
+// COEP (browser memblokir worker tanpa COEP). Header ini tidak berpengaruh
+// pada iklan karena hanya dokumen HTML yang menentukan isolasi halaman.
+const staticPaths = fs
+  .readdirSync(DIST_DIR, { withFileTypes: true })
+  .filter((e) => !e.name.startsWith('_'))
+  .filter((e) => e.isDirectory() || !e.name.endsWith('.html'))
+  .map((e) => (e.isDirectory() ? `/${e.name}/*` : `/${e.name}`))
+  .sort();
+// Satu blok per path: Cloudflare tidak menggabungkan dua blok dengan path
+// yang sama, jadi header isolasi dan cache disatukan di sini.
+const CACHE_IMMUTABLE = 'Cache-Control: public, max-age=31536000, immutable';
+const CACHE_REVALIDATE = 'Cache-Control: public, max-age=0, must-revalidate';
+const cacheRules = {
+  '/assets/*': CACHE_IMMUTABLE,
+  '/sw.js': CACHE_REVALIDATE,
+  '/workers/*': CACHE_REVALIDATE,
+  '/coherentpdf.browser.min.js': CACHE_REVALIDATE,
+  '/qpdf.wasm': CACHE_REVALIDATE,
+};
+const rules = new Map();
+const addRule = (p, lines) => rules.set(p, [...(rules.get(p) || []), ...lines]);
+isolatedPages.forEach((page) => {
+  addRule(`/${page}`, isolationHeaders);
+  addRule(`/${page}.html`, isolationHeaders);
+});
+staticPaths.forEach((p) => addRule(p, isolationHeaders));
+Object.entries(cacheRules).forEach(([p, h]) => addRule(p, [`  ${h}`]));
 
 const headers = [
   '# Dibuat otomatis oleh scripts/mypdf-cloudflare.mjs. Jangan diedit manual.',
   '/*',
   ...securityHeaders,
   '',
-  '/assets/*',
-  '  Cache-Control: public, max-age=31536000, immutable',
-  '',
-  '/sw.js',
-  '  Cache-Control: public, max-age=0, must-revalidate',
-  '',
-  '/workers/*',
-  '  Cache-Control: public, max-age=0, must-revalidate',
-  '',
-  '/coherentpdf.browser.min.js',
-  '  Cache-Control: public, max-age=0, must-revalidate',
-  '',
-  '/qpdf.wasm',
-  '  Cache-Control: public, max-age=0, must-revalidate',
-  '',
+  ...[...rules].flatMap(([p, lines]) => [p, ...lines, '']),
 ].join('\n');
 fs.writeFileSync(path.join(DIST_DIR, '_headers'), headers);
 console.log('[mypdf-cloudflare] dist/_headers ditulis.');

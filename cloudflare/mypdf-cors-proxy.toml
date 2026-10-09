@@ -1,0 +1,24 @@
+# mypdf.id — CORS proxy untuk Tanda Tangan Digital dan Cap Waktu PDF.
+# Deploy dari root repo: npx wrangler deploy -c cloudflare/mypdf-cors-proxy.toml
+# Setelah deploy, isi VITE_CORS_PROXY_URL di Cloudflare Pages dengan URL worker
+# ini (mis. https://cors.mypdf.id), lalu deploy ulang situsnya.
+
+name = "mypdf-cors-proxy"
+main = "mypdf-cors-proxy.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+# Pisahkan dengan koma. Tambahkan origin preview bila perlu menguji.
+ALLOWED_ORIGINS = "https://mypdf.id,https://www.mypdf.id"
+
+# Rate limit (disarankan): 60 permintaan per IP per menit.
+# 1. npx wrangler kv namespace create RATE_LIMIT_KV -c cloudflare/mypdf-cors-proxy.toml
+# 2. Hapus tanda # di bawah dan isi id dari langkah 1.
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "ISI_ID_KV_DI_SINI"
+
+# Domain sendiri (aktifkan setelah mypdf.id ada di Cloudflare):
+# routes = [
+#   { pattern = "cors.mypdf.id", custom_domain = true }
+# ]
