@@ -19,7 +19,8 @@
     "name": "Gabung PDF",
     "subtitle": "Gabungkan beberapa PDF menjadi satu file. Mempertahankan Bookmark.",
     "retainPageLabels": "Pertahankan label halaman asli dari setiap file",
-    "retainPageLabelsHint": "Mati (default): PDF yang digabungkan menggunakan penomoran halaman alami 1 sampai N. Aktif: label halaman asli setiap file dipertahankan (dapat menghasilkan label ganda)."
+    "retainPageLabelsHint": "Mati (default): PDF yang digabungkan menggunakan penomoran halaman alami 1 sampai N. Aktif: label halaman asli setiap file dipertahankan (dapat menghasilkan label ganda).",
+    "removeDuplicateFonts": "Hapus font duplikat"
   },
   "splitPdf": {
     "name": "Pisah PDF",
@@ -517,7 +518,8 @@
       "noFile": "Tidak Ada File",
       "noFileExplanation": "Silakan unggah file PDF terlebih dahulu.",
       "conversionSuccess": "PDF berhasil dikonversi ke TIFF!",
-      "conversionError": "Gagal mengonversi PDF ke TIFF. File mungkin rusak."
+      "conversionError": "Gagal mengonversi PDF ke TIFF. File mungkin rusak.",
+      "conversionOutOfMemory": "Browser kehabisan memori saat mengonversi. Coba DPI yang lebih rendah, atau hapus centang opsi TIFF multi-halaman agar halaman dikonversi satu per satu."
     }
   },
   "pdfToCbz": {

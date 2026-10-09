@@ -25,6 +25,110 @@
     "terms": {
       "title": "Syarat Layanan - mypdf.id",
       "description": "Syarat dan ketentuan penggunaan mypdf.id, layanan alat PDF gratis yang berjalan di browser."
+    },
+    "merge-pdf": {
+      "title": "Gabung PDF Online Gratis - Satukan Banyak File PDF | mypdf.id",
+      "description": "Gabungkan beberapa file PDF menjadi satu secara gratis. Atur urutan file atau halaman, tanpa daftar, tanpa watermark, dan file tidak di-upload ke server."
+    },
+    "compress-pdf": {
+      "title": "Kompres PDF Online Gratis - Kecilkan Ukuran PDF | mypdf.id",
+      "description": "Kecilkan ukuran file PDF secara gratis langsung di browser. Pilih tingkat kompresi, tanpa daftar, tanpa watermark, dan file tidak pernah di-upload."
+    },
+    "compress-pdf-to-100kb": {
+      "title": "Kompres PDF ke 100 KB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 100 KB untuk formulir dan portal dengan batas unggah ketat. Gratis, tanpa daftar, dan diproses di browser tanpa upload."
+    },
+    "compress-pdf-to-200kb": {
+      "title": "Kompres PDF ke 200 KB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 200 KB untuk pendaftaran CPNS, beasiswa, dan portal online. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "compress-pdf-to-500kb": {
+      "title": "Kompres PDF ke 500 KB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 500 KB dengan gambar tetap tajam. Gratis, tanpa daftar, dan diproses langsung di browser Anda."
+    },
+    "compress-pdf-to-1mb": {
+      "title": "Kompres PDF ke 1 MB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 1 MB, batas unggah paling umum di portal pendaftaran. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "compress-pdf-to-2mb": {
+      "title": "Kompres PDF ke 2 MB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 2 MB dengan kualitas gambar tetap tinggi. Cocok untuk portfolio dan laporan bergambar. Gratis dan tanpa upload."
+    },
+    "compress-pdf-for-email": {
+      "title": "Kompres PDF untuk Email - Kecilkan Lampiran PDF | mypdf.id",
+      "description": "Kecilkan PDF agar muat sebagai lampiran email Gmail atau email kantor. Gratis, tanpa daftar, dan file diproses di browser tanpa upload."
+    },
+    "split-pdf": {
+      "title": "Pisah PDF Online Gratis - Ambil Halaman Tertentu | mypdf.id",
+      "description": "Pisahkan PDF berdasarkan rentang halaman, halaman genap/ganjil, bookmark, atau per halaman. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "pdf-to-jpg": {
+      "title": "Ubah PDF ke JPG Online Gratis - Kualitas Tinggi | mypdf.id",
+      "description": "Ubah setiap halaman PDF menjadi gambar JPG berkualitas tinggi. Gratis, tanpa daftar, tanpa watermark, dan diproses langsung di browser."
+    },
+    "jpg-to-pdf": {
+      "title": "Ubah JPG ke PDF Online Gratis - Foto Jadi PDF | mypdf.id",
+      "description": "Satukan foto dan gambar JPG menjadi satu file PDF. Gratis, tanpa daftar, tanpa watermark, dan file tidak di-upload ke server."
+    },
+    "word-to-pdf": {
+      "title": "Ubah Word ke PDF Online Gratis - DOCX ke PDF | mypdf.id",
+      "description": "Konversi dokumen Word DOCX, DOC, ODT, dan RTF ke PDF dengan tata letak terjaga. Gratis, tanpa daftar, dan dokumen tidak di-upload ke server."
+    },
+    "pdf-to-word": {
+      "title": "Ubah PDF ke Word Online Gratis - PDF ke DOCX | mypdf.id",
+      "description": "Ubah PDF menjadi dokumen Word DOCX yang bisa diedit. Gratis, tanpa daftar, dan file diproses di browser tanpa di-upload."
+    },
+    "sign-pdf": {
+      "title": "Tanda Tangan PDF Online Gratis - TTD Dokumen | mypdf.id",
+      "description": "Tambahkan tanda tangan ke PDF dengan menggambar, mengetik, atau mengunggah foto tanda tangan. Gratis, tanpa daftar, dan dokumen tidak di-upload."
+    },
+    "tools": {
+      "title": "Semua Alat PDF Gratis - 100+ Alat Online | mypdf.id",
+      "description": "Daftar lengkap alat PDF gratis di mypdf.id: gabung, kompres, ubah, pisah, tanda tangan, OCR, dan lainnya. Semua berjalan di browser tanpa upload."
+    },
+    "rotate-pdf": {
+      "title": "Putar PDF Online Gratis - Putar Halaman PDF | mypdf.id",
+      "description": "Putar halaman PDF yang miring, menyamping, atau terbalik, satu per satu atau sekaligus. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "delete-pages": {
+      "title": "Hapus Halaman PDF Online Gratis | mypdf.id",
+      "description": "Buang halaman PDF yang tidak perlu dengan memilih nomor atau thumbnail. Gratis, tanpa daftar, tanpa watermark, dan file tidak di-upload."
+    },
+    "organize-pdf": {
+      "title": "Atur Halaman PDF Online Gratis - Ubah Urutan Halaman | mypdf.id",
+      "description": "Ubah urutan halaman PDF dengan seret dan lepas, gandakan, atau hapus halaman. Gratis, tanpa daftar, dan diproses langsung di browser."
+    },
+    "pdf-to-png": {
+      "title": "Ubah PDF ke PNG Online Gratis - Gambar Tajam | mypdf.id",
+      "description": "Ubah setiap halaman PDF menjadi gambar PNG yang tajam untuk teks dan diagram. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "png-to-pdf": {
+      "title": "Ubah PNG ke PDF Online Gratis - Screenshot Jadi PDF | mypdf.id",
+      "description": "Satukan gambar PNG dan screenshot menjadi satu file PDF. Gratis, tanpa daftar, tanpa watermark, dan gambar tidak di-upload."
+    },
+    "excel-to-pdf": {
+      "title": "Ubah Excel ke PDF Online Gratis - XLSX ke PDF | mypdf.id",
+      "description": "Konversi spreadsheet XLSX, XLS, ODS, dan CSV ke PDF lengkap dengan grafik dan semua sheet. Gratis, tanpa daftar, dan data tidak di-upload."
+    },
+    "powerpoint-to-pdf": {
+      "title": "Ubah PowerPoint ke PDF Online Gratis - PPTX ke PDF | mypdf.id",
+      "description": "Konversi presentasi PPTX, PPT, dan ODP ke PDF, satu slide per halaman. Gratis, tanpa daftar, dan presentasi tidak di-upload ke server."
+    },
+    "protect-pdf": {
+      "title": "Kunci PDF dengan Password Online Gratis | mypdf.id",
+      "description": "Lindungi PDF dengan kata sandi dan enkripsi AES 256-bit, serta batasi cetak dan salin. Gratis, dan file maupun kata sandi tidak di-upload."
+    },
+    "add-watermark": {
+      "title": "Tambah Watermark PDF Online Gratis - Teks atau Logo | mypdf.id",
+      "description": "Tambahkan watermark teks seperti RAHASIA atau logo ke halaman PDF, atur posisi dan transparansinya. Gratis, tanpa daftar, dan tanpa upload."
+    },
+    "page-numbers": {
+      "title": "Tambah Nomor Halaman PDF Online Gratis | mypdf.id",
+      "description": "Beri nomor halaman pada PDF untuk skripsi, laporan, dan makalah. Pilih posisi dan format. Gratis, tanpa daftar, dan file tidak di-upload."
+    },
+    "ocr-pdf": {
+      "title": "OCR PDF Online Gratis - Scan Jadi Teks Bisa Dicari | mypdf.id",
+      "description": "Ubah PDF hasil scan menjadi teks yang bisa dicari dan disalin, mendukung bahasa Indonesia. Gratis, tanpa daftar, dan dokumen tidak di-upload."
     }
   },
   "removePages": ["licensing", "kura", "hyper-compress"],

@@ -142,6 +142,20 @@ function transform(html, pageKey) {
     });
   }
   setMeta(document, 'meta[property="og:site_name"]', NAME);
+  // og:locale sesuai bahasa situs (upstream hanya memasang en_US di beranda)
+  const ogLocale =
+    { id: 'id_ID', en: 'en_US' }[process.env.VITE_LOCK_LANGUAGE || ''] || '';
+  if (ogLocale && document.querySelector('meta[property="og:type"]')) {
+    let loc = document.querySelector('meta[property="og:locale"]');
+    if (!loc) {
+      loc = document.createElement('meta');
+      loc.setAttribute('property', 'og:locale');
+      document
+        .querySelector('meta[property="og:type"]')
+        .insertAdjacentElement('afterend', loc);
+    }
+    loc.setAttribute('content', ogLocale);
+  }
   setMeta(document, 'meta[name="author"]', NAME);
   setMeta(document, 'meta[name="apple-mobile-web-app-title"]', NAME);
   setMeta(document, 'meta[name="application-name"]', NAME);
