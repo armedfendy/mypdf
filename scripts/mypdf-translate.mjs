@@ -23,6 +23,7 @@
 import fs from 'fs';
 import path from 'path';
 import zlib from 'zlib';
+import crypto from 'crypto';
 import { JSDOM } from 'jsdom';
 import { fileURLToPath } from 'url';
 
@@ -108,6 +109,9 @@ for (const ns of ['common', 'tools']) {
   );
   for (const [k, v] of Object.entries(en)) if (tr[k]) addEntry(v, tr[k], false);
 }
+const localeTools = readJson(
+  path.join(ROOT, 'public/locales', LANG, 'tools.json')
+);
 const manual = readJson(path.join(ROOT, 'content/i18n', `${LANG}.json`));
 for (const [en, tr] of Object.entries(manual)) addEntry(en, tr, true);
 
@@ -195,6 +199,23 @@ function transform(html, pageKey) {
     }
   }
 
+  // Kartu alat statis (#tool-grid): nama & deskripsi dari locale per alat
+  document
+    .querySelectorAll('#tool-grid > a[href^="/"], #tools-grid > a[href^="/"]')
+    .forEach((a) => {
+      const slug = a
+        .getAttribute('href')
+        .slice(1)
+        .replace(/\.html$/, '');
+      const key = slug.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());
+      const tool = localeTools[key];
+      if (!tool) return;
+      const h3 = a.querySelector('h3');
+      const p = a.querySelector('p');
+      if (h3 && tool.name) h3.textContent = tool.name;
+      if (p && tool.subtitle) p.textContent = tool.subtitle;
+    });
+
   // Teks
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   const nodes = [];
@@ -233,12 +254,67 @@ function transform(html, pageKey) {
   return result;
 }
 
+// ---- Data alat di bundle JS (tools.html merender ulang grid saat filter/cari) ----
+// Judul alat diganti dengan nama dari locale agar tampilan dan pencarian
+// berbahasa Indonesia. File yang berubah diberi nama baru (hash isi) supaya
+// cache "immutable" di browser tidak menyajikan versi lama.
+const TOOL_ENTRY =
+  /(name:\s*([`'"])([a-z0-9-]+)\2\s*,\s*title:\s*)([`'"])((?:(?!\4)[^\\]|\\.)*)\4/g;
+const renamed = new Map();
+const assetsDir = path.join(DIST_DIR, 'assets');
+let patchedTitles = 0;
+if (fs.existsSync(assetsDir)) {
+  for (const file of fs.readdirSync(assetsDir)) {
+    if (!file.endsWith('.js')) continue;
+    const full = path.join(assetsDir, file);
+    const src = fs.readFileSync(full, 'utf-8');
+    let count = 0;
+    const out = src.replace(TOOL_ENTRY, (m, head, _q, slug) => {
+      const key = slug.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());
+      const name = localeTools[key] && localeTools[key].name;
+      if (!name) return m;
+      count++;
+      return `${head}${JSON.stringify(name)}`;
+    });
+    if (!count || out === src) continue;
+    patchedTitles += count;
+    const hash = crypto
+      .createHash('sha256')
+      .update(out)
+      .digest('base64url')
+      .slice(0, 8);
+    const m = file.match(/^(.*)-[A-Za-z0-9_-]{8}\.js$/);
+    const newName = m ? `${m[1]}-${hash}.js` : file;
+    for (const ext of ['', '.br', '.gz']) {
+      if (fs.existsSync(full + ext)) fs.rmSync(full + ext);
+    }
+    fs.writeFileSync(path.join(assetsDir, newName), out);
+    if (newName !== file) renamed.set(file, newName);
+  }
+}
+function applyRenames(text) {
+  for (const [from, to] of renamed) text = text.split(from).join(to);
+  return text;
+}
+if (renamed.size && fs.existsSync(assetsDir)) {
+  for (const file of fs.readdirSync(assetsDir)) {
+    if (!/\.(js|css)$/.test(file)) continue;
+    const full = path.join(assetsDir, file);
+    const src = fs.readFileSync(full, 'utf-8');
+    const out = applyRenames(src);
+    if (out !== src) writeWithCompressed(full, out);
+  }
+}
+
 const files = walkHtml(DIST_DIR);
 for (const rel of files) {
   const full = path.join(DIST_DIR, rel);
   writeWithCompressed(
     full,
-    transform(fs.readFileSync(full, 'utf-8'), rel.replace(/\.html$/, ''))
+    transform(
+      applyRenames(fs.readFileSync(full, 'utf-8')),
+      rel.replace(/\.html$/, '')
+    )
   );
 }
 
@@ -321,5 +397,6 @@ fs.writeFileSync(path.join(DIST_DIR, 'mypdf-i18n.js'), runtime);
 
 console.log(
   `[mypdf-translate] Kamus: ${exact.size} teks + ${patterns.length} pola. ` +
-    `${translatedNodes} teks diterjemahkan, ${replacedSections} halaman memakai konten SEO mypdf.id.`
+    `${translatedNodes} teks diterjemahkan, ${replacedSections} halaman memakai konten SEO mypdf.id, ` +
+    `${patchedTitles} judul alat di bundle JS (${renamed.size} file diganti nama).`
 );

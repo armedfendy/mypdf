@@ -81,6 +81,10 @@
     "sign-pdf": {
       "title": "Tanda Tangan PDF Online Gratis - TTD Dokumen | mypdf.id",
       "description": "Tambahkan tanda tangan ke PDF dengan menggambar, mengetik, atau mengunggah foto tanda tangan. Gratis, tanpa daftar, dan dokumen tidak di-upload."
+    },
+    "tools": {
+      "title": "Semua Alat PDF Gratis - 100+ Alat Online | mypdf.id",
+      "description": "Daftar lengkap alat PDF gratis di mypdf.id: gabung, kompres, ubah, pisah, tanda tangan, OCR, dan lainnya. Semua berjalan di browser tanpa upload."
     }
   },
   "removePages": ["licensing", "kura", "hyper-compress"],

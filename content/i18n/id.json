@@ -146,5 +146,17 @@
   "Could not export the signed PDF. Please try again.": "PDF bertanda tangan gagal diekspor. Silakan coba lagi.",
   "Viewer not ready": "Penampil Belum Siap",
   "Please wait for the PDF viewer to load.": "Tunggu sebentar sampai penampil PDF selesai dimuat.",
-  "The PDF viewer is still initializing.": "Penampil PDF masih disiapkan."
+  "The PDF viewer is still initializing.": "Penampil PDF masih disiapkan.",
+  "This is an alert message.": "Ini adalah pesan pemberitahuan.",
+  "All PDF Tools Directory": "Daftar Semua Alat PDF",
+  "Browse our complete collection of 100+ free PDF tools. Search by name or filter by category.": "Jelajahi lebih dari 100 alat PDF gratis. Cari berdasarkan nama atau saring berdasarkan kategori.",
+  "Try adjusting your search or filter": "Coba ubah kata kunci atau filter pencarian Anda",
+  "All Tools": "Semua Alat",
+  "Converters": "Konverter",
+  "Editors": "Editor",
+  "Security": "Keamanan",
+  "Merge & Split": "Gabung & Pisah",
+  "Other Tools": "Alat Lainnya",
+  "Showing": "Menampilkan",
+  "tools": "alat"
 }
