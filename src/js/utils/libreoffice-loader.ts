@@ -9,6 +9,10 @@ import { WorkerBrowserConverter } from '@matbee/libreoffice-converter/browser';
 import type { InputFormat } from '@matbee/libreoffice-converter/browser';
 
 const LIBREOFFICE_LOCAL_PATH = import.meta.env.BASE_URL + 'libreoffice-wasm/';
+// mypdf.id: soffice.wasm.gz dan soffice.data.gz (> 25 MiB) boleh di-host
+// terpisah (mis. Cloudflare R2). File JS/worker tetap dari situs sendiri.
+const LIBREOFFICE_DATA_PATH: string =
+  import.meta.env.VITE_LIBREOFFICE_DATA_URL || '';
 
 export interface LoadProgress {
   phase: 'loading' | 'initializing' | 'converting' | 'complete' | 'ready';
@@ -77,11 +81,11 @@ export class LibreOfficeConverter {
 
       const [sofficeWasmUrl, sofficeDataUrl] = await Promise.all([
         fetchAsDecompressedUrl(
-          `${this.basePath}soffice.wasm.gz`,
+          `${LIBREOFFICE_DATA_PATH || this.basePath}soffice.wasm.gz`,
           'application/wasm'
         ),
         fetchAsDecompressedUrl(
-          `${this.basePath}soffice.data.gz`,
+          `${LIBREOFFICE_DATA_PATH || this.basePath}soffice.data.gz`,
           'application/octet-stream'
         ),
       ]);
