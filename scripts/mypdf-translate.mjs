@@ -163,6 +163,7 @@ function writeWithCompressed(target, content) {
 
 let replacedSections = 0;
 let translatedNodes = 0;
+let removedEnglishFaq = 0;
 
 function transform(html, pageKey) {
   const dom = new JSDOM(html);
@@ -197,7 +198,31 @@ function transform(html, pageKey) {
         });
       replacedSections++;
     }
+  } else if (fs.existsSync(path.join(ROOT, 'src/pages', `${pageKey}.html`))) {
+    // Alat yang belum punya konten mypdf.id: FAQ bawaan masih berbahasa
+    // Inggris, jadi dihapus beserta FAQPage JSON-LD-nya. Panduan singkat dan
+    // alat terkait tetap ada (sudah diterjemahkan lewat locale).
+    const faqSection = document
+      .querySelector('h2[data-i18n="faq.sectionTitle"]')
+      ?.closest('section');
+    if (faqSection) {
+      faqSection.remove();
+      document
+        .querySelectorAll('script[type="application/ld+json"]')
+        .forEach((s) => {
+          if (/"@type"\s*:\s*"FAQPage"/.test(s.textContent || '')) s.remove();
+        });
+      removedEnglishFaq++;
+    }
   }
+
+  // HowTo JSON-LD: nama dan langkahnya berbahasa Inggris, dan Google sudah
+  // tidak menampilkan hasil kaya HowTo. Dihapus di semua halaman.
+  document
+    .querySelectorAll('script[type="application/ld+json"]')
+    .forEach((s) => {
+      if (/"@type"\s*:\s*"HowTo"/.test(s.textContent || '')) s.remove();
+    });
 
   // Kartu alat statis (#tool-grid): nama & deskripsi dari locale per alat
   document
@@ -398,5 +423,6 @@ fs.writeFileSync(path.join(DIST_DIR, 'mypdf-i18n.js'), runtime);
 console.log(
   `[mypdf-translate] Kamus: ${exact.size} teks + ${patterns.length} pola. ` +
     `${translatedNodes} teks diterjemahkan, ${replacedSections} halaman memakai konten SEO mypdf.id, ` +
-    `${patchedTitles} judul alat di bundle JS (${renamed.size} file diganti nama).`
+    `${patchedTitles} judul alat di bundle JS (${renamed.size} file diganti nama), ` +
+    `${removedEnglishFaq} FAQ berbahasa Inggris dihapus.`
 );
