@@ -197,5 +197,22 @@
     "#testimonials-section",
     "[data-i18n=\"usedBy.title\"]",
     "#security-compliance-section"
+  ],
+  "isolatedPages": [
+    "word-to-pdf",
+    "excel-to-pdf",
+    "powerpoint-to-pdf",
+    "odt-to-pdf",
+    "ods-to-pdf",
+    "odp-to-pdf",
+    "odg-to-pdf",
+    "rtf-to-pdf",
+    "pages-to-pdf",
+    "pub-to-pdf",
+    "vsd-to-pdf",
+    "wpd-to-pdf",
+    "wps-to-pdf",
+    "pdf-to-tiff",
+    "pdf-workflow"
   ]
 }
