@@ -25,6 +25,38 @@
     "terms": {
       "title": "Syarat Layanan - mypdf.id",
       "description": "Syarat dan ketentuan penggunaan mypdf.id, layanan alat PDF gratis yang berjalan di browser."
+    },
+    "merge-pdf": {
+      "title": "Gabung PDF Online Gratis - Satukan Banyak File PDF | mypdf.id",
+      "description": "Gabungkan beberapa file PDF menjadi satu secara gratis. Atur urutan file atau halaman, tanpa daftar, tanpa watermark, dan file tidak di-upload ke server."
+    },
+    "compress-pdf": {
+      "title": "Kompres PDF Online Gratis - Kecilkan Ukuran PDF | mypdf.id",
+      "description": "Kecilkan ukuran file PDF secara gratis langsung di browser. Pilih tingkat kompresi, tanpa daftar, tanpa watermark, dan file tidak pernah di-upload."
+    },
+    "compress-pdf-to-100kb": {
+      "title": "Kompres PDF ke 100 KB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 100 KB untuk formulir dan portal dengan batas unggah ketat. Gratis, tanpa daftar, dan diproses di browser tanpa upload."
+    },
+    "compress-pdf-to-200kb": {
+      "title": "Kompres PDF ke 200 KB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 200 KB untuk pendaftaran CPNS, beasiswa, dan portal online. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "compress-pdf-to-500kb": {
+      "title": "Kompres PDF ke 500 KB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 500 KB dengan gambar tetap tajam. Gratis, tanpa daftar, dan diproses langsung di browser Anda."
+    },
+    "compress-pdf-to-1mb": {
+      "title": "Kompres PDF ke 1 MB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 1 MB, batas unggah paling umum di portal pendaftaran. Gratis, tanpa daftar, dan file tidak di-upload ke server."
+    },
+    "compress-pdf-to-2mb": {
+      "title": "Kompres PDF ke 2 MB Online Gratis | mypdf.id",
+      "description": "Kecilkan PDF di bawah 2 MB dengan kualitas gambar tetap tinggi. Cocok untuk portfolio dan laporan bergambar. Gratis dan tanpa upload."
+    },
+    "compress-pdf-for-email": {
+      "title": "Kompres PDF untuk Email - Kecilkan Lampiran PDF | mypdf.id",
+      "description": "Kecilkan PDF agar muat sebagai lampiran email Gmail atau email kantor. Gratis, tanpa daftar, dan file diproses di browser tanpa upload."
     }
   },
   "removePages": ["licensing", "kura", "hyper-compress"],

@@ -12,8 +12,9 @@
  *      "Pages (e.g., 1-3, 5) - Total: {n}": "Halaman (mis. 1-3, 5), total: {n}"
  *
  * Yang dilakukan pada setiap HTML di dist/:
- *   - Bila ada content/tools/<halaman>.html, bagian "How It Works", "Related
- *     Tools" dan "FAQ" bawaan diganti dengan konten tersebut.
+ *   - Bila ada content/tools/<halaman>.html, semua bagian SEO bawaan (setiap
+ *     <section> di level <body>: intro, How It Works, Related Tools, FAQ)
+ *     diganti dengan konten tersebut.
  *   - Teks dan atribut (placeholder, title, aria-label, alt) yang cocok
  *     persis dengan kamus diterjemahkan.
  *   - Menyisipkan /mypdf-i18n.js: menerjemahkan teks yang dibuat JavaScript
@@ -166,12 +167,17 @@ function transform(html, pageKey) {
   // Konten SEO milik mypdf.id
   const contentFile = path.join(ROOT, 'content/tools', `${pageKey}.html`);
   if (fs.existsSync(contentFile)) {
-    const sections = SEO_SECTION_KEYS.map((k) =>
-      document.querySelector(`h2[data-i18n="${k}"]`)
-    )
-      .filter(Boolean)
-      .map((h2) => h2.closest('section'))
-      .filter(Boolean);
+    // Semua <section> di level <body> adalah konten SEO bawaan (UI alat ada
+    // di dalam <div>). Bila tidak ada, cari lewat judul bagian standar.
+    let sections = [...document.querySelectorAll('body > section')];
+    if (sections.length === 0) {
+      sections = SEO_SECTION_KEYS.map((k) =>
+        document.querySelector(`h2[data-i18n="${k}"]`)
+      )
+        .filter(Boolean)
+        .map((h2) => h2.closest('section'))
+        .filter(Boolean);
+    }
     if (sections.length > 0) {
       const wrapper = document.createElement('div');
       wrapper.setAttribute('data-mypdf-content', pageKey);
