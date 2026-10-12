@@ -1,11 +1,11 @@
 {
-    "name": "BentoPDF",
-    "short_name": "BentoPDF",
-    "description": "Free online PDF tools - Privacy-first PDF toolkit that works 100% in your browser",
+    "name": "mypdf.id - Alat PDF Gratis",
+    "short_name": "mypdf.id",
+    "description": "Alat PDF gratis dan privat: gabung, pisah, kompres, dan ubah PDF langsung di browser Anda. File tidak diunggah ke server.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#222222",
-    "theme_color": "#4f46e5",
+    "background_color": "#efe5db",
+    "theme_color": "#efe5db",
     "orientation": "portrait-primary",
     "icons": [
         {
@@ -30,11 +30,9 @@
     "categories": [
         "productivity",
         "utilities",
-        "privacy",
-        "pdf",
-        "security",
-        "offline",
-        "tools"
+        "business"
     ],
-    "screenshots": []
+    "screenshots": [],
+    "lang": "id",
+    "id": "/"
 }
