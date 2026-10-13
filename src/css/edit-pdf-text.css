@@ -5,7 +5,7 @@
   --ecline: #444444;
   --ectext: #f3f4f6;
   --ecmuted: #9ca3af;
-  --ecaccent: #6366f1;
+  --ecaccent: #00bfa5;
   --ecstage: #383838;
   position: fixed;
   inset: 0;
@@ -281,7 +281,7 @@
 }
 #text-editor-app .editor.pristine [contenteditable] ::selection,
 #text-editor-app .editor.pristine [contenteditable]::selection {
-  background: rgba(99, 102, 241, 0.28);
+  background: rgba(0, 191, 165, 0.28);
 }
 
 #text-editor-app .edit-move {
@@ -292,7 +292,7 @@
   background: transparent;
 }
 #text-editor-app .edit-move:hover {
-  background: rgba(99, 102, 241, 0.18);
+  background: rgba(0, 191, 165, 0.18);
 }
 
 #text-editor-app .edit-chrome,
@@ -308,14 +308,14 @@
 #text-editor-app .multi-box {
   position: absolute;
   border: 1.5px solid var(--ecaccent);
-  background: rgba(99, 102, 241, 0.06);
+  background: rgba(0, 191, 165, 0.06);
   pointer-events: auto;
   cursor: move;
 }
 #text-editor-app .marquee {
   position: absolute;
   border: 1px dashed var(--ecaccent);
-  background: rgba(99, 102, 241, 0.08);
+  background: rgba(0, 191, 165, 0.08);
   pointer-events: none;
 }
 
@@ -450,7 +450,7 @@
 
 #text-editor-app .textsel {
   position: absolute;
-  background: rgba(99, 102, 241, 0.28);
+  background: rgba(0, 191, 165, 0.28);
   pointer-events: none;
 }
 
@@ -707,7 +707,7 @@
     #f59e0b,
     #84cc16,
     #06b6d4,
-    #6366f1,
+    #00bfa5,
     #d946ef,
     #f43f5e
   );

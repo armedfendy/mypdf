@@ -86,6 +86,16 @@ const parsedHeaders = fs
           `connect-src $1 ${loOrigin}`
         );
       }
+      // Cloudflare Web Analytics (beacon disisipkan otomatis oleh Pages).
+      value = value
+        .replace(
+          /script-src ([^;]*)/,
+          'script-src $1 https://static.cloudflareinsights.com'
+        )
+        .replace(
+          /connect-src ([^;]*)/,
+          'connect-src $1 https://cloudflareinsights.com'
+        );
       if (!hasOwnProxy) value = value.split(` ${BENTO_PROXY}`).join('');
     }
     return [name, value];
