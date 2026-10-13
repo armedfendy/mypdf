@@ -94,7 +94,7 @@ function expectedCanonicalForFile(rel) {
   const segments = [SITE_URL];
   if (BASE_PATH) segments.push(BASE_PATH.replace(/^\//, ''));
   for (const dir of parts) {
-    if (dir === 'blog') {
+    if (dir === 'blog' || dir === 'panduan') {
       segments.push(dir);
     } else if (LOCALE_DIRS.has(dir)) {
       const translated =
@@ -125,7 +125,13 @@ function auditHtml(file, knownSlugs) {
       if (clean === '') continue;
       const seg = clean.slice(1);
       if (seg.includes('/')) continue;
-      if (LOCALE_DIRS.has(seg) || seg === 'blog' || seg === 'docs') continue;
+      if (
+        LOCALE_DIRS.has(seg) ||
+        seg === 'blog' ||
+        seg === 'panduan' ||
+        seg === 'docs'
+      )
+        continue;
       if (!knownSlugs.has(seg)) {
         fail(
           'dead-link',

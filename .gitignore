@@ -57,3 +57,6 @@ bentopdf-pymupdf-wasm/
 
 # Cache lokal Wrangler (Cloudflare)
 .wrangler/
+
+# Dibuat otomatis oleh scripts/generate-panduan.mjs
+/panduan/
