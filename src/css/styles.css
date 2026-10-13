@@ -127,16 +127,16 @@ html {
 
 body {
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  background-color: #f5f7fa;
-  color: #37474f;
+  background-color: var(--mp-bg);
+  color: var(--mp-text-2);
 }
 
 .tool-card {
   transition:
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
-  border: 1px solid #e0e4e8;
-  background-color: #ffffff;
+  border: 1px solid var(--mp-line);
+  background-color: var(--mp-surface);
   padding: 1.5rem;
   border-radius: 0.5rem;
   display: flex;
@@ -150,7 +150,7 @@ body {
   box-shadow:
     0 10px 15px -3px rgba(0, 0, 0, 0.2),
     0 4px 6px -2px rgba(0, 0, 0, 0.1);
-  border-color: #006b5c;
+  border-color: var(--mp-accent);
 }
 
 .category-header {
@@ -166,7 +166,7 @@ body {
   cursor: pointer;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--mp-text);
   text-align: left;
 }
 
@@ -175,11 +175,11 @@ body {
 }
 
 .category-header:hover {
-  color: #00796b;
+  color: var(--mp-accent-text-2);
 }
 
 .category-header:hover .category-chevron {
-  color: #00796b;
+  color: var(--mp-accent-text-2);
 }
 
 .category-tools {
@@ -203,7 +203,7 @@ body {
   border-left: none;
   border-right: none;
   border-top: none;
-  border-bottom: 1px solid #e0e4e8;
+  border-bottom: 1px solid var(--mp-line);
   background-color: transparent;
   align-items: center;
   justify-content: flex-start;
@@ -237,8 +237,8 @@ body {
 .compact-mode .tool-card:hover {
   transform: none;
   box-shadow: none;
-  background-color: #ffffff;
-  border-color: #e0e4e8;
+  background-color: var(--mp-surface);
+  border-color: var(--mp-line);
 }
 
 @media (min-width: 640px) {
@@ -271,7 +271,7 @@ input[type='file']::file-selector-button {
 /* Style for drag-and-drop placeholder */
 .sortable-ghost {
   opacity: 0.4;
-  border: 2px dashed #006b5c;
+  border: 2px dashed var(--mp-accent);
 }
 
 #embed-pdf-container > div {
@@ -309,9 +309,9 @@ input[type='file']::file-selector-button {
   min-width: 0;
   overflow: auto;
   height: 75vh;
-  border: 2px solid #e0e4e8;
+  border: 2px solid var(--mp-line);
   border-radius: 0.5rem;
-  background-color: #ffffff;
+  background-color: var(--mp-surface);
 }
 
 /* This rule ensures canvases in side-by-side panels display at their natural rendered size. */
@@ -343,9 +343,9 @@ footer a {
 }
 
 .pill {
-  background-color: #eef2f5;
+  background-color: var(--mp-surface-2);
   /* bg-gray-700 */
-  color: #37474f;
+  color: var(--mp-text-2);
   /* text-gray-300 */
   padding: 8px 16px;
   border-radius: 9999px;
@@ -355,7 +355,7 @@ footer a {
 }
 
 .cta-button {
-  background-color: #006b5c;
+  background-color: var(--mp-accent);
   /* indigo-600 */
   color: white;
   font-weight: 600;
@@ -366,7 +366,7 @@ footer a {
 }
 
 .cta-button:hover {
-  background-color: #005145;
+  background-color: var(--mp-accent-hover);
   /* indigo-700 */
 }
 
@@ -377,7 +377,7 @@ footer a {
 }
 
 .feature-card {
-  background-color: #ffffff;
+  background-color: var(--mp-surface);
   /* bg-gray-800 */
   padding: 24px;
   border-radius: 8px;
@@ -396,7 +396,7 @@ footer a {
 .marker-slanted {
   position: relative;
   display: inline-block;
-  color: #607d8b;
+  color: var(--mp-dim);
 }
 
 .section-divider {
@@ -416,9 +416,13 @@ footer a {
   /* py-3 px-8 */
   border-radius: 0.5rem;
   /* rounded-lg */
-  background-image: linear-gradient(to bottom, #006b5c, #006b5c);
+  background-image: linear-gradient(
+    to bottom,
+    var(--mp-accent),
+    var(--mp-accent)
+  );
   /* from-indigo-500 to-indigo-600 */
-  color: #ffffff;
+  color: var(--mp-accent-fg);
   /* text-white */
   font-weight: 600;
   /* font-semibold */
@@ -454,9 +458,9 @@ footer a {
   /* w-16 */
   height: 64px;
   /* h-16 */
-  border: 5px solid #e0e4e8;
+  border: 5px solid var(--mp-line);
   /* border-gray-700 */
-  border-bottom-color: #006b5c;
+  border-bottom-color: var(--mp-accent);
   /* border-indigo-600 */
   border-radius: 50%;
   display: inline-block;
@@ -486,9 +490,10 @@ footer a {
 
 /* Highlight for selected signature in the saved list */
 .saved-signature.selected {
-  border-color: #006b5c;
+  border-color: var(--mp-accent);
   /* indigo-600 */
-  box-shadow: 0 0 10px rgba(0, 107, 92, 0.5);
+  box-shadow: 0 0 10px
+    color-mix(in srgb, var(--mp-accent-text) 50%, transparent);
 }
 
 /* Cursor change when hovering over a placed signature */
@@ -513,7 +518,7 @@ footer a {
 }
 
 .faq-item.open .faq-question {
-  color: #00796b;
+  color: var(--mp-accent-text-2);
   /* indigo-400 */
 }
 
@@ -523,21 +528,21 @@ footer a {
 
 /* Testimonial Card Styles */
 .testimonial-card {
-  background-color: #ffffff;
+  background-color: var(--mp-surface);
   /* bg-gray-800 */
   padding: 24px;
   border-radius: 0.75rem;
   /* rounded-xl */
-  border: 1px solid #e0e4e8;
+  border: 1px solid var(--mp-line);
   /* border-gray-700 */
   display: flex;
   flex-direction: column;
 }
 
 .pill {
-  background-color: #eef2f5;
+  background-color: var(--mp-surface-2);
   /* bg-gray-700 */
-  color: #37474f;
+  color: var(--mp-text-2);
   /* text-gray-300 */
   padding: 8px 16px;
   border-radius: 9999px;
@@ -547,9 +552,9 @@ footer a {
 }
 
 .pill {
-  background-color: #eef2f5;
+  background-color: var(--mp-surface-2);
   /* bg-gray-700 */
-  color: #37474f;
+  color: var(--mp-text-2);
   /* text-gray-300 */
   /* Smaller padding and font size by default for mobile */
   padding: 6px 12px;
@@ -606,7 +611,7 @@ footer a {
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 600;
-  color: #00796b;
+  color: var(--mp-accent-text-2);
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
@@ -614,7 +619,7 @@ footer a {
 .legal-content p {
   margin-bottom: 1rem;
   line-height: 1.625;
-  color: #455a64;
+  color: var(--mp-dim);
 }
 
 .legal-content ul {
@@ -622,16 +627,16 @@ footer a {
   list-style-position: inside;
   margin-bottom: 1rem;
   padding-left: 1rem;
-  color: #455a64;
+  color: var(--mp-dim);
 }
 
 .legal-content a {
-  color: #00796b;
+  color: var(--mp-accent-text-2);
   text-decoration: underline;
 }
 
 .legal-content a:hover {
-  color: #006b5c;
+  color: var(--mp-accent-text);
 }
 
 details > summary {
@@ -674,11 +679,11 @@ button:disabled,
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
     'Courier New', monospace;
   line-height: 1;
-  color: #263238;
-  background-color: #eef2f5;
-  border: 1px solid #cfd6dc;
+  color: var(--mp-text);
+  background-color: var(--mp-surface-2);
+  border: 1px solid var(--mp-line-2);
   border-radius: 0.25rem;
-  box-shadow: 0 1px 0 0 #e0e4e8;
+  box-shadow: 0 1px 0 0 var(--mp-line);
 }
 
 .shortcut-input {
@@ -690,7 +695,7 @@ button:disabled,
 
 .shortcut-input:focus {
   outline: none;
-  border-color: #006b5c;
+  border-color: var(--mp-accent);
   box-shadow: 0 0 0 2px rgba(0, 191, 165, 0.2);
 }
 
@@ -700,11 +705,11 @@ button:disabled,
 }
 
 #shortcuts-list::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: var(--mp-surface);
 }
 
 #shortcuts-list::-webkit-scrollbar-thumb {
-  background: #cfd6dc;
+  background: var(--mp-surface-3);
   border-radius: 3px;
 }
 
@@ -741,7 +746,7 @@ input[type='color'] {
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
-  border: 2px solid #cfd6dc;
+  border: 2px solid var(--mp-line-2);
   border-radius: 9999px;
   background: transparent;
   cursor: pointer;
@@ -1508,12 +1513,12 @@ details > summary .icon {
 }
 
 .lp .lp-cell--accent.lp-tier li svg {
-  color: #ffffff;
+  color: var(--mp-accent-fg);
 }
 
 .lp .lp-cell--accent.lp-tier .lp-btn--primary {
-  background: #ffffff;
-  border-color: #ffffff;
+  background: var(--mp-surface);
+  border-color: var(--mp-accent-fg);
   color: var(--lp-accent-hover);
   box-shadow: none;
 }
@@ -1547,7 +1552,7 @@ details > summary .icon {
 }
 
 .lp .lp-compare tbody tr:nth-child(even) {
-  background: rgba(7, 30, 39, 0.02);
+  background: color-mix(in srgb, var(--mp-ink) 2%, transparent);
 }
 
 .lp .lp-compare .lp-yes svg {
@@ -1606,10 +1611,11 @@ details > summary .icon {
   z-index: 40;
   width: 320px;
   padding: 8px;
-  border: 1px solid #e0e4e8;
+  border: 1px solid var(--mp-line);
   border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 18px 44px -12px rgba(7, 30, 39, 0.18);
+  background: var(--mp-surface);
+  box-shadow: 0 18px 44px -12px
+    color-mix(in srgb, var(--mp-ink) 18%, transparent);
   transform: translateX(-50%);
 }
 
@@ -1623,7 +1629,7 @@ details > summary .icon {
 }
 
 .nav-products-menu a:hover {
-  background: #eef2f5;
+  background: var(--mp-surface-2);
 }
 
 .nav-product-text {
@@ -1636,24 +1642,24 @@ details > summary .icon {
 .nav-product-text b {
   font-size: 14px;
   font-weight: 600;
-  color: #071e27;
+  color: var(--mp-text);
 }
 
 .nav-product-text small {
   font-size: 12px;
   line-height: 1.45;
-  color: #546e7a;
+  color: var(--mp-dim);
 }
 
 .faq-list {
   max-width: 820px;
   margin: 0 auto;
-  border: 1px solid #e0e4e8;
+  border: 1px solid var(--mp-line);
 }
 
 .faq-d {
-  border-bottom: 1px solid #e0e4e8;
-  background-color: #ffffff;
+  border-bottom: 1px solid var(--mp-line);
+  background-color: var(--mp-surface);
 }
 
 .faq-d:last-child {
@@ -1671,7 +1677,7 @@ details > summary .icon {
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.5;
-  color: #071e27;
+  color: var(--mp-text);
   list-style: none;
   transition:
     color 0.2s,
@@ -1697,18 +1703,18 @@ details > summary .icon {
 }
 
 .faq-d-q:hover {
-  background-color: #eef2f5;
+  background-color: var(--mp-surface-2);
 }
 
 .faq-d[open] .faq-d-q {
-  color: #006b5c;
+  color: var(--mp-accent-text);
 }
 
 .faq-d-icon {
   flex: none;
   width: 20px;
   height: 20px;
-  color: #546e7a;
+  color: var(--mp-dim);
   transition:
     transform 0.3s,
     color 0.2s;
@@ -1716,7 +1722,7 @@ details > summary .icon {
 
 .faq-d[open] .faq-d-icon {
   transform: rotate(45deg);
-  color: #00796b;
+  color: var(--mp-accent-text-2);
 }
 
 .faq-d-a {
@@ -1724,7 +1730,7 @@ details > summary .icon {
   padding: 0 24px 24px;
   font-size: 15px;
   line-height: 1.65;
-  color: #3c4a46;
+  color: var(--mp-text-2);
 }
 
 .faq-d-a p {
@@ -1852,7 +1858,7 @@ details > summary .icon {
 /* Panel yang memang berlatar putih (kanvas pratinjau, panel penanda buku,
    tombol toggle) memakai skala abu-abu Tailwind bawaan. */
 .bg-white {
-  background-color: #ffffff;
+  background-color: var(--mp-surface);
   --color-white: #ffffff;
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
@@ -1869,14 +1875,14 @@ details > summary .icon {
 /* Judul utama memakai indigo tua (secondary di design.md). */
 h1.text-white,
 h2.text-white {
-  color: #1a237e;
+  color: var(--mp-heading);
 }
 
 /* Navigasi dan footer: permukaan putih dengan garis tipis. */
 nav.bg-gray-900,
 footer.bg-gray-900 {
-  background-color: #ffffff;
-  border-color: #e0e4e8;
+  background-color: var(--mp-surface);
+  border-color: var(--mp-line);
 }
 
 /* Kolom isian: putih dengan garis netral, fokus teal. */
@@ -1885,9 +1891,9 @@ input:not([type='range']):not([type='color']):not([type='checkbox']):not(
   ):not([type='file']),
 select,
 textarea {
-  background-color: #ffffff;
-  border-color: #bbcac4;
-  color: #071e27;
+  background-color: var(--mp-surface);
+  border-color: var(--mp-line-3);
+  color: var(--mp-text);
 }
 
 input:not([type='range']):not([type='color']):not([type='checkbox']):not(
@@ -1896,21 +1902,187 @@ input:not([type='range']):not([type='color']):not([type='checkbox']):not(
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: #00bfa5;
-  box-shadow: 0 0 0 2px rgba(0, 191, 165, 0.2);
+  border-color: var(--mp-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--mp-accent) 25%, transparent);
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #607d8b;
+  color: var(--mp-dim);
 }
 
 /* Bayangan lembut untuk kartu saat hover (design.md: Interactive Depth). */
 .tool-card:hover {
-  box-shadow: 0 4px 12px rgba(7, 30, 39, 0.1);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--mp-ink) 10%, transparent);
 }
 
 /* Knob toggle (after:bg-white) tetap putih di atas trek berwarna. */
 .after\:bg-white::after {
-  background-color: #ffffff;
+  background-color: var(--mp-surface);
+}
+
+/* ============================================================
+   Variabel tema mypdf.id. Terang = bawaan, gelap = html[data-theme="dark"].
+   Gelap dibuat lembut (bukan hitam pekat), lihat _local/design.md.
+   ============================================================ */
+:root {
+  --mp-bg: #f5f7fa;
+  --mp-surface: #ffffff;
+  --mp-surface-2: #eef2f5;
+  --mp-surface-3: #cfd6dc;
+  --mp-line: #e0e4e8;
+  --mp-line-2: #cfd6dc;
+  --mp-line-3: #bbcac4;
+  --mp-ink: #071e27;
+  --mp-text: #071e27;
+  --mp-text-2: #37474f;
+  --mp-dim: #546e7a;
+  --mp-accent: #006b5c;
+  --mp-accent-hover: #005145;
+  --mp-accent-fg: #ffffff;
+  --mp-accent-text: #006b5c;
+  --mp-accent-text-2: #00796b;
+  --mp-heading: #1a237e;
+  --mp-warn: #8a6200;
+  --mp-danger: #b3261e;
+  --mp-ok: #2e7d32;
+  --mp-shadow-c: #071e27;
+  --mp-grid-c: #006b5c;
+  --mp-input-bg: #ffffff;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --mp-bg: #0f1a1f;
+  --mp-surface: #16242b;
+  --mp-surface-2: #1d2e36;
+  --mp-surface-3: #2c3e47;
+  --mp-line: #24353d;
+  --mp-line-2: #2c3e47;
+  --mp-line-3: #3a4f59;
+  --mp-ink: #dff4ff;
+  --mp-text: #dff4ff;
+  --mp-text-2: #b4c4cc;
+  --mp-dim: #9fb3bb;
+  --mp-accent: #00bfa5;
+  --mp-accent-hover: #44ddc1;
+  --mp-accent-fg: #00201a;
+  --mp-accent-text: #44ddc1;
+  --mp-accent-text-2: #44ddc1;
+  --mp-heading: #bdc2ff;
+  --mp-warn: #f2c94c;
+  --mp-danger: #ffb4ab;
+  --mp-ok: #81c995;
+  --mp-shadow-c: #000000;
+  --mp-grid-c: #44ddc1;
+  --mp-input-bg: #0f1a1f;
+
+  --color-white: #dff4ff;
+  --color-gray-50: #eef6fa;
+  --color-gray-100: #e3eef3;
+  --color-gray-200: #d3e1e8;
+  --color-gray-300: #b4c4cc;
+  --color-gray-400: #9fb3bb;
+  --color-gray-500: #7f939c;
+  --color-gray-600: #2c3e47;
+  --color-gray-700: #24353d;
+  --color-gray-800: #16242b;
+  --color-gray-900: #0f1a1f;
+  --color-gray-950: #0b1418;
+  --color-indigo-300: #44ddc1;
+  --color-indigo-400: #44ddc1;
+  --color-indigo-500: #00bfa5;
+  --color-indigo-600: #00a58e;
+  --color-indigo-700: #00bfa5;
+  --color-red-200: #ffdad6;
+  --color-red-300: #ffb4ab;
+  --color-red-400: #ff8a80;
+  --color-red-900: #3b1a17;
+  --color-green-200: #c8e6c9;
+  --color-green-300: #a5d6a7;
+  --color-green-400: #81c995;
+  --color-green-900: #14301f;
+  --color-yellow-200: #f7e08a;
+  --color-yellow-300: #f2c94c;
+  --color-yellow-400: #f2c94c;
+  --color-yellow-500: #e0b53a;
+  --color-yellow-900: #33290c;
+  --color-amber-200: #f7e08a;
+  --color-amber-300: #f2c94c;
+  --color-amber-400: #f2c94c;
+  --color-blue-200: #c5d9fb;
+  --color-blue-300: #8ab4f8;
+  --color-blue-400: #8ab4f8;
+  --color-blue-900: #14253f;
+  --color-violet-300: #bdc2ff;
+  --color-teal-300: #44ddc1;
+  --color-rose-300: #f48fb1;
+}
+
+/* Tombol berlatar teal terang di mode gelap memakai teks gelap. */
+html[data-theme='dark'] .bg-indigo-500,
+html[data-theme='dark'] .bg-indigo-600,
+html[data-theme='dark'] .bg-indigo-700,
+html[data-theme='dark'] .hover\:bg-indigo-500:hover,
+html[data-theme='dark'] .hover\:bg-indigo-600:hover,
+html[data-theme='dark'] .hover\:bg-indigo-700:hover {
+  --color-white: #00201a;
+}
+
+html[data-theme='dark'] .tool-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme='dark'] body.lp ::selection {
+  color: #00201a;
+}
+
+/* Warna kategori ubin di mode gelap. */
+html[data-theme='dark'] .lp #tool-grid {
+  --tile-fg: #44ddc1;
+}
+html[data-theme='dark'] .lp #tool-grid > .is-cat-edit-annotate {
+  --tile-fg: #f2c94c;
+}
+html[data-theme='dark'] .lp #tool-grid > .is-cat-convert-to-pdf {
+  --tile-fg: #67d4e8;
+}
+html[data-theme='dark'] .lp #tool-grid > .is-cat-convert-from-pdf {
+  --tile-fg: #bdc2ff;
+}
+html[data-theme='dark'] .lp #tool-grid > .is-cat-organize-manage {
+  --tile-fg: #8ab4f8;
+}
+html[data-theme='dark'] .lp #tool-grid > .is-cat-optimize-repair {
+  --tile-fg: #81c995;
+}
+html[data-theme='dark'] .lp #tool-grid > .is-cat-secure-pdf {
+  --tile-fg: #ffb4ab;
+}
+
+/* Tombol ganti tema. */
+.mp-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid var(--mp-line-2);
+  background: transparent;
+  color: var(--mp-text-2);
+  cursor: pointer;
+}
+.mp-theme-toggle:hover {
+  color: var(--mp-accent-text);
+  border-color: var(--mp-accent);
+}
+.mp-theme-toggle .mp-icon-sun {
+  display: none;
+}
+html[data-theme='dark'] .mp-theme-toggle .mp-icon-sun {
+  display: block;
+}
+html[data-theme='dark'] .mp-theme-toggle .mp-icon-moon {
+  display: none;
 }

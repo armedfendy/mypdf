@@ -277,6 +277,14 @@ function transform(html, pageKey) {
     });
   }
 
+  // Penginisialisasi tema (terang/gelap). Harus berupa berkas eksternal karena
+  // CSP melarang skrip inline, dan dimuat paling awal agar tidak berkedip.
+  if (!document.querySelector('script[src="/theme.js"]')) {
+    const ts = document.createElement('script');
+    ts.setAttribute('src', '/theme.js');
+    document.head.insertBefore(ts, document.head.firstChild);
+  }
+
   const result = dom.serialize();
   dom.window.close();
   return result;
