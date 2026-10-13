@@ -1,40 +1,37 @@
 ---
 {
-  'title': 'Cara Gabung PDF Jadi Satu File (Merge PDF) Gratis | Panduan mypdf.id',
-  'h1': 'Cara menggabungkan beberapa PDF jadi satu file, urut dan rapi',
-  'description': 'Cara gabung PDF online gratis: satukan banyak file PDF dan gambar jadi satu dokumen, atur urutannya, dan unduh tanpa watermark. File tidak di-upload.',
-  'card': 'Satukan banyak PDF dan gambar jadi satu dokumen dengan urutan yang Anda atur sendiri.',
-  'breadcrumb': 'Cara gabung PDF',
-  'date': '2026-10-13',
-  'cta':
+  "title": "Cara Gabung PDF Jadi Satu File (Merge PDF) Gratis | Panduan mypdf.id",
+  "h1": "Cara menggabungkan beberapa PDF jadi satu file, urut dan rapi",
+  "description": "Cara gabung PDF online gratis: satukan banyak file PDF dan gambar jadi satu dokumen, atur urutannya, dan unduh tanpa watermark. File tidak di-upload.",
+  "card": "Satukan banyak PDF dan gambar jadi satu dokumen dengan urutan yang Anda atur sendiri.",
+  "breadcrumb": "Cara gabung PDF",
+  "date": "2026-10-13",
+  "cta": {
+    "heading": "Gabungkan PDF Anda sekarang",
+    "text": "Gratis, tanpa watermark, dan file tidak di-upload.",
+    "href": "/merge-pdf",
+    "label": "Buka Gabung PDF"
+  },
+  "faqs": [
     {
-      'heading': 'Gabungkan PDF Anda sekarang',
-      'text': 'Gratis, tanpa watermark, dan file tidak di-upload.',
-      'href': '/merge-pdf',
-      'label': 'Buka Gabung PDF',
+      "q": "Apakah ada batas jumlah file yang bisa digabung?",
+      "a": "Batasnya ditentukan memori perangkat Anda, bukan aturan dari kami. Untuk file yang sangat besar, laptop atau komputer terasa lebih lancar daripada HP."
     },
-  'faqs':
-    [
-      {
-        'q': 'Apakah ada batas jumlah file yang bisa digabung?',
-        'a': 'Batasnya ditentukan memori perangkat Anda, bukan aturan dari kami. Untuk file yang sangat besar, laptop atau komputer terasa lebih lancar daripada HP.',
-      },
-      {
-        'q': 'Bisakah menggabungkan hanya beberapa halaman dari tiap file?',
-        'a': 'Bisa. Di Mode File, tulis rentang seperti 1-3, 5 pada kotak halaman untuk file itu. Di Mode Halaman, Anda menyusun thumbnail halaman satu per satu.',
-      },
-      {
-        'q': 'Kenapa ukuran hasil gabungan besar?',
-        'a': 'Gambar dan font tiap file ikut disalin, sehingga ukurannya kira-kira jumlah semua file. Kecilkan hasilnya dengan [Kompres PDF](/compress-pdf) bila perlu.',
-      },
-      {
-        'q': 'Apakah ada watermark di hasilnya?',
-        'a': 'Tidak ada watermark, dan tidak perlu mendaftar akun.',
-      },
-    ],
+    {
+      "q": "Bisakah menggabungkan hanya beberapa halaman dari tiap file?",
+      "a": "Bisa. Di Mode File, tulis rentang seperti 1-3, 5 pada kotak halaman untuk file itu. Di Mode Halaman, Anda menyusun thumbnail halaman satu per satu."
+    },
+    {
+      "q": "Kenapa ukuran hasil gabungan besar?",
+      "a": "Gambar dan font tiap file ikut disalin, sehingga ukurannya kira-kira jumlah semua file. Kecilkan hasilnya dengan [Kompres PDF](/compress-pdf) bila perlu."
+    },
+    {
+      "q": "Apakah ada watermark di hasilnya?",
+      "a": "Tidak ada watermark, dan tidak perlu mendaftar akun."
+    }
+  ]
 }
 ---
-
 Menyatukan beberapa PDF menjadi satu file adalah salah satu pekerjaan paling sering dilakukan. Entah untuk melengkapi berkas pendaftaran, menyusun laporan dari beberapa bagian, atau mengirim kumpulan bukti transaksi, satu file yang rapi jauh lebih mudah dikirim dan dibaca daripada lima atau enam lampiran terpisah.
 
 Panduan ini memakai [Gabung PDF](/merge-pdf) di mypdf.id. Alatnya gratis, tanpa watermark, dan file Anda diproses di browser tanpa di-upload.

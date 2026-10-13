@@ -1,40 +1,37 @@
 ---
 {
-  'title': 'Cara Ubah Foto atau JPG Jadi PDF dari HP (Scan KTP, Ijazah) | mypdf.id',
-  'h1': 'Cara mengubah foto dan scan dokumen dari HP menjadi satu file PDF',
-  'description': 'Cara ubah JPG ke PDF gratis: satukan foto KTP, ijazah, atau dokumen dari HP jadi satu PDF rapi. Atur urutan dan kualitas, tanpa watermark dan tanpa upload.',
-  'card': 'Satukan foto dokumen dari HP jadi satu PDF rapi dengan ukuran yang bisa diatur.',
-  'breadcrumb': 'Cara foto jadi PDF',
-  'date': '2026-10-13',
-  'cta':
+  "title": "Cara Ubah Foto atau JPG Jadi PDF dari HP (Scan KTP, Ijazah) | mypdf.id",
+  "h1": "Cara mengubah foto dan scan dokumen dari HP menjadi satu file PDF",
+  "description": "Cara ubah JPG ke PDF gratis: satukan foto KTP, ijazah, atau dokumen dari HP jadi satu PDF rapi. Atur urutan dan kualitas, tanpa watermark dan tanpa upload.",
+  "card": "Satukan foto dokumen dari HP jadi satu PDF rapi dengan ukuran yang bisa diatur.",
+  "breadcrumb": "Cara foto jadi PDF",
+  "date": "2026-10-13",
+  "cta": {
+    "heading": "Ubah foto Anda jadi PDF",
+    "text": "Gratis, tanpa watermark, dan foto tidak di-upload.",
+    "href": "/jpg-to-pdf",
+    "label": "Buka JPG ke PDF"
+  },
+  "faqs": [
     {
-      'heading': 'Ubah foto Anda jadi PDF',
-      'text': 'Gratis, tanpa watermark, dan foto tidak di-upload.',
-      'href': '/jpg-to-pdf',
-      'label': 'Buka JPG ke PDF',
+      "q": "Bisakah beberapa foto dijadikan satu PDF?",
+      "a": "Bisa. Pilih semua foto sekaligus atau tambahkan satu per satu. Semuanya digabung menjadi satu PDF dengan satu foto per halaman."
     },
-  'faqs':
-    [
-      {
-        'q': 'Bisakah beberapa foto dijadikan satu PDF?',
-        'a': 'Bisa. Pilih semua foto sekaligus atau tambahkan satu per satu. Semuanya digabung menjadi satu PDF dengan satu foto per halaman.',
-      },
-      {
-        'q': 'Bagaimana urutan halamannya?',
-        'a': 'Halaman mengikuti urutan file pada daftar. Pilih atau tambahkan gambar sesuai urutan yang Anda inginkan.',
-      },
-      {
-        'q': 'Kenapa ukuran PDF-nya besar?',
-        'a': 'Foto kamera HP beresolusi tinggi. Pilih kualitas rendah saat mengonversi, atau kecilkan hasilnya dengan alat Kompres PDF.',
-      },
-      {
-        'q': 'Apakah teks di foto bisa dicari setelah jadi PDF?',
-        'a': 'Belum, karena foto hanya berisi gambar. Jalankan alat OCR PDF pada hasilnya agar teksnya bisa dicari dan disalin.',
-      },
-    ],
+    {
+      "q": "Bagaimana urutan halamannya?",
+      "a": "Halaman mengikuti urutan file pada daftar. Pilih atau tambahkan gambar sesuai urutan yang Anda inginkan."
+    },
+    {
+      "q": "Kenapa ukuran PDF-nya besar?",
+      "a": "Foto kamera HP beresolusi tinggi. Pilih kualitas rendah saat mengonversi, atau kecilkan hasilnya dengan alat Kompres PDF."
+    },
+    {
+      "q": "Apakah teks di foto bisa dicari setelah jadi PDF?",
+      "a": "Belum, karena foto hanya berisi gambar. Jalankan alat OCR PDF pada hasilnya agar teksnya bisa dicari dan disalin."
+    }
+  ]
 }
 ---
-
 Banyak urusan meminta dokumen dalam bentuk PDF, padahal yang Anda punya hanya foto dari HP: KTP, Kartu Keluarga, ijazah, atau surat. Mengirim belasan foto terpisah tidak rapi dan sering ditolak portal. Mengubahnya menjadi satu PDF jauh lebih praktis.
 
 Panduan ini memakai [JPG ke PDF](/jpg-to-pdf) di mypdf.id. Alatnya gratis, tanpa watermark, dan foto Anda diproses di browser tanpa di-upload.

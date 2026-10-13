@@ -1,40 +1,37 @@
 ---
 {
-  'title': 'Cara Word ke PDF dan PDF ke Word Gratis Tanpa Install | Panduan mypdf.id',
-  'h1': 'Cara mengubah Word ke PDF dan PDF ke Word dengan hasil rapi',
-  'description': 'Cara konversi Word ke PDF dan PDF ke Word gratis di browser. Tata letak terjaga, bisa banyak file sekaligus, dan dokumen tidak di-upload ke server.',
-  'card': 'Konversi dokumen Word dan PDF dua arah, plus apa yang harus dilakukan bila PDF hasil scan.',
-  'breadcrumb': 'Word ke PDF dan PDF ke Word',
-  'date': '2026-10-13',
-  'cta':
+  "title": "Cara Word ke PDF dan PDF ke Word Gratis Tanpa Install | Panduan mypdf.id",
+  "h1": "Cara mengubah Word ke PDF dan PDF ke Word dengan hasil rapi",
+  "description": "Cara konversi Word ke PDF dan PDF ke Word gratis di browser. Tata letak terjaga, bisa banyak file sekaligus, dan dokumen tidak di-upload ke server.",
+  "card": "Konversi dokumen Word dan PDF dua arah, plus apa yang harus dilakukan bila PDF hasil scan.",
+  "breadcrumb": "Word ke PDF dan PDF ke Word",
+  "date": "2026-10-13",
+  "cta": {
+    "heading": "Ubah dokumen Anda sekarang",
+    "text": "Gratis, tanpa daftar, dan dokumen diproses di browser.",
+    "href": "/word-to-pdf",
+    "label": "Buka Word ke PDF"
+  },
+  "faqs": [
     {
-      'heading': 'Ubah dokumen Anda sekarang',
-      'text': 'Gratis, tanpa daftar, dan dokumen diproses di browser.',
-      'href': '/word-to-pdf',
-      'label': 'Buka Word ke PDF',
+      "q": "Apakah hasil Word akan sama persis dengan PDF aslinya?",
+      "a": "Untuk dokumen sederhana hasilnya sangat mirip. Tata letak berkolom, teks di atas gambar, formulir, dan font yang tidak umum bisa bergeser, jadi periksa dan rapikan hasilnya."
     },
-  'faqs':
-    [
-      {
-        'q': 'Apakah hasil Word akan sama persis dengan PDF aslinya?',
-        'a': 'Untuk dokumen sederhana hasilnya sangat mirip. Tata letak berkolom, teks di atas gambar, formulir, dan font yang tidak umum bisa bergeser, jadi periksa dan rapikan hasilnya.',
-      },
-      {
-        'q': 'Kenapa pertama kali mengubah Word ke PDF agak lama?',
-        'a': 'Mesin konversi berbasis LibreOffice cukup besar dan diunduh sekali ke browser. Setelah itu tersimpan sehingga pemakaian berikutnya lebih cepat.',
-      },
-      {
-        'q': 'Format apa saja yang didukung untuk diubah ke PDF?',
-        'a': 'DOCX, DOC, ODT, dan RTF. Untuk Excel dan PowerPoint ada alat sendiri: [Excel ke PDF](/excel-to-pdf) dan [PowerPoint ke PDF](/powerpoint-to-pdf).',
-      },
-      {
-        'q': 'Kenapa PDF hasil scan tidak bisa diedit setelah diubah ke Word?',
-        'a': 'PDF hasil scan berisi gambar, bukan teks. Jalankan [OCR PDF](/ocr-pdf) dulu agar teksnya dikenali, baru ubah ke Word.',
-      },
-    ],
+    {
+      "q": "Kenapa pertama kali mengubah Word ke PDF agak lama?",
+      "a": "Mesin konversi berbasis LibreOffice cukup besar dan diunduh sekali ke browser. Setelah itu tersimpan sehingga pemakaian berikutnya lebih cepat."
+    },
+    {
+      "q": "Format apa saja yang didukung untuk diubah ke PDF?",
+      "a": "DOCX, DOC, ODT, dan RTF. Untuk Excel dan PowerPoint ada alat sendiri: [Excel ke PDF](/excel-to-pdf) dan [PowerPoint ke PDF](/powerpoint-to-pdf)."
+    },
+    {
+      "q": "Kenapa PDF hasil scan tidak bisa diedit setelah diubah ke Word?",
+      "a": "PDF hasil scan berisi gambar, bukan teks. Jalankan [OCR PDF](/ocr-pdf) dulu agar teksnya dikenali, baru ubah ke Word."
+    }
+  ]
 }
 ---
-
 Word dan PDF saling melengkapi. Word enak untuk menulis dan merevisi, sedangkan PDF unggul untuk dikirim, karena tampilannya sama di semua perangkat. Karena itu Anda sering perlu mengubah dokumen bolak-balik: dari Word ke PDF sebelum dikirim, atau dari PDF ke Word untuk mengedit isinya.
 
 Panduan ini membahas keduanya memakai alat mypdf.id yang berjalan di browser, tanpa instalasi dan tanpa upload.

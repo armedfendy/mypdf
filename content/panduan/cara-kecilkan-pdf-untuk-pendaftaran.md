@@ -1,40 +1,37 @@
 ---
 {
-  'title': 'Cara Mengecilkan PDF untuk Pendaftaran Online (CPNS, Beasiswa, Kerja) | mypdf.id',
-  'h1': 'Cara mengecilkan PDF agar lolos batas unggah portal pendaftaran',
-  'description': 'Cara kompres PDF ke 100 KB, 200 KB, 500 KB, atau 1 MB untuk portal pendaftaran CPNS, beasiswa, dan lamaran kerja. Gratis, tanpa upload file ke server.',
-  'card': 'Kecilkan dokumen pendaftaran ke batas ukuran portal tanpa membuat tulisan tidak terbaca.',
-  'breadcrumb': 'Kecilkan PDF untuk pendaftaran',
-  'date': '2026-10-13',
-  'cta':
+  "title": "Cara Mengecilkan PDF untuk Pendaftaran Online (CPNS, Beasiswa, Kerja) | mypdf.id",
+  "h1": "Cara mengecilkan PDF agar lolos batas unggah portal pendaftaran",
+  "description": "Cara kompres PDF ke 100 KB, 200 KB, 500 KB, atau 1 MB untuk portal pendaftaran CPNS, beasiswa, dan lamaran kerja. Gratis, tanpa upload file ke server.",
+  "card": "Kecilkan dokumen pendaftaran ke batas ukuran portal tanpa membuat tulisan tidak terbaca.",
+  "breadcrumb": "Kecilkan PDF untuk pendaftaran",
+  "date": "2026-10-13",
+  "cta": {
+    "heading": "Kecilkan PDF Anda sekarang",
+    "text": "Gratis, tanpa daftar, dan file tidak di-upload.",
+    "href": "/compress-pdf",
+    "label": "Buka Kompres PDF"
+  },
+  "faqs": [
     {
-      'heading': 'Kecilkan PDF Anda sekarang',
-      'text': 'Gratis, tanpa daftar, dan file tidak di-upload.',
-      'href': '/compress-pdf',
-      'label': 'Buka Kompres PDF',
+      "q": "Kenapa PDF saya masih besar setelah dikompres?",
+      "a": "Kalau isi PDF sebagian besar teks atau gambarnya sudah kecil, memang tidak banyak yang bisa dihemat. Coba tingkat yang lebih kuat seperti Agresif, aktifkan konversi ke grayscale, atau gunakan Photon bila file berupa hasil scan."
     },
-  'faqs':
-    [
-      {
-        'q': 'Kenapa PDF saya masih besar setelah dikompres?',
-        'a': 'Kalau isi PDF sebagian besar teks atau gambarnya sudah kecil, memang tidak banyak yang bisa dihemat. Coba tingkat yang lebih kuat seperti Agresif, aktifkan konversi ke grayscale, atau gunakan Photon bila file berupa hasil scan.',
-      },
-      {
-        'q': 'Apakah teks tetap bisa dipilih setelah dikompres?',
-        'a': 'Dengan algoritma Condense, ya. Teks, pencarian, dan tautan tetap berfungsi. Photon mengubah halaman menjadi gambar, sehingga teks tidak bisa dipilih lagi.',
-      },
-      {
-        'q': 'Berapa ukuran maksimal yang biasa diminta portal?',
-        'a': 'Berbeda-beda. Ada yang membatasi 200 KB, ada yang 1 MB atau 2 MB. Selalu baca ketentuan di portal tujuan, lalu pilih halaman kompres dengan target yang sesuai.',
-      },
-      {
-        'q': 'Apakah dokumen saya dikirim ke server?',
-        'a': 'Tidak. Kompresi berjalan di browser Anda, jadi KTP, ijazah, dan dokumen lain tidak meninggalkan perangkat.',
-      },
-    ],
+    {
+      "q": "Apakah teks tetap bisa dipilih setelah dikompres?",
+      "a": "Dengan algoritma Condense, ya. Teks, pencarian, dan tautan tetap berfungsi. Photon mengubah halaman menjadi gambar, sehingga teks tidak bisa dipilih lagi."
+    },
+    {
+      "q": "Berapa ukuran maksimal yang biasa diminta portal?",
+      "a": "Berbeda-beda. Ada yang membatasi 200 KB, ada yang 1 MB atau 2 MB. Selalu baca ketentuan di portal tujuan, lalu pilih halaman kompres dengan target yang sesuai."
+    },
+    {
+      "q": "Apakah dokumen saya dikirim ke server?",
+      "a": "Tidak. Kompresi berjalan di browser Anda, jadi KTP, ijazah, dan dokumen lain tidak meninggalkan perangkat."
+    }
+  ]
 }
 ---
-
 Salah satu hal paling menyebalkan saat mendaftar CPNS, beasiswa, atau lowongan kerja adalah pesan "ukuran file melebihi batas" ketika mengunggah dokumen. Portal pendaftaran sering membatasi satu berkas pada ukuran kecil, sementara hasil scan ijazah atau KTP bisa beberapa megabita.
 
 Kabar baiknya, hampir semua PDF bisa dikecilkan tanpa membuat tulisannya sulit dibaca. Panduan ini menjelaskan caranya, dan bagaimana memilih tingkat kompresi yang tepat.

@@ -1,40 +1,37 @@
 ---
 {
-  'title': 'Cara Pisah PDF dan Ambil Halaman Tertentu Gratis | Panduan mypdf.id',
-  'h1': 'Cara memisahkan PDF dan mengambil halaman tertentu saja',
-  'description': 'Cara pisah PDF online gratis: ambil halaman tertentu, bagi dokumen per bab, atau pecah setiap halaman jadi file sendiri. Tanpa upload ke server.',
-  'card': 'Ambil satu halaman, beberapa rentang, atau bagi dokumen panjang jadi beberapa file.',
-  'breadcrumb': 'Cara pisah PDF',
-  'date': '2026-10-13',
-  'cta':
+  "title": "Cara Pisah PDF dan Ambil Halaman Tertentu Gratis | Panduan mypdf.id",
+  "h1": "Cara memisahkan PDF dan mengambil halaman tertentu saja",
+  "description": "Cara pisah PDF online gratis: ambil halaman tertentu, bagi dokumen per bab, atau pecah setiap halaman jadi file sendiri. Tanpa upload ke server.",
+  "card": "Ambil satu halaman, beberapa rentang, atau bagi dokumen panjang jadi beberapa file.",
+  "breadcrumb": "Cara pisah PDF",
+  "date": "2026-10-13",
+  "cta": {
+    "heading": "Pisahkan PDF Anda sekarang",
+    "text": "Gratis, tanpa daftar, dan file tidak di-upload.",
+    "href": "/split-pdf",
+    "label": "Buka Pisah PDF"
+  },
+  "faqs": [
     {
-      'heading': 'Pisahkan PDF Anda sekarang',
-      'text': 'Gratis, tanpa daftar, dan file tidak di-upload.',
-      'href': '/split-pdf',
-      'label': 'Buka Pisah PDF',
+      "q": "Bagaimana cara mengambil beberapa halaman sekaligus?",
+      "a": "Pilih mode ambil berdasarkan rentang halaman, lalu tulis nomor dipisah koma, misalnya 1-3, 7, 12-15. Pilih satu PDF gabungan bila semua halaman itu ingin disatukan dalam satu file."
     },
-  'faqs':
-    [
-      {
-        'q': 'Bagaimana cara mengambil beberapa halaman sekaligus?',
-        'a': 'Pilih mode ambil berdasarkan rentang halaman, lalu tulis nomor dipisah koma, misalnya 1-3, 7, 12-15. Pilih satu PDF gabungan bila semua halaman itu ingin disatukan dalam satu file.',
-      },
-      {
-        'q': 'Bisakah setiap halaman dijadikan file PDF sendiri?',
-        'a': 'Bisa. Pilih mode pisah setiap halaman menjadi file sendiri. Semua halaman diunduh dalam satu file ZIP.',
-      },
-      {
-        'q': 'Apakah kualitas halaman berubah setelah dipisah?',
-        'a': 'Tidak. Halaman disalin apa adanya tanpa dikompres ulang, jadi teks, gambar, dan tautan tetap sama dengan aslinya.',
-      },
-      {
-        'q': 'Apa bedanya Pisah PDF dengan Ekstrak Halaman?',
-        'a': 'Pisah PDF punya banyak mode dan bisa menghasilkan satu PDF gabungan berisi halaman terpilih. Ekstrak Halaman menyimpan setiap halaman terpilih sebagai file PDF tersendiri dalam satu ZIP.',
-      },
-    ],
+    {
+      "q": "Bisakah setiap halaman dijadikan file PDF sendiri?",
+      "a": "Bisa. Pilih mode pisah setiap halaman menjadi file sendiri. Semua halaman diunduh dalam satu file ZIP."
+    },
+    {
+      "q": "Apakah kualitas halaman berubah setelah dipisah?",
+      "a": "Tidak. Halaman disalin apa adanya tanpa dikompres ulang, jadi teks, gambar, dan tautan tetap sama dengan aslinya."
+    },
+    {
+      "q": "Apa bedanya Pisah PDF dengan Ekstrak Halaman?",
+      "a": "Pisah PDF punya banyak mode dan bisa menghasilkan satu PDF gabungan berisi halaman terpilih. Ekstrak Halaman menyimpan setiap halaman terpilih sebagai file PDF tersendiri dalam satu ZIP."
+    }
+  ]
 }
 ---
-
 Tidak semua halaman dalam PDF perlu dikirim. Anda mungkin hanya membutuhkan halaman KTP dari kumpulan scan berkas, satu bab dari laporan panjang, atau lampiran dari dokumen besar. Daripada mengirim seluruh file, lebih rapi dan lebih ringan bila hanya halaman yang relevan yang diambil.
 
 Panduan ini memakai [Pisah PDF](/split-pdf), [Ekstrak Halaman](/extract-pages), dan [Hapus Halaman](/delete-pages) di mypdf.id. Semuanya gratis dan berjalan di browser Anda tanpa upload.

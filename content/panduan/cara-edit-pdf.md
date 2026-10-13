@@ -1,40 +1,37 @@
 ---
 {
-  'title': 'Cara Edit PDF Gratis di Browser Tanpa Upload | Panduan mypdf.id',
-  'h1': 'Cara edit PDF gratis: ubah teks, sorot, dan beri catatan tanpa upload',
-  'description': 'Panduan cara edit PDF online gratis: mengganti tulisan, menambah teks, menyorot, dan memberi komentar. File diproses di browser, tidak di-upload ke server.',
-  'card': 'Ganti tulisan, sorot, tambah teks, atau beri catatan di PDF langsung dari browser.',
-  'breadcrumb': 'Cara edit PDF',
-  'date': '2026-10-13',
-  'cta':
+  "title": "Cara Edit PDF Gratis di Browser Tanpa Upload | Panduan mypdf.id",
+  "h1": "Cara edit PDF gratis: ubah teks, sorot, dan beri catatan tanpa upload",
+  "description": "Panduan cara edit PDF online gratis: mengganti tulisan, menambah teks, menyorot, dan memberi komentar. File diproses di browser, tidak di-upload ke server.",
+  "card": "Ganti tulisan, sorot, tambah teks, atau beri catatan di PDF langsung dari browser.",
+  "breadcrumb": "Cara edit PDF",
+  "date": "2026-10-13",
+  "cta": {
+    "heading": "Coba edit PDF Anda sekarang",
+    "text": "Gratis, tanpa daftar, dan file tetap di perangkat Anda.",
+    "href": "/edit-pdf-text",
+    "label": "Buka Edit Teks PDF"
+  },
+  "faqs": [
     {
-      'heading': 'Coba edit PDF Anda sekarang',
-      'text': 'Gratis, tanpa daftar, dan file tetap di perangkat Anda.',
-      'href': '/edit-pdf-text',
-      'label': 'Buka Edit Teks PDF',
+      "q": "Kenapa tulisan di PDF hasil scan tidak bisa diedit?",
+      "a": "Halaman hasil scan hanyalah gambar. Tidak ada huruf yang bisa diubah. Jalankan [OCR PDF](/ocr-pdf) dulu, lalu ubah hasilnya ke Word lewat [PDF ke Word](/pdf-to-word) bila perlu mengedit isinya."
     },
-  'faqs':
-    [
-      {
-        'q': 'Kenapa tulisan di PDF hasil scan tidak bisa diedit?',
-        'a': 'Halaman hasil scan hanyalah gambar. Tidak ada huruf yang bisa diubah. Jalankan [OCR PDF](/ocr-pdf) dulu, lalu ubah hasilnya ke Word lewat [PDF ke Word](/pdf-to-word) bila perlu mengedit isinya.',
-      },
-      {
-        'q': 'Apakah mengedit PDF membuat kualitasnya turun?',
-        'a': 'Teks yang tidak Anda sentuh tetap seperti semula. Yang berubah hanya paragraf atau gambar yang Anda edit. Periksa hasilnya sebelum dikirim, terutama bila ada tulisan yang bergeser atau bertumpuk.',
-      },
-      {
-        'q': 'Bagaimana dengan PDF yang sudah bertanda tangan digital?',
-        'a': 'Mengedit dokumen bertanda tangan digital membuat tanda tangannya tidak berlaku. Simpan salinan asli, dan edit salinannya.',
-      },
-      {
-        'q': 'Apakah file saya aman?',
-        'a': 'File diproses di browser Anda dan tidak dikirim ke server mypdf.id. Anda bisa membuktikannya sendiri lewat tab Network di alat pengembang browser saat mengedit.',
-      },
-    ],
+    {
+      "q": "Apakah mengedit PDF membuat kualitasnya turun?",
+      "a": "Teks yang tidak Anda sentuh tetap seperti semula. Yang berubah hanya paragraf atau gambar yang Anda edit. Periksa hasilnya sebelum dikirim, terutama bila ada tulisan yang bergeser atau bertumpuk."
+    },
+    {
+      "q": "Bagaimana dengan PDF yang sudah bertanda tangan digital?",
+      "a": "Mengedit dokumen bertanda tangan digital membuat tanda tangannya tidak berlaku. Simpan salinan asli, dan edit salinannya."
+    },
+    {
+      "q": "Apakah file saya aman?",
+      "a": "File diproses di browser Anda dan tidak dikirim ke server mypdf.id. Anda bisa membuktikannya sendiri lewat tab Network di alat pengembang browser saat mengedit."
+    }
+  ]
 }
 ---
-
 Mengedit PDF sering dianggap sulit karena PDF dibuat untuk dibaca, bukan diubah. Tetapi ada banyak keperluan sehari-hari yang bisa dikerjakan langsung di browser: membetulkan salah ketik, memperbarui tanggal, menambah kolom teks, atau sekadar menyorot bagian penting sebelum dikirim.
 
 Panduan ini menjelaskan alat mana yang cocok untuk tiap kebutuhan, dan langkah-langkahnya memakai [Edit Teks PDF](/edit-pdf-text) dan [Edit PDF](/edit-pdf) di mypdf.id.

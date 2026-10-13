@@ -1,40 +1,37 @@
 ---
 {
-  'title': 'Cara Tanda Tangan di PDF Online (TTD PDF) Gratis | Panduan mypdf.id',
-  'h1': 'Cara tanda tangan di PDF: gambar, ketik, atau unggah tanda tangan Anda',
-  'description': 'Cara TTD PDF online gratis lewat HP atau komputer: gambar, ketik, atau unggah tanda tangan, lalu tempel di dokumen. Tanpa daftar dan tanpa upload ke server.',
-  'card': 'Tempel tanda tangan di PDF lewat HP atau komputer, plus perbedaannya dengan tanda tangan digital.',
-  'breadcrumb': 'Cara tanda tangan PDF',
-  'date': '2026-10-13',
-  'cta':
+  "title": "Cara Tanda Tangan di PDF Online (TTD PDF) Gratis | Panduan mypdf.id",
+  "h1": "Cara tanda tangan di PDF: gambar, ketik, atau unggah tanda tangan Anda",
+  "description": "Cara TTD PDF online gratis lewat HP atau komputer: gambar, ketik, atau unggah tanda tangan, lalu tempel di dokumen. Tanpa daftar dan tanpa upload ke server.",
+  "card": "Tempel tanda tangan di PDF lewat HP atau komputer, plus perbedaannya dengan tanda tangan digital.",
+  "breadcrumb": "Cara tanda tangan PDF",
+  "date": "2026-10-13",
+  "cta": {
+    "heading": "Tandatangani PDF Anda sekarang",
+    "text": "Gratis, tanpa daftar, dan dokumen tidak di-upload.",
+    "href": "/sign-pdf",
+    "label": "Buka Tanda Tangan PDF"
+  },
+  "faqs": [
     {
-      'heading': 'Tandatangani PDF Anda sekarang',
-      'text': 'Gratis, tanpa daftar, dan dokumen tidak di-upload.',
-      'href': '/sign-pdf',
-      'label': 'Buka Tanda Tangan PDF',
+      "q": "Bagaimana membuat tanda tangan yang rapi?",
+      "a": "Tanda tangani kertas putih dengan tinta gelap, foto dengan cahaya merata, lalu unggah fotonya. Atau gambar langsung dengan jari di layar HP dengan garis yang tegas."
     },
-  'faqs':
-    [
-      {
-        'q': 'Bagaimana membuat tanda tangan yang rapi?',
-        'a': 'Tanda tangani kertas putih dengan tinta gelap, foto dengan cahaya merata, lalu unggah fotonya. Atau gambar langsung dengan jari di layar HP dengan garis yang tegas.',
-      },
-      {
-        'q': 'Apa fungsi Ratakan PDF?',
-        'a': 'Opsi ini menyatukan tanda tangan dengan isi halaman, sehingga tidak bisa dipindah atau dihapus sebagai objek terpisah oleh orang yang menerima file.',
-      },
-      {
-        'q': 'Apakah tanda tangan ini sah secara hukum?',
-        'a': 'Ini adalah tanda tangan visual, bukan tanda tangan elektronik tersertifikasi. Untuk dokumen resmi, tanyakan ke pihak penerima jenis tanda tangan yang mereka terima.',
-      },
-      {
-        'q': 'Bisakah menandatangani beberapa halaman?',
-        'a': 'Bisa. Tempatkan tanda tangan di setiap halaman yang membutuhkannya sebelum menyimpan dokumen.',
-      },
-    ],
+    {
+      "q": "Apa fungsi Ratakan PDF?",
+      "a": "Opsi ini menyatukan tanda tangan dengan isi halaman, sehingga tidak bisa dipindah atau dihapus sebagai objek terpisah oleh orang yang menerima file."
+    },
+    {
+      "q": "Apakah tanda tangan ini sah secara hukum?",
+      "a": "Ini adalah tanda tangan visual, bukan tanda tangan elektronik tersertifikasi. Untuk dokumen resmi, tanyakan ke pihak penerima jenis tanda tangan yang mereka terima."
+    },
+    {
+      "q": "Bisakah menandatangani beberapa halaman?",
+      "a": "Bisa. Tempatkan tanda tangan di setiap halaman yang membutuhkannya sebelum menyimpan dokumen."
+    }
+  ]
 }
 ---
-
 Banyak urusan kini meminta dokumen PDF yang sudah ditandatangani: surat pernyataan, formulir pendaftaran, kontrak kerja, atau persetujuan. Mencetak, menandatangani, lalu memindai ulang memakan waktu. Dengan alat yang tepat, tanda tangan bisa ditempel langsung ke PDF dalam beberapa menit.
 
 Panduan ini memakai [Tanda Tangan PDF](/sign-pdf) di mypdf.id. Alatnya gratis, tanpa daftar, dan dokumen diproses di browser Anda tanpa di-upload ke server.

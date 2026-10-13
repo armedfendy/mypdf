@@ -1,40 +1,37 @@
 ---
 {
-  'title': 'Cara OCR PDF: Ubah Scan Jadi Teks yang Bisa Dicari dan Disalin | mypdf.id',
-  'h1': 'Cara membuat PDF hasil scan bisa dicari, dipilih, dan disalin (OCR)',
-  'description': 'Cara OCR PDF online gratis untuk dokumen scan atau foto berbahasa Indonesia. Teks jadi bisa dicari dan disalin, dan scan tidak di-upload ke server.',
-  'card': 'Ubah PDF scan atau foto menjadi dokumen yang teksnya bisa dicari dan disalin.',
-  'breadcrumb': 'Cara OCR PDF hasil scan',
-  'date': '2026-10-13',
-  'cta':
+  "title": "Cara OCR PDF: Ubah Scan Jadi Teks yang Bisa Dicari dan Disalin | mypdf.id",
+  "h1": "Cara membuat PDF hasil scan bisa dicari, dipilih, dan disalin (OCR)",
+  "description": "Cara OCR PDF online gratis untuk dokumen scan atau foto berbahasa Indonesia. Teks jadi bisa dicari dan disalin, dan scan tidak di-upload ke server.",
+  "card": "Ubah PDF scan atau foto menjadi dokumen yang teksnya bisa dicari dan disalin.",
+  "breadcrumb": "Cara OCR PDF hasil scan",
+  "date": "2026-10-13",
+  "cta": {
+    "heading": "Jalankan OCR pada PDF Anda",
+    "text": "Mendukung bahasa Indonesia. Scan tidak di-upload ke server.",
+    "href": "/ocr-pdf",
+    "label": "Buka OCR PDF"
+  },
+  "faqs": [
     {
-      'heading': 'Jalankan OCR pada PDF Anda',
-      'text': 'Mendukung bahasa Indonesia. Scan tidak di-upload ke server.',
-      'href': '/ocr-pdf',
-      'label': 'Buka OCR PDF',
+      "q": "Bagaimana tahu PDF saya perlu OCR?",
+      "a": "Coba blok satu baris teks di aplikasi pembaca PDF. Kalau tidak bisa dipilih atau pencarian tidak menemukan apa pun, halamannya hanya gambar dan perlu OCR."
     },
-  'faqs':
-    [
-      {
-        'q': 'Bagaimana tahu PDF saya perlu OCR?',
-        'a': 'Coba blok satu baris teks di aplikasi pembaca PDF. Kalau tidak bisa dipilih atau pencarian tidak menemukan apa pun, halamannya hanya gambar dan perlu OCR.',
-      },
-      {
-        'q': 'Apakah bahasa Indonesia didukung?',
-        'a': 'Ya. Tersedia lebih dari 100 bahasa termasuk Indonesia. Centang semua bahasa yang muncul di dokumen agar halaman berbahasa campuran terbaca sekaligus.',
-      },
-      {
-        'q': 'Apakah tampilan dokumen berubah setelah OCR?',
-        'a': 'Tidak. Halaman asli tetap sama, lalu ditambahkan lapisan teks tak terlihat tepat di atas tulisan pada scan. Tampilannya sama tetapi teks bisa dicari dan disalin.',
-      },
-      {
-        'q': 'Bisakah membaca tulisan tangan?',
-        'a': 'Kurang andal. Mesin OCR dilatih untuk teks cetak, jadi tulisan tangan umumnya menghasilkan teks yang kacau.',
-      },
-    ],
+    {
+      "q": "Apakah bahasa Indonesia didukung?",
+      "a": "Ya. Tersedia lebih dari 100 bahasa termasuk Indonesia. Centang semua bahasa yang muncul di dokumen agar halaman berbahasa campuran terbaca sekaligus."
+    },
+    {
+      "q": "Apakah tampilan dokumen berubah setelah OCR?",
+      "a": "Tidak. Halaman asli tetap sama, lalu ditambahkan lapisan teks tak terlihat tepat di atas tulisan pada scan. Tampilannya sama tetapi teks bisa dicari dan disalin."
+    },
+    {
+      "q": "Bisakah membaca tulisan tangan?",
+      "a": "Kurang andal. Mesin OCR dilatih untuk teks cetak, jadi tulisan tangan umumnya menghasilkan teks yang kacau."
+    }
+  ]
 }
 ---
-
 Dokumen hasil scan atau foto terlihat seperti teks, tetapi sebenarnya hanya gambar. Anda tidak bisa mencari kata di dalamnya, menyalin kalimat, atau mengubahnya ke Word. Teknologi yang menyelesaikan masalah ini disebut OCR (Optical Character Recognition), yaitu mengenali huruf pada gambar dan menjadikannya teks sungguhan.
 
 Panduan ini memakai [OCR PDF](/ocr-pdf) di mypdf.id. Alatnya gratis, mendukung bahasa Indonesia, dan berjalan di browser Anda tanpa mengunggah scan ke server.

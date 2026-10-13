@@ -1,40 +1,37 @@
 ---
 {
-  'title': 'Cara Mengunci dan Membuka Kunci PDF dengan Password | Panduan mypdf.id',
-  'h1': 'Cara mengunci PDF dengan password dan membuka kuncinya kembali',
-  'description': 'Cara memberi password pada PDF dengan enkripsi AES 256-bit, membatasi cetak dan salin, serta menghapus password PDF milik sendiri. Gratis, tanpa upload.',
-  'card': 'Lindungi dokumen dengan kata sandi, atau hapus kata sandi dari PDF milik Anda sendiri.',
-  'breadcrumb': 'Kunci dan buka kunci PDF',
-  'date': '2026-10-13',
-  'cta':
+  "title": "Cara Mengunci dan Membuka Kunci PDF dengan Password | Panduan mypdf.id",
+  "h1": "Cara mengunci PDF dengan password dan membuka kuncinya kembali",
+  "description": "Cara memberi password pada PDF dengan enkripsi AES 256-bit, membatasi cetak dan salin, serta menghapus password PDF milik sendiri. Gratis, tanpa upload.",
+  "card": "Lindungi dokumen dengan kata sandi, atau hapus kata sandi dari PDF milik Anda sendiri.",
+  "breadcrumb": "Kunci dan buka kunci PDF",
+  "date": "2026-10-13",
+  "cta": {
+    "heading": "Lindungi PDF Anda sekarang",
+    "text": "Enkripsi dilakukan di browser, file dan kata sandi tidak di-upload.",
+    "href": "/protect-pdf",
+    "label": "Buka Kunci PDF dengan Password"
+  },
+  "faqs": [
     {
-      'heading': 'Lindungi PDF Anda sekarang',
-      'text': 'Enkripsi dilakukan di browser, file dan kata sandi tidak di-upload.',
-      'href': '/protect-pdf',
-      'label': 'Buka Kunci PDF dengan Password',
+      "q": "Apa beda kata sandi pengguna dan kata sandi pemilik?",
+      "a": "Kata sandi pengguna wajib dan dipakai untuk membuka file. Kata sandi pemilik opsional. Bila diisi berbeda, PDF juga dibatasi sehingga orang yang membuka dengan kata sandi pengguna tidak bisa mencetak, menyalin, atau mengedit."
     },
-  'faqs':
-    [
-      {
-        'q': 'Apa beda kata sandi pengguna dan kata sandi pemilik?',
-        'a': 'Kata sandi pengguna wajib dan dipakai untuk membuka file. Kata sandi pemilik opsional. Bila diisi berbeda, PDF juga dibatasi sehingga orang yang membuka dengan kata sandi pengguna tidak bisa mencetak, menyalin, atau mengedit.',
-      },
-      {
-        'q': 'Bagaimana kalau saya lupa kata sandinya?',
-        'a': 'Tidak ada cara memulihkannya. mypdf.id tidak menyimpan file maupun kata sandi Anda. Simpan kata sandi di tempat aman dan simpan salinan asli yang tidak berkata sandi.',
-      },
-      {
-        'q': 'Bisakah alat ini membuka PDF yang kata sandinya tidak saya ketahui?',
-        'a': 'Tidak. Alat membuka kunci memerlukan kata sandi yang benar dan tidak menebak atau membobol kata sandi.',
-      },
-      {
-        'q': 'Apakah PDF terkunci bisa dibuka di semua aplikasi?',
-        'a': 'Bisa di aplikasi pembaca PDF modern seperti Adobe Reader, Chrome, Edge, Firefox, dan aplikasi PDF di HP. Hanya aplikasi yang sangat lama yang mungkin menolak.',
-      },
-    ],
+    {
+      "q": "Bagaimana kalau saya lupa kata sandinya?",
+      "a": "Tidak ada cara memulihkannya. mypdf.id tidak menyimpan file maupun kata sandi Anda. Simpan kata sandi di tempat aman dan simpan salinan asli yang tidak berkata sandi."
+    },
+    {
+      "q": "Bisakah alat ini membuka PDF yang kata sandinya tidak saya ketahui?",
+      "a": "Tidak. Alat membuka kunci memerlukan kata sandi yang benar dan tidak menebak atau membobol kata sandi."
+    },
+    {
+      "q": "Apakah PDF terkunci bisa dibuka di semua aplikasi?",
+      "a": "Bisa di aplikasi pembaca PDF modern seperti Adobe Reader, Chrome, Edge, Firefox, dan aplikasi PDF di HP. Hanya aplikasi yang sangat lama yang mungkin menolak."
+    }
+  ]
 }
 ---
-
 Dokumen PDF sering berisi hal yang tidak untuk dibaca sembarang orang: kontrak, slip gaji, laporan keuangan, atau data pribadi. Memberi kata sandi adalah cara paling sederhana untuk melindunginya sebelum dikirim lewat email atau aplikasi pesan. Sebaliknya, kadang Anda perlu menghapus kata sandi dari file milik sendiri, misalnya karena portal atau aplikasi arsip menolak file yang terenkripsi.
 
 Panduan ini membahas keduanya, memakai [Kunci PDF dengan Password](/protect-pdf) dan [Buka Kunci PDF](/unlock-pdf) di mypdf.id.
