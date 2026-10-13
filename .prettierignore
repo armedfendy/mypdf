@@ -2,3 +2,6 @@
 src/partials/footer.html
 
 blog/posts/
+
+# Frontmatter JSON artikel panduan tidak boleh diubah menjadi YAML oleh Prettier
+content/panduan/

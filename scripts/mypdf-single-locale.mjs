@@ -183,7 +183,26 @@ if (fs.existsSync(sitemapPath)) {
       /\s*<url>\s*<loc>[^<]*\/blog(?:\/[^<]*)?<\/loc>[\s\S]*?<\/url>/g,
       ''
     );
-  writeWithCompressed(sitemapPath, xml);
+  // Halaman panduan mypdf.id (dibuat scripts/generate-panduan.mjs) masuk sitemap.
+  const panduanDir = path.join(DIST_DIR, 'panduan');
+  let panduanUrls = '';
+  if (fs.existsSync(panduanDir)) {
+    const today = new Date().toISOString().slice(0, 10);
+    for (const f of fs
+      .readdirSync(panduanDir)
+      .filter((n) => n.endsWith('.html'))) {
+      const name = f.replace(/\.html$/, '');
+      const loc =
+        name === 'index'
+          ? `${SITE_URL}/panduan/`
+          : `${SITE_URL}/panduan/${name}`;
+      panduanUrls += `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.7</priority>\n  </url>\n`;
+    }
+  }
+  writeWithCompressed(
+    sitemapPath,
+    panduanUrls ? xml.replace('</urlset>', `${panduanUrls}</urlset>`) : xml
+  );
   console.log('[single-locale] sitemap.xml dibersihkan dari hreflang.');
 }
 

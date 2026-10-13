@@ -661,6 +661,17 @@ export default defineConfig(() => {
                 resolve(__dirname, 'blog', f),
               ])
           ),
+          ...Object.fromEntries(
+            fs.existsSync(resolve(__dirname, 'panduan'))
+              ? fs
+                  .readdirSync(resolve(__dirname, 'panduan'))
+                  .filter((f) => f.endsWith('.html'))
+                  .map((f) => [
+                    `panduan-${f.replace('.html', '')}`,
+                    resolve(__dirname, 'panduan', f),
+                  ])
+              : []
+          ),
           '404': resolve(__dirname, '404.html'),
           // Category Hub Pages
           'pdf-converter': resolve(__dirname, 'pdf-converter.html'),
