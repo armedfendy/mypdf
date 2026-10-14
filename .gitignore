@@ -60,3 +60,6 @@ bentopdf-pymupdf-wasm/
 
 # Dibuat otomatis oleh scripts/generate-panduan.mjs
 /panduan/
+
+# Dibuat otomatis oleh scripts/generate-sidebar-nav.mjs
+/src/partials/sidebar-nav-mypdf.html

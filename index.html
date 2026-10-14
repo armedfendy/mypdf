@@ -143,6 +143,10 @@
             ><i></i><i></i><i></i>
           </div>
           <div class="lp-hero-content">
+            <p class="lp-eyebrow">
+              <i data-lucide="shield-check"></i>
+              Gratis &middot; Privasi terjaga (aman) &middot; Tanpa unggah file
+            </p>
             <h1 class="lp-h1">
               <span class="line">
                 <span class="lp-h1-lead" data-i18n="hero.title">The</span>
@@ -174,13 +178,34 @@
                 ><span data-i18n="hero.worksOffline">Works Offline</span></span
               >
             </div>
-            <div class="lp-actions">
-              <span class="lp-brackets">
-                <a href="#tools-header" class="lp-btn lp-btn--primary">
-                  <span data-i18n="hero.startUsing">Start Using Now</span>
-                  <i data-lucide="arrow-right"></i>
-                </a>
-              </span>
+            <button
+              type="button"
+              class="lp-search"
+              data-open-search
+              aria-label="Cari alat PDF"
+            >
+              <i data-lucide="search"></i>
+              <span class="lp-search-text"
+                >Cari alat PDF, mis. gabung, kompres</span
+              >
+              <kbd class="mp-kbd" aria-hidden="true">Ctrl K</kbd>
+            </button>
+            <div class="lp-pills" aria-label="Alat populer">
+              <a href="/merge-pdf" class="lp-pill">Gabung PDF</a>
+              <a href="/split-pdf" class="lp-pill">Pisah PDF</a>
+              <a href="/compress-pdf" class="lp-pill">Kompres PDF</a>
+              <a href="/sign-pdf" class="lp-pill">Tanda Tangan</a>
+              <a href="/jpg-to-pdf" class="lp-pill">JPG ke PDF</a>
+              <a href="/pdf-to-jpg" class="lp-pill">PDF ke JPG</a>
+            </div>
+            <div class="lp-cats" aria-label="Kategori">
+              <a href="#cat-popular-tools">Alat Populer</a>
+              <a href="#cat-edit-annotate">Edit &amp; Anotasi</a>
+              <a href="#cat-convert-to-pdf">Konversi ke PDF</a>
+              <a href="#cat-convert-from-pdf">Konversi dari PDF</a>
+              <a href="#cat-organize-manage">Atur &amp; Kelola</a>
+              <a href="#cat-optimize-repair">Optimalkan</a>
+              <a href="#cat-secure-pdf">Amankan</a>
             </div>
           </div>
         </div>
@@ -280,7 +305,7 @@
         </div>
       </section>
 
-      <section id="features-section" class="py-20">
+      <section id="features-section" class="pt-6 pb-20">
         <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
           <span data-i18n="features.title">Why choose</span>
           <span class="marker-slanted" data-i18n="features.bentoPdf"
@@ -305,49 +330,9 @@
         </div>
       </section>
 
-      <div id="tools-header" class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">
-          <span data-i18n="tools.title">Get Started with</span>
-          <span class="marker-slanted ml-2" data-i18n="tools.toolsLabel">
-            Tools</span
-          >
-        </h2>
-        <p class="text-gray-400" data-i18n="tools.subtitle">
-          Click a tool to open the file uploader
-        </p>
-      </div>
+      <div id="tools-header"></div>
 
       <div id="grid-view">
-        <div class="mb-8 max-w-lg mx-auto">
-          <div class="relative">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-              <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
-            </span>
-            <input
-              type="text"
-              id="search-bar"
-              class="w-full pl-10 pr-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
-              placeholder="Search for a tool (e.g., 'split', 'organize'...)"
-              data-i18n-placeholder="tools.searchPlaceholder"
-            />
-            <span
-              class="absolute inset-y-0 right-0 flex items-center rounded-lg pr-2 gap-2"
-            >
-              <kbd
-                id="shortcut"
-                class="bg-gray-800 px-2.5 py-1.5 rounded-md text-xs font-semibold text-gray-300 border border-gray-700 shadow-sm"
-              ></kbd>
-              <button
-                id="open-shortcuts-btn"
-                class="p-1 hover:bg-gray-600 rounded-md text-gray-400 hover:text-white transition-colors"
-                title="Keyboard Shortcuts"
-              >
-                <i data-lucide="settings" class="w-4 h-4"></i>
-              </button>
-            </span>
-          </div>
-        </div>
-
         <div
           id="tool-grid"
           class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
@@ -840,7 +825,7 @@
           class="text-3xl md:text-4xl font-bold text-center text-white mb-12 mt-8"
         >
           <span data-i18n="faq.title">Frequently Asked</span>
-          <span class="marker-slanted" data-i18n="faq.questions"
+          <span class="marker-slanted" data-i18n="faq.questions" hidden
             >Questions</span
           >
         </h2>
@@ -1035,6 +1020,25 @@
       >
         <i data-lucide="arrow-up" class="w-6 h-6"></i>
       </button>
+    </div>
+
+    <div id="install-banner" class="mp-install" hidden>
+      <div class="mp-install-text">
+        <strong>Pasang mypdf.id di perangkat Anda</strong>
+        <span>Buka lebih cepat dan tetap bisa dipakai saat offline.</span>
+      </div>
+      <div class="mp-install-actions">
+        <button
+          type="button"
+          id="install-accept"
+          class="lp-btn lp-btn--primary"
+        >
+          Pasang
+        </button>
+        <button type="button" id="install-dismiss" class="mp-install-close">
+          Nanti saja
+        </button>
+      </div>
     </div>
 
     {{> footer }}

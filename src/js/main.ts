@@ -312,6 +312,8 @@ const init = async () => {
       }))
       .filter((category) => category.tools.length > 0);
 
+    const CATEGORY_PREVIEW_LIMIT = 8;
+
     filteredCategories.forEach((category) => {
       const categoryGroup = document.createElement('div');
       const categorySlug = category.name
@@ -319,6 +321,7 @@ const init = async () => {
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-|-$/g, '');
       categoryGroup.className = `category-group col-span-full is-cat-${categorySlug}`;
+      categoryGroup.id = `cat-${categorySlug}`;
 
       const header = document.createElement('button');
       header.className = 'category-header';
@@ -333,7 +336,11 @@ const init = async () => {
       chevron.className =
         'category-chevron w-5 h-5 text-gray-400 transition-transform duration-300';
 
-      header.append(title, chevron);
+      const count = document.createElement('span');
+      count.className = 'category-count';
+      count.textContent = `${category.tools.length} alat`;
+
+      header.append(title, count, chevron);
 
       const toolsContainer = document.createElement('div');
       toolsContainer.className =
@@ -414,99 +421,32 @@ const init = async () => {
           toolCard.appendChild(toolSubtitle);
         }
 
+        if (toolsContainer.childElementCount >= CATEGORY_PREVIEW_LIMIT) {
+          toolCard.classList.add('is-extra');
+        }
         toolsContainer.appendChild(toolCard);
       });
 
       categoryGroup.append(header, toolsContainer);
+      if (category.tools.length > CATEGORY_PREVIEW_LIMIT) {
+        const more = document.createElement('button');
+        more.type = 'button';
+        more.className = 'category-more';
+        const label = `Lihat semua ${category.tools.length} alat`;
+        more.textContent = label;
+        more.addEventListener('click', () => {
+          const expanded = categoryGroup.classList.toggle('expanded');
+          more.textContent = expanded ? 'Tampilkan lebih sedikit' : label;
+          toolsContainer.style.maxHeight = 'none';
+          toolsContainer.style.overflow = 'visible';
+        });
+        categoryGroup.appendChild(more);
+      }
       dom.toolGrid.appendChild(categoryGroup);
 
       if (!isCollapsed) {
         toolsContainer.style.maxHeight = 'none';
         toolsContainer.style.overflow = 'visible';
-      }
-    });
-
-    const searchBar = document.getElementById('search-bar');
-    const categoryGroups = dom.toolGrid.querySelectorAll('.category-group');
-
-    const searchResultsContainer = document.createElement('div');
-    searchResultsContainer.id = 'search-results';
-    searchResultsContainer.className =
-      'hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 col-span-full';
-    dom.toolGrid.insertBefore(searchResultsContainer, dom.toolGrid.firstChild);
-
-    searchBar.addEventListener('input', () => {
-      // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-      const searchTerm = searchBar.value.toLowerCase().trim();
-
-      if (!searchTerm) {
-        searchResultsContainer.classList.add('hidden');
-        searchResultsContainer.innerHTML = '';
-        categoryGroups.forEach((group) => {
-          (group as HTMLElement).style.display = '';
-          const toolCards = group.querySelectorAll('.tool-card');
-          toolCards.forEach((card) => {
-            (card as HTMLElement).style.display = '';
-          });
-        });
-        return;
-      }
-
-      categoryGroups.forEach((group) => {
-        (group as HTMLElement).style.display = 'none';
-      });
-
-      searchResultsContainer.innerHTML = '';
-      searchResultsContainer.classList.remove('hidden');
-
-      const seenToolIds = new Set<string>();
-      const allTools: HTMLElement[] = [];
-
-      categoryGroups.forEach((group) => {
-        const toolCards = Array.from(group.querySelectorAll('.tool-card'));
-
-        toolCards.forEach((card) => {
-          const toolName = (
-            card.querySelector('h3')?.textContent || ''
-          ).toLowerCase();
-          const toolSubtitle = (
-            card.querySelector('p')?.textContent || ''
-          ).toLowerCase();
-          const toolHref =
-            (card as HTMLAnchorElement).href ||
-            (card as HTMLElement).dataset.toolId ||
-            '';
-
-          const toolId =
-            toolHref.split('/').pop()?.replace('.html', '') || toolName;
-
-          const isMatch =
-            toolName.includes(searchTerm) || toolSubtitle.includes(searchTerm);
-          const isDuplicate = seenToolIds.has(toolId);
-
-          if (isMatch && !isDuplicate) {
-            seenToolIds.add(toolId);
-            allTools.push(card.cloneNode(true) as HTMLElement);
-          }
-        });
-      });
-
-      allTools.forEach((tool) => {
-        searchResultsContainer.appendChild(tool);
-      });
-
-      createIcons({ icons });
-    });
-
-    window.addEventListener('keydown', function (e) {
-      const key = e.key.toLowerCase();
-      const isMac = navigator.userAgent.toUpperCase().includes('MAC');
-      const isCtrlK = e.ctrlKey && key === 'k';
-      const isCmdK = isMac && e.metaKey && key === 'k';
-
-      if (isCtrlK || isCmdK) {
-        e.preventDefault();
-        searchBar.focus();
       }
     });
 
