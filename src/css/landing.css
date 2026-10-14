@@ -473,9 +473,9 @@ body.lp ::selection {
 }
 
 .lp-h1 {
-  font-size: clamp(42px, 7.6vw, 84px);
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  font-size: clamp(34px, 5.2vw, 56px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }
 
 .lp-h2 {
@@ -530,7 +530,7 @@ body.lp ::selection {
 .lp-hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(72px, 11vw, 140px) var(--lp-pad) clamp(64px, 8vw, 104px);
+  padding: clamp(48px, 7vw, 88px) var(--lp-pad) clamp(40px, 5vw, 64px);
   text-align: center;
 }
 
@@ -2154,4 +2154,93 @@ body.lp ::selection {
   .lp-h1-lead {
     display: block;
   }
+}
+
+/* ===== Hero: eyebrow, pencarian, pil, chip kategori ===== */
+.lp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--mp-text-2);
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-line-2);
+  border-radius: 999px;
+}
+.lp-eyebrow svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  color: var(--mp-accent-text);
+}
+.lp-search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: min(36rem, 100%);
+  margin: 28px auto 0;
+  padding: 0.4rem 0.4rem 0.4rem 1rem;
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-line-2);
+  border-radius: 0.9rem;
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--mp-shadow-c) 8%, transparent);
+  text-align: left;
+}
+.lp-search:focus-within {
+  border-color: var(--mp-accent);
+}
+.lp-search > svg {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--mp-dim);
+}
+.lp-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.55rem 0;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+  color: var(--mp-text);
+}
+.lp-search .lp-btn {
+  padding: 0.55rem 1.1rem;
+}
+.lp-pills,
+.lp-cats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 18px auto 0;
+  max-width: 44rem;
+}
+.lp-pill {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mp-accent-fg);
+  background: var(--mp-accent);
+  border-radius: 999px;
+  transition: background-color 0.15s;
+}
+.lp-pill:hover {
+  background: var(--mp-accent-hover);
+}
+.lp-cats a {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--mp-text-2);
+  border: 1px solid var(--mp-line-2);
+  border-radius: 999px;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+.lp-cats a:hover {
+  border-color: var(--mp-accent);
+  color: var(--mp-text);
 }

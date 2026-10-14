@@ -143,6 +143,10 @@
             ><i></i><i></i><i></i>
           </div>
           <div class="lp-hero-content">
+            <p class="lp-eyebrow">
+              <i data-lucide="shield-check"></i>
+              Gratis &middot; Tanpa unggah file &middot; Open source
+            </p>
             <h1 class="lp-h1">
               <span class="line">
                 <span class="lp-h1-lead" data-i18n="hero.title">The</span>
@@ -174,13 +178,33 @@
                 ><span data-i18n="hero.worksOffline">Works Offline</span></span
               >
             </div>
-            <div class="lp-actions">
-              <span class="lp-brackets">
-                <a href="#tools-header" class="lp-btn lp-btn--primary">
-                  <span data-i18n="hero.startUsing">Start Using Now</span>
-                  <i data-lucide="arrow-right"></i>
-                </a>
-              </span>
+            <form class="lp-search" id="hero-search-form" role="search">
+              <i data-lucide="search"></i>
+              <input
+                id="hero-search"
+                type="search"
+                placeholder="Cari alat, misalnya gabung, kompres, tanda tangan..."
+                aria-label="Cari alat PDF"
+                autocomplete="off"
+              />
+              <button type="submit" class="lp-btn lp-btn--primary">Cari</button>
+            </form>
+            <div class="lp-pills" aria-label="Alat populer">
+              <a href="/merge-pdf" class="lp-pill">Gabung PDF</a>
+              <a href="/split-pdf" class="lp-pill">Pisah PDF</a>
+              <a href="/compress-pdf" class="lp-pill">Kompres PDF</a>
+              <a href="/sign-pdf" class="lp-pill">Tanda Tangan</a>
+              <a href="/jpg-to-pdf" class="lp-pill">JPG ke PDF</a>
+              <a href="/pdf-to-jpg" class="lp-pill">PDF ke JPG</a>
+            </div>
+            <div class="lp-cats" aria-label="Kategori">
+              <a href="#cat-popular-tools">Alat Populer</a>
+              <a href="#cat-edit-annotate">Edit &amp; Anotasi</a>
+              <a href="#cat-convert-to-pdf">Konversi ke PDF</a>
+              <a href="#cat-convert-from-pdf">Konversi dari PDF</a>
+              <a href="#cat-organize-manage">Atur &amp; Kelola</a>
+              <a href="#cat-optimize-repair">Optimalkan</a>
+              <a href="#cat-secure-pdf">Amankan</a>
             </div>
           </div>
         </div>

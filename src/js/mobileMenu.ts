@@ -5,6 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainSearch = document.getElementById(
     'search-bar'
   ) as HTMLInputElement | null;
+  const heroSearch = document.getElementById(
+    'hero-search'
+  ) as HTMLInputElement | null;
+  if (heroSearch && mainSearch) {
+    heroSearch.addEventListener('input', () => {
+      mainSearch.value = heroSearch.value;
+      mainSearch.dispatchEvent(new Event('input'));
+    });
+    heroSearch.form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      document.getElementById('tools-header')?.scrollIntoView();
+    });
+  }
   if (topSearch && mainSearch) {
     // Beranda: kolom pencarian atas ikut menyaring daftar alat.
     topSearch.addEventListener('input', () => {
