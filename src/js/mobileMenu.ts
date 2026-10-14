@@ -91,14 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  const heroSearch = document.getElementById(
-    'hero-search'
-  ) as HTMLInputElement | null;
-  heroSearch?.form?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    document.getElementById('tools-header')?.scrollIntoView();
-  });
-
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = document.getElementById('menu-icon');

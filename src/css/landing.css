@@ -2181,15 +2181,21 @@ body.lp ::selection {
   gap: 0.6rem;
   width: min(36rem, 100%);
   margin: 28px auto 0;
-  padding: 0.4rem 0.4rem 0.4rem 1rem;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
   background: var(--mp-surface);
   border: 1px solid var(--mp-line-2);
   border-radius: 0.9rem;
   box-shadow: 0 6px 24px color-mix(in srgb, var(--mp-shadow-c) 8%, transparent);
   text-align: left;
 }
-.lp-search:focus-within {
-  border-color: var(--mp-line-2);
+.lp-search:hover {
+  border-color: var(--mp-accent);
+}
+.lp-search:focus,
+.lp-search:focus-visible {
+  outline: none;
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--mp-shadow-c) 8%, transparent);
 }
 .lp-search > svg {
   flex: none;
@@ -2197,22 +2203,13 @@ body.lp ::selection {
   height: 1.1rem;
   color: var(--mp-dim);
 }
-.lp-search input,
-.lp-search input:focus {
+.lp-search-text {
   flex: 1;
-  min-width: 0;
-  padding: 0.55rem 0;
-  background: transparent;
-  outline: none;
   font-size: 1rem;
-  color: var(--mp-text);
-  border: 0 !important;
-  box-shadow: none !important;
-  outline: none !important;
-  background: transparent !important;
+  color: var(--mp-dim);
 }
-.lp-search .lp-btn {
-  padding: 0.55rem 1.1rem;
+.lp-search .mp-kbd {
+  margin-right: 0.35rem;
 }
 .lp-pills,
 .lp-cats {
