@@ -2244,3 +2244,47 @@ body.lp ::selection {
   border-color: var(--mp-accent);
   color: var(--mp-text);
 }
+
+/* ===== Blok kategori: jumlah alat dan "Lihat semua" ===== */
+.category-count {
+  padding: 0.1rem 0.6rem;
+  font-family: var(--lp-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--mp-dim);
+  background: var(--mp-surface-2);
+  border-radius: 999px;
+}
+.lp .category-header > span:first-child {
+  margin-right: 0;
+}
+.lp .category-header .category-count {
+  margin-right: auto;
+}
+.lp
+  #tool-grid
+  .category-group:not(.expanded)
+  .category-tools
+  .tool-card.is-extra {
+  display: none;
+}
+.category-more {
+  display: block;
+  margin: 14px auto 0;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mp-accent-text);
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-line-2);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.category-more:hover {
+  border-color: var(--mp-accent);
+}
+.category-group.collapsed .category-more {
+  display: none;
+}

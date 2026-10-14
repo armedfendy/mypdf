@@ -312,6 +312,8 @@ const init = async () => {
       }))
       .filter((category) => category.tools.length > 0);
 
+    const CATEGORY_PREVIEW_LIMIT = 8;
+
     filteredCategories.forEach((category) => {
       const categoryGroup = document.createElement('div');
       const categorySlug = category.name
@@ -334,7 +336,11 @@ const init = async () => {
       chevron.className =
         'category-chevron w-5 h-5 text-gray-400 transition-transform duration-300';
 
-      header.append(title, chevron);
+      const count = document.createElement('span');
+      count.className = 'category-count';
+      count.textContent = `${category.tools.length} alat`;
+
+      header.append(title, count, chevron);
 
       const toolsContainer = document.createElement('div');
       toolsContainer.className =
@@ -415,10 +421,27 @@ const init = async () => {
           toolCard.appendChild(toolSubtitle);
         }
 
+        if (toolsContainer.childElementCount >= CATEGORY_PREVIEW_LIMIT) {
+          toolCard.classList.add('is-extra');
+        }
         toolsContainer.appendChild(toolCard);
       });
 
       categoryGroup.append(header, toolsContainer);
+      if (category.tools.length > CATEGORY_PREVIEW_LIMIT) {
+        const more = document.createElement('button');
+        more.type = 'button';
+        more.className = 'category-more';
+        const label = `Lihat semua ${category.tools.length} alat`;
+        more.textContent = label;
+        more.addEventListener('click', () => {
+          const expanded = categoryGroup.classList.toggle('expanded');
+          more.textContent = expanded ? 'Tampilkan lebih sedikit' : label;
+          toolsContainer.style.maxHeight = 'none';
+          toolsContainer.style.overflow = 'visible';
+        });
+        categoryGroup.appendChild(more);
+      }
       dom.toolGrid.appendChild(categoryGroup);
 
       if (!isCollapsed) {
