@@ -61,24 +61,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const installBanner = document.getElementById('install-banner');
   if (installBanner) {
-    let dismissed = false;
+    let dismissed: boolean;
     try {
       dismissed = localStorage.getItem('mypdf-install-dismissed') === '1';
     } catch {
       dismissed = false;
     }
+    const standalone =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      (navigator as Navigator & { standalone?: boolean }).standalone === true;
+    if (dismissed || standalone) installBanner.hidden = true;
+
+    let deferred: InstallPromptEvent | null = null;
     window.addEventListener('beforeinstallprompt', (event) => {
       event.preventDefault();
-      if (dismissed) return;
-      const deferred = event as InstallPromptEvent;
-      installBanner.hidden = false;
-      document
-        .getElementById('install-accept')
-        ?.addEventListener('click', async () => {
-          installBanner.hidden = true;
-          await deferred.prompt();
-        });
+      deferred = event as InstallPromptEvent;
     });
+    window.addEventListener('appinstalled', () => {
+      installBanner.hidden = true;
+    });
+
+    document
+      .getElementById('install-accept')
+      ?.addEventListener('click', async () => {
+        if (deferred) {
+          const prompt = deferred;
+          deferred = null;
+          await prompt.prompt();
+          return;
+        }
+        // Browser tidak menyediakan dialog pasang otomatis: tampilkan petunjuk.
+        const sub = document.getElementById('install-sub');
+        if (sub) {
+          const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+          sub.textContent = ios
+            ? 'Ketuk Bagikan, lalu pilih "Tambah ke Layar Utama".'
+            : 'Buka menu browser, lalu pilih "Pasang aplikasi" atau "Tambahkan ke layar utama".';
+        }
+      });
+
     document
       .getElementById('install-dismiss')
       ?.addEventListener('click', () => {

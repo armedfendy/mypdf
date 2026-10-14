@@ -2293,48 +2293,87 @@ body.lp ::selection {
 
 /* ===== Banner pasang aplikasi ===== */
 .mp-install {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 50;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  max-width: 28rem;
-  padding: 0.9rem 1rem;
-  background: var(--mp-surface);
+  gap: 0.85rem;
+  max-width: 44rem;
+  margin: 0 auto 2.25rem;
+  padding: 0.75rem 0.85rem;
+  text-align: left;
+  background: color-mix(in srgb, var(--mp-surface) 88%, transparent);
   border: 1px solid var(--mp-line-2);
-  border-radius: 0.9rem;
-  box-shadow: 0 10px 30px
-    color-mix(in srgb, var(--mp-shadow-c) 18%, transparent);
+  border-radius: 1rem;
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--mp-shadow-c) 10%, transparent);
+  backdrop-filter: blur(6px);
 }
 .mp-install[hidden] {
   display: none;
 }
+.mp-install-icon {
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.6rem;
+}
 .mp-install-text {
   display: flex;
+  flex: 1;
+  min-width: 0;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
   font-size: 0.8125rem;
   color: var(--mp-text-2);
 }
 .mp-install-text strong {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.25;
   color: var(--mp-text);
 }
-.mp-install-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  align-items: stretch;
+.mp-install-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--mp-accent-fg);
+  background: var(--mp-accent);
+  border-radius: 0.6rem;
+  transition: background 0.15s ease;
+}
+.mp-install-btn:hover {
+  background: var(--mp-accent-hover);
+}
+.mp-install-btn svg {
+  width: 1rem;
+  height: 1rem;
 }
 .mp-install-close {
-  font-size: 0.75rem;
+  flex: none;
+  display: inline-flex;
+  padding: 0.35rem;
   color: var(--mp-dim);
+  border-radius: 0.5rem;
 }
-@media (max-width: 640px) {
+.mp-install-close:hover {
+  color: var(--mp-text);
+  background: var(--mp-line-2);
+}
+.mp-install-close svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+@media (max-width: 520px) {
   .mp-install {
-    left: 1rem;
-    max-width: none;
+    flex-wrap: wrap;
+  }
+  .mp-install-text {
+    flex-basis: calc(100% - 6rem);
+  }
+  .mp-install-btn {
+    order: 3;
+    flex: 1;
+    justify-content: center;
   }
 }
