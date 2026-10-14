@@ -2288,3 +2288,51 @@ body.lp ::selection {
 .category-group.collapsed .category-more {
   display: none;
 }
+
+/* ===== Banner pasang aplikasi ===== */
+.mp-install {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 28rem;
+  padding: 0.9rem 1rem;
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-line-2);
+  border-radius: 0.9rem;
+  box-shadow: 0 10px 30px
+    color-mix(in srgb, var(--mp-shadow-c) 18%, transparent);
+}
+.mp-install[hidden] {
+  display: none;
+}
+.mp-install-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.8125rem;
+  color: var(--mp-text-2);
+}
+.mp-install-text strong {
+  font-size: 0.9rem;
+  color: var(--mp-text);
+}
+.mp-install-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: stretch;
+}
+.mp-install-close {
+  font-size: 0.75rem;
+  color: var(--mp-dim);
+}
+@media (max-width: 640px) {
+  .mp-install {
+    left: 1rem;
+    max-width: none;
+  }
+}

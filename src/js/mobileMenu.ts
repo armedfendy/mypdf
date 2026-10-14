@@ -1,4 +1,41 @@
+interface InstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: string }>;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  const installBanner = document.getElementById('install-banner');
+  if (installBanner) {
+    let dismissed = false;
+    try {
+      dismissed = localStorage.getItem('mypdf-install-dismissed') === '1';
+    } catch {
+      dismissed = false;
+    }
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault();
+      if (dismissed) return;
+      const deferred = event as InstallPromptEvent;
+      installBanner.hidden = false;
+      document
+        .getElementById('install-accept')
+        ?.addEventListener('click', async () => {
+          installBanner.hidden = true;
+          await deferred.prompt();
+        });
+    });
+    document
+      .getElementById('install-dismiss')
+      ?.addEventListener('click', () => {
+        installBanner.hidden = true;
+        try {
+          localStorage.setItem('mypdf-install-dismissed', '1');
+        } catch {
+          /* abaikan */
+        }
+      });
+  }
+
   const topSearch = document.getElementById(
     'mp-top-search'
   ) as HTMLInputElement | null;

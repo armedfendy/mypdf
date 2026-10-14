@@ -864,7 +864,7 @@
           class="text-3xl md:text-4xl font-bold text-center text-white mb-12 mt-8"
         >
           <span data-i18n="faq.title">Frequently Asked</span>
-          <span class="marker-slanted" data-i18n="faq.questions"
+          <span class="marker-slanted" data-i18n="faq.questions" hidden
             >Questions</span
           >
         </h2>
@@ -1059,6 +1059,25 @@
       >
         <i data-lucide="arrow-up" class="w-6 h-6"></i>
       </button>
+    </div>
+
+    <div id="install-banner" class="mp-install" hidden>
+      <div class="mp-install-text">
+        <strong>Pasang mypdf.id di perangkat Anda</strong>
+        <span>Buka lebih cepat dan tetap bisa dipakai saat offline.</span>
+      </div>
+      <div class="mp-install-actions">
+        <button
+          type="button"
+          id="install-accept"
+          class="lp-btn lp-btn--primary"
+        >
+          Pasang
+        </button>
+        <button type="button" id="install-dismiss" class="mp-install-close">
+          Nanti saja
+        </button>
+      </div>
     </div>
 
     {{> footer }}
