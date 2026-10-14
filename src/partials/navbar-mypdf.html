@@ -118,18 +118,24 @@
 
   <a href="/" class="mp-top-brand">mypdf.id</a>
 
-  <form class="mp-top-search" action="/" method="get" role="search">
+  <button
+    type="button"
+    class="mp-top-search"
+    data-open-search
+    aria-label="Cari alat PDF"
+  >
     <i data-lucide="search" class="w-4 h-4"></i>
-    <input
-      id="mp-top-search"
-      type="search"
-      name="q"
-      placeholder="Cari alat PDF..."
-      aria-label="Cari alat PDF"
-      autocomplete="off"
-    />
+    <span class="mp-top-search-text">Cari alat PDF...</span>
     <kbd class="mp-kbd" aria-hidden="true">Ctrl K</kbd>
-  </form>
+  </button>
+  <button
+    type="button"
+    class="mp-menu-btn mp-search-icon"
+    data-open-search
+    aria-label="Cari alat PDF"
+  >
+    <i data-lucide="search" class="w-5 h-5"></i>
+  </button>
 
   <span class="mp-top-privacy"
     ><i data-lucide="shield-check" class="w-4 h-4"></i>File tidak diunggah</span

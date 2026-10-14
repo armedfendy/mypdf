@@ -1,3 +1,5 @@
+import './searchPalette.js';
+
 interface InstallPromptEvent extends Event {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: string }>;
@@ -36,50 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  const topSearch = document.getElementById(
-    'mp-top-search'
-  ) as HTMLInputElement | null;
-  const mainSearch = document.getElementById(
-    'search-bar'
-  ) as HTMLInputElement | null;
   const heroSearch = document.getElementById(
     'hero-search'
   ) as HTMLInputElement | null;
-  if (heroSearch && mainSearch) {
-    heroSearch.addEventListener('input', () => {
-      mainSearch.value = heroSearch.value;
-      mainSearch.dispatchEvent(new Event('input'));
-    });
-    heroSearch.form?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      document.getElementById('tools-header')?.scrollIntoView();
-    });
-  }
-  if (topSearch && mainSearch) {
-    // Beranda: kolom pencarian atas ikut menyaring daftar alat.
-    topSearch.addEventListener('input', () => {
-      mainSearch.value = topSearch.value;
-      mainSearch.dispatchEvent(new Event('input'));
-    });
-    topSearch.form?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      document.getElementById('tools-header')?.scrollIntoView();
-    });
-  }
-  if (topSearch) {
-    document.addEventListener('keydown', (event) => {
-      if (mainSearch) return;
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
-        event.preventDefault();
-        topSearch.focus();
-        topSearch.select();
-      }
-    });
-    const kbd = document.querySelector('.mp-kbd');
-    if (kbd && /Mac|iPhone|iPad/.test(navigator.platform)) {
-      kbd.textContent = '\u2318K';
-    }
-  }
+  heroSearch?.form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    document.getElementById('tools-header')?.scrollIntoView();
+  });
 
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
