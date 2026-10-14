@@ -1,122 +1,60 @@
 <!-- Sidebar + topbar mypdf.id (aktif bila MYPDF=true). -->
-<aside class="mp-sidebar" aria-label="Navigasi utama">
+<aside class="mp-sidebar" id="mp-sidebar" aria-label="Navigasi utama">
   <a href="/" class="mp-side-brand" id="home-logo">
     <img
       id="nav-logo"
       src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/favicon-no-bg.svg{{/if}}"
       alt="Logo mypdf.id"
-      class="h-8 w-8"
+      class="h-10 w-10"
     />
-    <span id="nav-brand">mypdf.id</span>
+    <span class="mp-side-brand-text">
+      <span id="nav-brand">mypdf.id</span>
+      <small>PRIVAT · LOKAL · GRATIS</small>
+    </span>
   </a>
 
-  <nav class="mp-side-nav">
-    <a href="/" class="mp-side-link"
-      ><i data-lucide="house" class="w-4 h-4"></i><span>Beranda</span></a
+  <div class="mp-drawer-head">
+    <span>Alat</span>
+    <button
+      type="button"
+      class="mp-drawer-close"
+      data-drawer-close
+      aria-label="Tutup menu"
     >
-    <a href="/#tools-header" class="mp-side-link"
-      ><i data-lucide="layout-grid" class="w-4 h-4"></i
-      ><span>Semua Alat</span></a
-    >
+      <i data-lucide="x"></i>
+    </button>
+  </div>
 
-    <p class="mp-side-label">Kategori</p>
-    <a href="/#cat-popular-tools" class="mp-side-link"
-      ><i data-lucide="star" class="w-4 h-4"></i><span>Alat Populer</span></a
-    >
-    <a href="/#cat-edit-annotate" class="mp-side-link"
-      ><i data-lucide="pencil-line" class="w-4 h-4"></i
-      ><span>Edit &amp; Anotasi</span></a
-    >
-    <a href="/#cat-convert-to-pdf" class="mp-side-link"
-      ><i data-lucide="file-input" class="w-4 h-4"></i
-      ><span>Konversi ke PDF</span></a
-    >
-    <a href="/#cat-convert-from-pdf" class="mp-side-link"
-      ><i data-lucide="file-output" class="w-4 h-4"></i
-      ><span>Konversi dari PDF</span></a
-    >
-    <a href="/#cat-organize-manage" class="mp-side-link"
-      ><i data-lucide="layout-list" class="w-4 h-4"></i
-      ><span>Atur &amp; Kelola</span></a
-    >
-    <a href="/#cat-optimize-repair" class="mp-side-link"
-      ><i data-lucide="gauge" class="w-4 h-4"></i
-      ><span>Optimalkan &amp; Perbaiki</span></a
-    >
-    <a href="/#cat-secure-pdf" class="mp-side-link"
-      ><i data-lucide="lock" class="w-4 h-4"></i><span>Amankan PDF</span></a
-    >
-
-    <p class="mp-side-label">Bantuan</p>
-    <a href="/panduan/" class="mp-side-link"
-      ><i data-lucide="book-open" class="w-4 h-4"></i><span>Panduan</span></a
-    >
-    <a href="/faq" class="mp-side-link"
-      ><i data-lucide="circle-help" class="w-4 h-4"></i><span>FAQ</span></a
-    >
-    <a href="/about" class="mp-side-link"
-      ><i data-lucide="info" class="w-4 h-4"></i><span>Tentang</span></a
-    >
-    <a href="/contact" class="mp-side-link"
-      ><i data-lucide="mail" class="w-4 h-4"></i><span>Kontak</span></a
-    >
-  </nav>
+  {{> sidebar-nav-mypdf }}
 
   <div class="mp-side-foot">
-    <a
-      href="https://github.com/armedfendy/mypdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="mp-side-link"
-      ><i data-lucide="code-xml" class="w-4 h-4"></i><span>Kode Sumber</span></a
+    <a href="#" class="mp-donate"
+      ><i data-lucide="heart" aria-hidden="true"></i><span>Donate</span></a
     >
   </div>
 </aside>
+<div class="mp-drawer-backdrop" data-drawer-close></div>
 
 <header class="mp-topbar">
   <button
     id="mobile-menu-button"
     type="button"
     class="mp-menu-btn"
-    aria-controls="mobile-menu"
+    aria-controls="mp-sidebar"
     aria-expanded="false"
   >
     <span class="sr-only">Buka menu</span>
-    <svg
-      id="menu-icon"
-      class="block h-6 w-6"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M4 6h16M4 12h16M4 18h16"
-      />
-    </svg>
-    <svg
-      id="close-icon"
-      class="hidden h-6 w-6"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M6 18L18 6M6 6l12 12"
-      />
-    </svg>
+    <i data-lucide="menu"></i>
   </button>
 
-  <a href="/" class="mp-top-brand">mypdf.id</a>
+  <a href="/" class="mp-top-brand">
+    <img
+      src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/favicon-no-bg.svg{{/if}}"
+      alt=""
+      class="h-8 w-8"
+    />
+    <span>mypdf.id</span>
+  </a>
 
   <button
     type="button"
@@ -130,11 +68,11 @@
   </button>
   <button
     type="button"
-    class="mp-menu-btn mp-search-icon"
+    class="mp-theme-toggle mp-search-icon"
     data-open-search
     aria-label="Cari alat PDF"
   >
-    <i data-lucide="search" class="w-5 h-5"></i>
+    <i data-lucide="search" class="w-4 h-4"></i>
   </button>
 
   <span class="mp-top-privacy"
@@ -180,30 +118,3 @@
     </svg>
   </button>
 </header>
-
-<!-- Menu mobile -->
-<div id="mobile-menu" class="hidden mp-mobile-menu">
-  <a href="/" class="mobile-nav-link">Beranda</a>
-  <a href="/#tools-header" class="mobile-nav-link">Semua Alat</a>
-  <a href="/#cat-popular-tools" class="mobile-nav-link">Alat Populer</a>
-  <a href="/#cat-edit-annotate" class="mobile-nav-link">Edit &amp; Anotasi</a>
-  <a href="/#cat-convert-to-pdf" class="mobile-nav-link">Konversi ke PDF</a>
-  <a href="/#cat-convert-from-pdf" class="mobile-nav-link">Konversi dari PDF</a>
-  <a href="/#cat-organize-manage" class="mobile-nav-link">Atur &amp; Kelola</a>
-  <a href="/#cat-optimize-repair" class="mobile-nav-link"
-    >Optimalkan &amp; Perbaiki</a
-  >
-  <a href="/#cat-secure-pdf" class="mobile-nav-link">Amankan PDF</a>
-
-  <a href="/panduan/" class="mobile-nav-link">Panduan</a>
-  <a href="/faq" class="mobile-nav-link">FAQ</a>
-  <a href="/about" class="mobile-nav-link">Tentang</a>
-  <a href="/contact" class="mobile-nav-link">Kontak</a>
-  <a
-    href="https://github.com/armedfendy/mypdf"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="mobile-nav-link"
-    >Kode Sumber</a
-  >
-</div>
