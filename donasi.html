@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donasi - Dukung mypdf.id | Alat PDF Gratis dan Privat</title>
+    <meta
+      name="description"
+      content="Dukung pengembangan mypdf.id, alat PDF gratis yang diproses lokal di perangkat Anda. Donasi bersifat sukarela dan membantu biaya domain serta pengembangan."
+    />
+    <meta name="author" content="mypdf.id" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://mypdf.id/donasi" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mypdf.id/donasi" />
+    <meta property="og:title" content="Donasi - Dukung mypdf.id" />
+    <meta
+      property="og:description"
+      content="Dukung mypdf.id agar alat PDF gratis dan privat ini terus berkembang."
+    />
+    <meta property="og:site_name" content="mypdf.id" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Donasi - Dukung mypdf.id" />
+    <meta
+      name="twitter:description"
+      content="Dukung mypdf.id agar alat PDF gratis dan privat ini terus berkembang."
+    />
+
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link href="/src/css/landing.css" rel="stylesheet" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+
+  <body class="lp antialiased">
+    {{> navbar }}
+
+    <div id="app">
+      <section id="donate-hero" class="lp-sec lp-sec--first">
+        <div class="lp-frame">
+          <div class="lp-cta">
+            <div>
+              <h1 class="lp-h2">
+                <span class="line">Dukung mypdf.id</span>
+              </h1>
+              <p class="lp-head-p">
+                mypdf.id gratis, tanpa iklan, dan tanpa mengunggah file Anda.
+                Jika alat ini membantu, donasi sukarela Anda ikut menjaganya
+                tetap hidup dan terus berkembang.
+              </p>
+              <p style="margin-top: 24px">
+                <a
+                  class="lp-btn lp-btn--primary"
+                  href="https://saweria.co/mypdfid"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i data-lucide="heart"></i>
+                  Donasi via Saweria
+                </a>
+              </p>
+              <p class="lp-head-p" style="margin-top: 12px; font-size: 14px">
+                Pembayaran diproses oleh Saweria (QRIS dan e-wallet). Berapa pun
+                jumlahnya sangat berarti.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="donate-uses" class="lp-sec lp-band">
+        <div class="lp-frame">
+          <div class="lp-grid lp-grid--2 lp-cross">
+            <div class="lp-cell lp-reveal">
+              <span class="lp-tile"><i data-lucide="globe"></i></span>
+              <h3>Domain dan hosting</h3>
+              <p>
+                Biaya tahunan domain mypdf.id dan infrastruktur agar situs tetap
+                cepat dan online.
+              </p>
+            </div>
+            <div class="lp-cell lp-reveal">
+              <span class="lp-tile"><i data-lucide="wrench"></i></span>
+              <h3>Pengembangan</h3>
+              <p>
+                Alat baru, perbaikan bug, dan panduan berbahasa Indonesia yang
+                lebih lengkap.
+              </p>
+            </div>
+            <div class="lp-cell lp-reveal">
+              <span class="lp-tile"><i data-lucide="shield-check"></i></span>
+              <h3>Tetap privat</h3>
+              <p>
+                Semua pemrosesan terjadi di perangkat Anda. Donasi membantu kami
+                menjaga model ini tanpa iklan dan pelacak.
+              </p>
+            </div>
+            <div class="lp-cell lp-reveal">
+              <span class="lp-tile"><i data-lucide="gift"></i></span>
+              <h3>Sukarela</h3>
+              <p>
+                Donasi tidak wajib dan tidak membuka fitur khusus. Semua alat
+                tetap gratis untuk semua orang.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    {{> footer }}
+
+    <script type="module" src="src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="src/js/main.ts"></script>
+    <script type="module" src="src/js/mobileMenu.ts"></script>
+    <script type="module" src="src/js/landing.ts"></script>
+  </body>
+</html>
