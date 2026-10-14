@@ -2192,6 +2192,8 @@ html[data-theme='dark'] .mp-theme-toggle .mp-icon-moon {
   padding: 0.5rem;
   background: var(--mp-bg);
   border-bottom: 1px solid var(--mp-line);
+  max-height: calc(100vh - 3.5rem);
+  overflow-y: auto;
 }
 .mp-mobile-menu.hidden {
   display: none;
