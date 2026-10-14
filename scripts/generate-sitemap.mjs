@@ -67,6 +67,7 @@ const PRIORITY_MAP = {
   about: 0.8,
   faq: 0.8,
   contact: 0.7,
+  donasi: 0.4,
   privacy: 0.5,
   terms: 0.5,
   licensing: 0.5,
