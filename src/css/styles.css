@@ -18,6 +18,14 @@
 @import 'tailwindcss';
 
 @font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('/fonts/geist/Geist-Variable.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'Inter';
   font-style: normal;
   font-display: swap;
@@ -50,7 +58,7 @@
 }
 
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Geist', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-dancing: 'Dancing Script', cursive;
   --font-vibes: 'Great Vibes', cursive;
   --font-kalam: 'Kalam', cursive;
@@ -108,11 +116,26 @@
   body {
     @apply antialiased;
     font-family: var(--font-sans);
+    font-feature-settings:
+      'ss01' 1,
+      'cv11' 1;
+  }
+  h1 {
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+  h2 {
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+  h3 {
+    letter-spacing: -0.015em;
+    font-weight: 600;
   }
 }
 
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui;
+  --font-sans: 'Geist', 'Inter', ui-sans-serif, system-ui;
   --font-dancing: 'Dancing Script', cursive;
   --font-vibes: 'Great Vibes', cursive;
   --font-kalam: 'Kalam', cursive;
@@ -126,7 +149,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--mp-bg);
   color: var(--mp-text-2);
 }
@@ -2085,4 +2108,177 @@ html[data-theme='dark'] .mp-theme-toggle .mp-icon-sun {
 }
 html[data-theme='dark'] .mp-theme-toggle .mp-icon-moon {
   display: none;
+}
+
+/* ===== Sidebar + topbar (mypdf.id) ===== */
+.mp-sidebar {
+  display: none;
+}
+.mp-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 3.5rem;
+  padding: 0 1rem;
+  background: var(--mp-bg);
+  border-bottom: 1px solid var(--mp-line);
+}
+.mp-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  color: var(--mp-text-2);
+}
+.mp-menu-btn:hover {
+  background: var(--mp-surface-2);
+}
+.mp-top-brand {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--mp-text);
+  margin-right: auto;
+}
+.mp-top-search {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  max-width: 28rem;
+  margin: 0 auto 0 0;
+  padding: 0 0.75rem;
+  height: 2.25rem;
+  border: 1px solid var(--mp-line-2);
+  border-radius: 0.6rem;
+  background: var(--mp-surface);
+  color: var(--mp-dim);
+}
+.mp-top-search:focus-within {
+  border-color: var(--mp-accent);
+}
+.mp-top-search input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  outline: none;
+  font-size: 0.875rem;
+  color: var(--mp-text);
+}
+.mp-kbd {
+  font: inherit;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--mp-line-2);
+  border-radius: 0.35rem;
+  color: var(--mp-dim);
+}
+.mp-top-privacy {
+  display: none;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--mp-dim);
+}
+.mp-mobile-menu {
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  padding: 0.5rem;
+  background: var(--mp-bg);
+  border-bottom: 1px solid var(--mp-line);
+}
+.mp-mobile-menu.hidden {
+  display: none;
+}
+@media (min-width: 768px) {
+  .mp-top-search {
+    display: flex;
+  }
+  .mp-top-brand {
+    display: none;
+  }
+}
+@media (min-width: 1024px) {
+  .mp-top-privacy {
+    display: inline-flex;
+  }
+  .mp-menu-btn,
+  .mp-mobile-menu {
+    display: none !important;
+  }
+  .mp-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 40;
+    width: 16rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0.75rem;
+    background: var(--mp-surface);
+    border-right: 1px solid var(--mp-line);
+    overflow-y: auto;
+  }
+  body:has(> .mp-sidebar) {
+    padding-left: 16rem;
+  }
+  .mp-topbar {
+    padding: 0 1.5rem;
+  }
+}
+.mp-side-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.25rem 0.5rem 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--mp-text);
+}
+.mp-side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  flex: 1;
+}
+.mp-side-label {
+  margin: 1rem 0.5rem 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mp-dim);
+}
+.mp-side-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mp-text-2);
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+.mp-side-link:hover {
+  background: var(--mp-surface-2);
+  color: var(--mp-text);
+}
+.mp-side-link svg {
+  color: var(--mp-dim);
+}
+.mp-side-foot {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--mp-line);
+}
+html {
+  scroll-padding-top: 4.5rem;
 }

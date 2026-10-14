@@ -1,190 +1,194 @@
-<!-- Navbar mypdf.id (aktif bila MYPDF=true). -->
-<nav class="bg-gray-900 border-b border-white/10 sticky top-0 z-30">
-  <div class="container mx-auto px-4">
-    <div class="flex justify-between items-center h-16">
-      <div
-        class="flex-shrink-0 flex items-center cursor-pointer"
-        id="home-logo"
-      >
-        <img
-          id="nav-logo"
-          src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/favicon-no-bg.svg{{/if}}"
-          alt="Logo mypdf.id"
-          class="h-8 w-8"
-        />
-        <span id="nav-brand" class="text-white font-bold text-xl ml-2">
-          <a href="/">mypdf.id</a>
-        </span>
-      </div>
+<!-- Sidebar + topbar mypdf.id (aktif bila MYPDF=true). -->
+<aside class="mp-sidebar" aria-label="Navigasi utama">
+  <a href="/" class="mp-side-brand" id="home-logo">
+    <img
+      id="nav-logo"
+      src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/favicon-no-bg.svg{{/if}}"
+      alt="Logo mypdf.id"
+      class="h-8 w-8"
+    />
+    <span id="nav-brand">mypdf.id</span>
+  </a>
 
-      <!-- Navigasi desktop -->
-      <div
-        class="hidden lg:flex flex-1 items-center justify-center space-x-2 xl:space-x-8"
-      >
-        <a href="/" class="nav-link">Beranda</a>
-        <a href="/#tools-header" class="nav-link">Semua Alat</a>
-        <a href="/panduan/" class="nav-link">Panduan</a>
-        <a href="/about" class="nav-link">Tentang</a>
-        <a href="/faq" class="nav-link">FAQ</a>
-        <a href="/contact" class="nav-link">Kontak</a>
-      </div>
+  <nav class="mp-side-nav">
+    <a href="/" class="mp-side-link"
+      ><i data-lucide="house" class="w-4 h-4"></i><span>Beranda</span></a
+    >
+    <a href="/#tools-header" class="mp-side-link"
+      ><i data-lucide="layout-grid" class="w-4 h-4"></i
+      ><span>Semua Alat</span></a
+    >
 
-      <div class="hidden lg:flex items-center flex-shrink-0 gap-3">
-        <button
-          type="button"
-          class="mp-theme-toggle"
-          data-theme-toggle
-          aria-label="Ganti ke mode gelap"
-          title="Ganti tema"
-        >
-          <svg
-            class="mp-icon-moon"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
-          </svg>
-          <svg
-            class="mp-icon-sun"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="4" />
-            <path
-              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
-            />
-          </svg>
-        </button>
-        <a
-          href="https://github.com/armedfendy/mypdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 text-sm font-medium bg-gray-800 text-gray-200 border border-gray-600 pl-2.5 pr-3 py-1 rounded-full transition-colors duration-200 shadow-sm hover:shadow-md hover:bg-gray-700"
-        >
-          <i data-lucide="code-xml" class="w-4 h-4"></i>
-          <span>Kode Sumber</span>
-        </a>
-      </div>
+    <p class="mp-side-label">Kategori</p>
+    <a href="/#cat-popular-tools" class="mp-side-link"
+      ><i data-lucide="star" class="w-4 h-4"></i><span>Alat Populer</span></a
+    >
+    <a href="/#cat-edit-annotate" class="mp-side-link"
+      ><i data-lucide="pencil-line" class="w-4 h-4"></i
+      ><span>Edit &amp; Anotasi</span></a
+    >
+    <a href="/#cat-convert-to-pdf" class="mp-side-link"
+      ><i data-lucide="file-input" class="w-4 h-4"></i
+      ><span>Konversi ke PDF</span></a
+    >
+    <a href="/#cat-convert-from-pdf" class="mp-side-link"
+      ><i data-lucide="file-output" class="w-4 h-4"></i
+      ><span>Konversi dari PDF</span></a
+    >
+    <a href="/#cat-organize-manage" class="mp-side-link"
+      ><i data-lucide="layout-list" class="w-4 h-4"></i
+      ><span>Atur &amp; Kelola</span></a
+    >
+    <a href="/#cat-optimize-repair" class="mp-side-link"
+      ><i data-lucide="gauge" class="w-4 h-4"></i
+      ><span>Optimalkan &amp; Perbaiki</span></a
+    >
+    <a href="/#cat-secure-pdf" class="mp-side-link"
+      ><i data-lucide="lock" class="w-4 h-4"></i><span>Amankan PDF</span></a
+    >
 
-      <!-- Tombol menu mobile -->
-      <div class="lg:hidden flex items-center gap-4">
-        <button
-          type="button"
-          class="mp-theme-toggle"
-          data-theme-toggle
-          aria-label="Ganti ke mode gelap"
-          title="Ganti tema"
-        >
-          <svg
-            class="mp-icon-moon"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
-          </svg>
-          <svg
-            class="mp-icon-sun"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="4" />
-            <path
-              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
-            />
-          </svg>
-        </button>
-        <button
-          id="mobile-menu-button"
-          type="button"
-          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-        >
-          <span class="sr-only">Buka menu</span>
-          <svg
-            id="menu-icon"
-            class="block h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-          <svg
-            id="close-icon"
-            class="hidden h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
-    </div>
+    <p class="mp-side-label">Bantuan</p>
+    <a href="/panduan/" class="mp-side-link"
+      ><i data-lucide="book-open" class="w-4 h-4"></i><span>Panduan</span></a
+    >
+    <a href="/faq" class="mp-side-link"
+      ><i data-lucide="circle-help" class="w-4 h-4"></i><span>FAQ</span></a
+    >
+    <a href="/about" class="mp-side-link"
+      ><i data-lucide="info" class="w-4 h-4"></i><span>Tentang</span></a
+    >
+    <a href="/contact" class="mp-side-link"
+      ><i data-lucide="mail" class="w-4 h-4"></i><span>Kontak</span></a
+    >
+  </nav>
+
+  <div class="mp-side-foot">
+    <a
+      href="https://github.com/armedfendy/mypdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mp-side-link"
+      ><i data-lucide="code-xml" class="w-4 h-4"></i><span>Kode Sumber</span></a
+    >
   </div>
+</aside>
 
-  <!-- Menu mobile -->
-  <div
-    id="mobile-menu"
-    class="hidden lg:hidden bg-gray-900 border-t border-white/10"
+<header class="mp-topbar">
+  <button
+    id="mobile-menu-button"
+    type="button"
+    class="mp-menu-btn"
+    aria-controls="mobile-menu"
+    aria-expanded="false"
   >
-    <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-      <a href="/" class="mobile-nav-link">Beranda</a>
-      <a href="/#tools-header" class="mobile-nav-link">Semua Alat</a>
-      <a href="/panduan/" class="mobile-nav-link">Panduan</a>
-      <a href="/about" class="mobile-nav-link">Tentang</a>
-      <a href="/faq" class="mobile-nav-link">FAQ</a>
-      <a href="/contact" class="mobile-nav-link">Kontak</a>
-      <a
-        href="https://github.com/armedfendy/mypdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mobile-nav-link"
-        >Kode Sumber</a
-      >
-    </div>
-  </div>
-</nav>
+    <span class="sr-only">Buka menu</span>
+    <svg
+      id="menu-icon"
+      class="block h-6 w-6"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"
+      />
+    </svg>
+    <svg
+      id="close-icon"
+      class="hidden h-6 w-6"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
+  </button>
+
+  <a href="/" class="mp-top-brand">mypdf.id</a>
+
+  <form class="mp-top-search" action="/" method="get" role="search">
+    <i data-lucide="search" class="w-4 h-4"></i>
+    <input
+      id="mp-top-search"
+      type="search"
+      name="q"
+      placeholder="Cari alat PDF..."
+      aria-label="Cari alat PDF"
+      autocomplete="off"
+    />
+    <kbd class="mp-kbd" aria-hidden="true">Ctrl K</kbd>
+  </form>
+
+  <span class="mp-top-privacy"
+    ><i data-lucide="shield-check" class="w-4 h-4"></i>File tidak diunggah</span
+  >
+  <button
+    type="button"
+    class="mp-theme-toggle"
+    data-theme-toggle
+    aria-label="Ganti ke mode gelap"
+    title="Ganti tema"
+  >
+    <svg
+      class="mp-icon-moon"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+    </svg>
+    <svg
+      class="mp-icon-sun"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path
+        d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+      />
+    </svg>
+  </button>
+</header>
+
+<!-- Menu mobile -->
+<div id="mobile-menu" class="hidden mp-mobile-menu">
+  <a href="/" class="mobile-nav-link">Beranda</a>
+  <a href="/#tools-header" class="mobile-nav-link">Semua Alat</a>
+
+  <a href="/panduan/" class="mobile-nav-link">Panduan</a>
+  <a href="/faq" class="mobile-nav-link">FAQ</a>
+  <a href="/about" class="mobile-nav-link">Tentang</a>
+  <a href="/contact" class="mobile-nav-link">Kontak</a>
+  <a
+    href="https://github.com/armedfendy/mypdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="mobile-nav-link"
+    >Kode Sumber</a
+  >
+</div>

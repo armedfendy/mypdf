@@ -319,6 +319,7 @@ const init = async () => {
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-|-$/g, '');
       categoryGroup.className = `category-group col-span-full is-cat-${categorySlug}`;
+      categoryGroup.id = `cat-${categorySlug}`;
 
       const header = document.createElement('button');
       header.className = 'category-header';
@@ -497,6 +498,12 @@ const init = async () => {
 
       createIcons({ icons });
     });
+
+    const initialQuery = new URLSearchParams(window.location.search).get('q');
+    if (initialQuery) {
+      (searchBar as HTMLInputElement).value = initialQuery;
+      searchBar.dispatchEvent(new Event('input'));
+    }
 
     window.addEventListener('keydown', function (e) {
       const key = e.key.toLowerCase();
