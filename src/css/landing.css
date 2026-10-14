@@ -2189,7 +2189,7 @@ body.lp ::selection {
   text-align: left;
 }
 .lp-search:focus-within {
-  border-color: var(--mp-accent);
+  border-color: var(--mp-line-2);
 }
 .lp-search > svg {
   flex: none;
@@ -2197,7 +2197,8 @@ body.lp ::selection {
   height: 1.1rem;
   color: var(--mp-dim);
 }
-.lp-search input {
+.lp-search input,
+.lp-search input:focus {
   flex: 1;
   min-width: 0;
   padding: 0.55rem 0;
@@ -2205,6 +2206,10 @@ body.lp ::selection {
   outline: none;
   font-size: 1rem;
   color: var(--mp-text);
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: transparent !important;
 }
 .lp-search .lp-btn {
   padding: 0.55rem 1.1rem;
