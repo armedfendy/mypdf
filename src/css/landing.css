@@ -530,7 +530,7 @@ body.lp ::selection {
 .lp-hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(48px, 7vw, 88px) var(--lp-pad) clamp(40px, 5vw, 64px);
+  padding: clamp(48px, 7vw, 88px) var(--lp-pad) clamp(16px, 2vw, 24px);
   text-align: center;
 }
 
