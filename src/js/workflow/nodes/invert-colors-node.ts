@@ -6,6 +6,7 @@ import { requirePdfInput, processBatch } from '../types';
 import { applyInvertColors } from '../../utils/image-effects';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import '../../utils/setup-pdf-worker.js';
 import { wfError } from '../errors';
 
 export class InvertColorsNode extends BaseWorkflowNode {

@@ -1,17 +1,15 @@
 import './utils/map-upsert-polyfill.js';
-import './utils/setup-pdf-worker.js';
 import { categories } from './config/tools.js';
-import { dom, switchView, hideAlert } from './ui.js';
+import { dom, switchView, hideAlert } from './ui-core.js';
 import { ShortcutsManager } from './logic/shortcuts.js';
 import { createIcons, icons } from 'lucide';
 import '@phosphor-icons/web/regular';
-import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
 import {
   escapeHtml,
   formatShortcutDisplay,
   formatStars,
-} from './utils/helpers.js';
+} from './utils/text-format.js';
 import {
   initI18n,
   applyTranslations,

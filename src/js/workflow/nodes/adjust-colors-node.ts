@@ -6,6 +6,7 @@ import { requirePdfInput, processBatch } from '../types';
 import { applyColorAdjustments } from '../../utils/image-effects';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import '../../utils/setup-pdf-worker.js';
 import type { AdjustColorsSettings } from '../../types/adjust-colors-type';
 import { wfError } from '../errors';
 

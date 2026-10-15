@@ -1,11 +1,19 @@
 import createModule from '@neslinesli93/qpdf-wasm';
 import type { QpdfInstanceExtended } from '@/types';
-import { showLoader, hideLoader, showAlert } from '../ui.js';
+import { showLoader, hideLoader, showAlert } from '../ui-core.js';
 import { createIcons } from 'lucide';
 import { state, resetState } from '../state.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import DOMPurify from 'dompurify';
 import type { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api';
+import './setup-pdf-worker.js';
+import { escapeHtml } from './text-format.js';
+
+export {
+  escapeHtml,
+  formatStars,
+  formatShortcutDisplay,
+} from './text-format.js';
 
 const STANDARD_SIZES = {
   A4: { width: 595.28, height: 841.89 },
@@ -198,13 +206,6 @@ export function initializeIcons(): void {
   });
 }
 
-export function formatStars(num: number) {
-  if (num >= 1000) {
-    return (num / 1000).toFixed(1) + 'K';
-  }
-  return num.toLocaleString();
-}
-
 /**
  * Truncates a filename to a maximum length, adding ellipsis if needed.
  * Preserves the file extension.
@@ -232,21 +233,6 @@ export function truncateFilename(
   }
 
   return nameWithoutExt.substring(0, availableLength) + '...' + extension;
-}
-
-export function formatShortcutDisplay(
-  shortcut: string,
-  isMac: boolean
-): string {
-  if (!shortcut) return '';
-  return shortcut
-    .replace('mod', isMac ? '⌘' : 'Ctrl')
-    .replace('ctrl', isMac ? '^' : 'Ctrl') // Control key on Mac shows as ^
-    .replace('alt', isMac ? '⌥' : 'Alt')
-    .replace('shift', 'Shift')
-    .split('+')
-    .map((k) => k.charAt(0).toUpperCase() + k.slice(1))
-    .join(isMac ? '' : '+');
 }
 
 export function resetAndReloadTool(preResetCallback?: () => void) {
@@ -289,22 +275,6 @@ export function getPDFDocument(
     ...params,
     wasmUrl: import.meta.env.BASE_URL + 'pdfjs-viewer/wasm/',
   });
-}
-
-/**
- * Escape HTML special characters to prevent XSS
- * @param text - The text to escape
- * @returns The escaped text
- */
-export function escapeHtml(text: string): string {
-  const map: Record<string, string> = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;',
-  };
-  return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
 export function uint8ArrayToBase64(bytes: Uint8Array): string {

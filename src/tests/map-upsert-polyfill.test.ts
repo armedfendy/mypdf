@@ -111,12 +111,21 @@ describe('Map upsert polyfill', () => {
       join(process.cwd(), 'src/js/main.ts'),
       'utf8'
     );
-    const polyfillImport = "import './utils/map-upsert-polyfill.js';";
-    const pdfjsImport = "import * as pdfjsLib from 'pdfjs-dist';";
+    expect(
+      mainSource.startsWith("import './utils/map-upsert-polyfill.js';")
+    ).toBe(true);
 
-    expect(mainSource.startsWith(polyfillImport)).toBe(true);
-    expect(mainSource.indexOf(polyfillImport)).toBeLessThan(
-      mainSource.indexOf(pdfjsImport)
+    // main.ts tidak lagi mengimpor pdf.js; semua pemakai pdf.js melewati
+    // setup-pdf-worker.ts, yang memasang polyfill sebelum pdf.js.
+    const setupSource = readFileSync(
+      join(process.cwd(), 'src/js/utils/setup-pdf-worker.ts'),
+      'utf8'
     );
+    const polyfillAt = setupSource.indexOf(
+      "import './map-upsert-polyfill.js';"
+    );
+    const pdfjsAt = setupSource.indexOf("from 'pdfjs-dist'");
+    expect(polyfillAt).toBeGreaterThanOrEqual(0);
+    expect(polyfillAt).toBeLessThan(pdfjsAt);
   });
 });
