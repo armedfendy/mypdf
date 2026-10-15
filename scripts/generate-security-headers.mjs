@@ -20,6 +20,10 @@ function uniq(values) {
   return Array.from(new Set(values.filter(Boolean)));
 }
 
+function originListOf(envVar) {
+  return uniq((envVar || '').split(',').map((s) => originOf(s.trim())));
+}
+
 const DEFAULT_WASM_ORIGINS = {
   pymupdf: 'https://cdn.jsdelivr.net',
   gs: 'https://cdn.jsdelivr.net',
@@ -47,12 +51,33 @@ const corsProxyOrigin =
 const ocrFontOrigin =
   originOf(process.env.VITE_OCR_FONT_BASE_URL) || DEFAULT_OCR_FONT_CDN_ORIGIN;
 
-const scriptOrigins = uniq([...wasmOrigins, ...tesseractOrigins]);
+// Domain iklan Adsterra. Kosong secara default -- isi lewat env
+// VITE_ADSTERRA_*_ORIGINS (daftar origin dipisah koma) setelah kode slot
+// asli didapat dari dashboard Adsterra (Fase 1, lihat
+// _local/plan/rencana-adsterra.md). Jangan menebak domain Adsterra di sini:
+// banyak jaringan iklan memakai domain penyajian yang berbeda-beda per
+// akun/zona, bahkan berganti dari waktu ke waktu.
+const adsterraScriptOrigins = originListOf(
+  process.env.VITE_ADSTERRA_SCRIPT_ORIGINS
+);
+const adsterraConnectOrigins = originListOf(
+  process.env.VITE_ADSTERRA_CONNECT_ORIGINS
+);
+const adsterraFrameOrigins = originListOf(
+  process.env.VITE_ADSTERRA_FRAME_ORIGINS
+);
+
+const scriptOrigins = uniq([
+  ...wasmOrigins,
+  ...tesseractOrigins,
+  ...adsterraScriptOrigins,
+]);
 const connectOrigins = uniq([
   ...wasmOrigins,
   ...tesseractOrigins,
   corsProxyOrigin,
   ocrFontOrigin,
+  ...adsterraConnectOrigins,
 ]);
 const fontOrigins = uniq([ocrFontOrigin].filter(Boolean));
 
@@ -71,7 +96,7 @@ const directives = [
   `connect-src 'self' blob:${githubApiSource} https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
   `object-src 'none'`,
   `base-uri 'self'`,
-  `frame-src 'self' blob:`,
+  `frame-src 'self' blob: ${adsterraFrameOrigins.join(' ')}`.trim(),
   `frame-ancestors 'self'`,
   `form-action 'self'`,
 ];
@@ -116,3 +141,16 @@ console.log(
   `[security-headers] wrote ${outPath} with ${scriptOrigins.length} script-src / ${connectOrigins.length} connect-src origin(s)`
 );
 console.log(`[security-headers] wrote ${docsOutPath} (docs CSP)`);
+if (
+  adsterraScriptOrigins.length ||
+  adsterraConnectOrigins.length ||
+  adsterraFrameOrigins.length
+) {
+  console.log(
+    `[security-headers] Adsterra: ${adsterraScriptOrigins.length} script-src / ${adsterraConnectOrigins.length} connect-src / ${adsterraFrameOrigins.length} frame-src origin(s)`
+  );
+} else {
+  console.log(
+    '[security-headers] Adsterra: belum ada origin (set VITE_ADSTERRA_SCRIPT_ORIGINS / VITE_ADSTERRA_CONNECT_ORIGINS / VITE_ADSTERRA_FRAME_ORIGINS setelah Fase 1)'
+  );
+}

@@ -63,7 +63,10 @@ const mypdfConfig = JSON.parse(
 );
 // COOP/COEP (cross-origin isolation) hanya dipasang di halaman yang butuh
 // SharedArrayBuffer (LibreOffice, wasm-vips). Halaman lain tanpa COEP agar
-// iklan Google AdSense bisa tampil (AdSense tidak mendukung halaman ber-COEP).
+// iklan Adsterra bisa tampil (jaringan iklan umumnya tidak mendukung
+// halaman ber-COEP). Pada 15 halaman isolatedPages, 2 slot iklan tetap
+// ditampilkan tapi berisiko lebih sering gagal dimuat -- lihat Fase 3e di
+// _local/plan/rencana-adsterra.md.
 const ISOLATION_HEADERS = new Set([
   'Cross-Origin-Opener-Policy',
   'Cross-Origin-Embedder-Policy',
