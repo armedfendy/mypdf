@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -18,6 +19,10 @@ function originOf(urlStr) {
 
 function uniq(values) {
   return Array.from(new Set(values.filter(Boolean)));
+}
+
+function originListOf(envVar) {
+  return uniq((envVar || '').split(',').map((s) => originOf(s.trim())));
 }
 
 const DEFAULT_WASM_ORIGINS = {
@@ -47,14 +52,61 @@ const corsProxyOrigin =
 const ocrFontOrigin =
   originOf(process.env.VITE_OCR_FONT_BASE_URL) || DEFAULT_OCR_FONT_CDN_ORIGIN;
 
-const scriptOrigins = uniq([...wasmOrigins, ...tesseractOrigins]);
+// Domain iklan Adsterra. Kosong secara default -- isi lewat env
+// VITE_ADSTERRA_*_ORIGINS (daftar origin dipisah koma) setelah kode slot
+// asli didapat dari dashboard Adsterra (Fase 1, lihat
+// _local/plan/rencana-adsterra.md). Jangan menebak domain Adsterra di sini:
+// banyak jaringan iklan memakai domain penyajian yang berbeda-beda per
+// akun/zona, bahkan berganti dari waktu ke waktu.
+const adsterraScriptOrigins = originListOf(
+  process.env.VITE_ADSTERRA_SCRIPT_ORIGINS
+);
+const adsterraConnectOrigins = originListOf(
+  process.env.VITE_ADSTERRA_CONNECT_ORIGINS
+);
+const adsterraFrameOrigins = originListOf(
+  process.env.VITE_ADSTERRA_FRAME_ORIGINS
+);
+
+const scriptOrigins = uniq([
+  ...wasmOrigins,
+  ...tesseractOrigins,
+  ...adsterraScriptOrigins,
+]);
 const connectOrigins = uniq([
   ...wasmOrigins,
   ...tesseractOrigins,
   corsProxyOrigin,
   ocrFontOrigin,
+  ...adsterraConnectOrigins,
 ]);
 const fontOrigins = uniq([ocrFontOrigin].filter(Boolean));
+
+// Format Banner Adsterra butuh blok <script> inline untuk atOptions
+// (lihat src/js/ads.ts). 'unsafe-inline' di script-src hanya ditambahkan
+// saat Adsterra memang dikonfigurasi, supaya CSP tidak melemah bagi yang
+// belum memasang iklan.
+const adsterraConfigured =
+  adsterraScriptOrigins.length > 0 ||
+  adsterraConnectOrigins.length > 0 ||
+  adsterraFrameOrigins.length > 0;
+const scriptSrcUnsafeInline = adsterraConfigured ? " 'unsafe-inline'" : '';
+
+// mypdf.id meng-inline public/theme.js di setiap halaman (scripts/
+// mypdf-brand.mjs). Tanpa 'unsafe-inline', skrip itu diizinkan lewat hash.
+// Saat 'unsafe-inline' aktif (Adsterra), hash tidak ditambahkan karena
+// browser akan mengabaikan 'unsafe-inline' bila ada hash/nonce di script-src.
+const themeHashSource =
+  process.env.MYPDF === 'true' && !adsterraConfigured
+    ? ` 'sha256-${createHash('sha256')
+        .update(
+          readFileSync(join(repoRoot, 'public', 'theme.js'), 'utf-8').replace(
+            /\r\n/g,
+            '\n'
+          )
+        )
+        .digest('base64')}'`
+    : '';
 
 const githubStarsDisabled =
   process.env.DISABLE_GITHUB_STARS === 'true' ||
@@ -63,7 +115,7 @@ const githubApiSource = githubStarsDisabled ? '' : ' https://api.github.com';
 
 const directives = [
   `default-src 'self'`,
-  `script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval' blob: ${scriptOrigins.join(' ')}`.trim(),
+  `script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval'${scriptSrcUnsafeInline}${themeHashSource} blob: ${scriptOrigins.join(' ')}`.trim(),
   `worker-src 'self' blob:`,
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
   `img-src 'self' data: blob: https:`,
@@ -71,7 +123,7 @@ const directives = [
   `connect-src 'self' blob:${githubApiSource} https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
   `object-src 'none'`,
   `base-uri 'self'`,
-  `frame-src 'self' blob:`,
+  `frame-src 'self' blob: ${adsterraFrameOrigins.join(' ')}`.trim(),
   `frame-ancestors 'self'`,
   `form-action 'self'`,
 ];
@@ -116,3 +168,16 @@ console.log(
   `[security-headers] wrote ${outPath} with ${scriptOrigins.length} script-src / ${connectOrigins.length} connect-src origin(s)`
 );
 console.log(`[security-headers] wrote ${docsOutPath} (docs CSP)`);
+if (
+  adsterraScriptOrigins.length ||
+  adsterraConnectOrigins.length ||
+  adsterraFrameOrigins.length
+) {
+  console.log(
+    `[security-headers] Adsterra: ${adsterraScriptOrigins.length} script-src / ${adsterraConnectOrigins.length} connect-src / ${adsterraFrameOrigins.length} frame-src origin(s)`
+  );
+} else {
+  console.log(
+    '[security-headers] Adsterra: belum ada origin (set VITE_ADSTERRA_SCRIPT_ORIGINS / VITE_ADSTERRA_CONNECT_ORIGINS / VITE_ADSTERRA_FRAME_ORIGINS setelah Fase 1)'
+  );
+}

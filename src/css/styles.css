@@ -10,12 +10,16 @@
 @import '@fontsource/lato/400.css';
 @import '@fontsource/lato/700.css';
 @import '@fontsource/lato/400-italic.css';
-@import '@fontsource/merriweather/400.css';
-@import '@fontsource/merriweather/700.css';
-@import '@fontsource/merriweather/400-italic.css';
-@import '@fontsource/cedarville-cursive/400.css';
-@import 'cropperjs/dist/cropper.css';
 @import 'tailwindcss';
+
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local('Arial');
+  size-adjust: 104.5%;
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
 
 @font-face {
   font-family: 'Geist';
@@ -58,13 +62,12 @@
 }
 
 @theme {
-  --font-sans: 'Geist', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    'Geist', 'Geist Fallback', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-dancing: 'Dancing Script', cursive;
   --font-vibes: 'Great Vibes', cursive;
   --font-kalam: 'Kalam', cursive;
   --font-lato: 'Lato', sans-serif;
-  --font-merriweather: 'Merriweather', serif;
-  --font-cedarville: 'Cedarville Cursive', cursive;
   /* mypdf.id: tema terang "Vitality" (lihat _local/design.md).
      Skala abu-abu dibalik: kelas lama untuk latar gelap kini menghasilkan
      permukaan terang, dan kelas teks terang kini menghasilkan teks gelap. */
@@ -135,13 +138,11 @@
 }
 
 @theme {
-  --font-sans: 'Geist', 'Inter', ui-sans-serif, system-ui;
+  --font-sans: 'Geist', 'Geist Fallback', 'Inter', ui-sans-serif, system-ui;
   --font-dancing: 'Dancing Script', cursive;
   --font-vibes: 'Great Vibes', cursive;
   --font-kalam: 'Kalam', cursive;
   --font-lato: 'Lato', sans-serif;
-  --font-merriweather: 'Merriweather', serif;
-  --font-cedarville: 'Cedarville Cursive', cursive;
 }
 
 html {
@@ -2179,6 +2180,27 @@ html[data-theme='dark'] .mp-theme-toggle .mp-icon-moon {
   align-items: center;
   gap: 0.375rem;
   font-size: 0.8125rem;
+  color: var(--mp-dim);
+}
+
+/* Slot iklan Adsterra: tersembunyi secara default; ads.ts menambahkan
+   .mp-ad-slot--on hanya bila iklan diaktifkan (VITE_ADS_ENABLED=true). */
+.mp-ad-slot {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  margin: 1.25rem auto;
+  max-width: 100%;
+  overflow: hidden;
+}
+.mp-ad-slot.mp-ad-slot--on {
+  display: flex;
+}
+.mp-ad-label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--mp-dim);
 }
 

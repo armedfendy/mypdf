@@ -15,6 +15,11 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { t } from './i18n/i18n';
 import type { FileInputOptions } from '@/types';
 import './utils/setup-pdf-worker.js';
+import {
+  showSuccessAdSlot,
+  hideSuccessAdSlot,
+  refreshPageAdSlots,
+} from './ads.js';
 
 // Centralizing DOM element selection
 export const dom = {
@@ -117,6 +122,12 @@ export const showAlert = (
   if (dom.alertMessage) dom.alertMessage.textContent = message;
   if (dom.alertModal) dom.alertModal.classList.remove('hidden');
 
+  if (type === 'success') {
+    showSuccessAdSlot();
+  } else {
+    hideSuccessAdSlot();
+  }
+
   if (dom.alertOkBtn) {
     const newOkBtn = dom.alertOkBtn.cloneNode(true) as HTMLElement;
     dom.alertOkBtn.replaceWith(newOkBtn);
@@ -124,6 +135,11 @@ export const showAlert = (
 
     newOkBtn.addEventListener('click', () => {
       hideAlert();
+      if (type === 'success') {
+        // Muat ulang 2 slot iklan halaman via AJAX (tanpa reload) saat
+        // pengguna kembali ke tampilan awal alat setelah proses selesai.
+        refreshPageAdSlots();
+      }
       if (callback) callback();
     });
   }
