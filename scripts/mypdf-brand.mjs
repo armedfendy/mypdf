@@ -295,6 +295,24 @@ function transform(html, pageKey) {
     document.head.insertBefore(pl, document.head.firstChild);
   }
 
+  // Preload font ikon Phosphor (145 KiB) agar diunduh paralel dengan CSS, dan
+  // font-display: swap agar teks tidak menunggu font ikon.
+  const phosphor = fs
+    .readdirSync(path.join(DIST_DIR, 'assets'))
+    .find((f) => /^Phosphor-.*\.woff2$/.test(f));
+  if (
+    phosphor &&
+    !document.querySelector('link[rel="preload"][href*="Phosphor"]')
+  ) {
+    const pl = document.createElement('link');
+    pl.setAttribute('rel', 'preload');
+    pl.setAttribute('as', 'font');
+    pl.setAttribute('type', 'font/woff2');
+    pl.setAttribute('href', `/assets/${phosphor}`);
+    pl.setAttribute('crossorigin', '');
+    document.head.insertBefore(pl, document.head.firstChild);
+  }
+
   // Penginisialisasi tema (terang/gelap), di-inline agar tidak jadi permintaan
   // pemblokir render dan tidak berkedip. Karena CSP tidak mengizinkan
   // 'unsafe-inline', hash skripnya didaftarkan di script-src oleh
