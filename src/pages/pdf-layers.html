@@ -352,25 +352,7 @@
       </div>
     </div>
 
-    <div
-      id="alert-modal"
-      class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden"
-    >
-      <div
-        class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
-      >
-        <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
-        </h3>
-        <p id="alert-message" class="text-gray-300 mb-6"></p>
-        <button
-          id="alert-ok"
-          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
-        >
-          OK
-        </button>
-      </div>
-    </div>
+    {{> alert-modal }}
 
     <!-- How It Works Section -->
     <section class="max-w-4xl mx-auto px-4 py-12">
