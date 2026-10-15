@@ -34,6 +34,12 @@ const SITE_URL = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
   ''
 );
 const NAME = config.siteName;
+// Dinormalisasi ke LF: parser HTML browser mengubah CRLF jadi LF sebelum
+// skrip dieksekusi, sehingga hash CSP harus dihitung dari teks LF yang sama
+// (generate-security-headers.mjs memakai normalisasi yang sama).
+const THEME_JS = fs
+  .readFileSync(path.join(ROOT, 'public', 'theme.js'), 'utf-8')
+  .replace(/\r\n/g, '\n');
 const SKIP_DIRS = new Set([
   'assets',
   'docs',
@@ -277,13 +283,41 @@ function transform(html, pageKey) {
     });
   }
 
-  // Penginisialisasi tema (terang/gelap). Harus berupa berkas eksternal karena
-  // CSP melarang skrip inline, dan dimuat paling awal agar tidak berkedip.
-  if (!document.querySelector('script[src="/theme.js"]')) {
+  // Preload font Geist: tanpa ini font baru diminta setelah style.css selesai
+  // diurai (rantai CSS -> font), yang di mobile lambat menunda LCP.
+  if (!document.querySelector('link[rel="preload"][href*="Geist-Variable"]')) {
+    const pl = document.createElement('link');
+    pl.setAttribute('rel', 'preload');
+    pl.setAttribute('as', 'font');
+    pl.setAttribute('type', 'font/woff2');
+    pl.setAttribute('href', '/fonts/geist/Geist-Variable.woff2');
+    pl.setAttribute('crossorigin', '');
+    document.head.insertBefore(pl, document.head.firstChild);
+  }
+
+  // Penginisialisasi tema (terang/gelap), di-inline agar tidak jadi permintaan
+  // pemblokir render dan tidak berkedip. Karena CSP tidak mengizinkan
+  // 'unsafe-inline', hash skripnya didaftarkan di script-src oleh
+  // scripts/generate-security-headers.mjs (isi harus identik, lihat THEME_JS).
+  if (!document.querySelector('script[data-mp-theme]')) {
     const ts = document.createElement('script');
-    ts.setAttribute('src', '/theme.js');
+    ts.setAttribute('data-mp-theme', '');
+    ts.textContent = THEME_JS;
     document.head.insertBefore(ts, document.head.firstChild);
   }
+
+  // Inline CSS landing (kecil, ~9 KiB) supaya satu permintaan pemblokir render
+  // hilang. style-src sudah mengizinkan 'unsafe-inline'. Urutan cascade tetap
+  // karena <style> menggantikan <link> di posisi yang sama.
+  document
+    .querySelectorAll('link[rel="stylesheet"][href^="/assets/landing-"]')
+    .forEach((link) => {
+      const cssPath = path.join(DIST_DIR, link.getAttribute('href'));
+      if (!fs.existsSync(cssPath)) return;
+      const style = document.createElement('style');
+      style.textContent = fs.readFileSync(cssPath, 'utf-8');
+      link.replaceWith(style);
+    });
 
   const result = dom.serialize();
   dom.window.close();

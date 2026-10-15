@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -91,6 +92,22 @@ const adsterraConfigured =
   adsterraFrameOrigins.length > 0;
 const scriptSrcUnsafeInline = adsterraConfigured ? " 'unsafe-inline'" : '';
 
+// mypdf.id meng-inline public/theme.js di setiap halaman (scripts/
+// mypdf-brand.mjs). Tanpa 'unsafe-inline', skrip itu diizinkan lewat hash.
+// Saat 'unsafe-inline' aktif (Adsterra), hash tidak ditambahkan karena
+// browser akan mengabaikan 'unsafe-inline' bila ada hash/nonce di script-src.
+const themeHashSource =
+  process.env.MYPDF === 'true' && !adsterraConfigured
+    ? ` 'sha256-${createHash('sha256')
+        .update(
+          readFileSync(join(repoRoot, 'public', 'theme.js'), 'utf-8').replace(
+            /\r\n/g,
+            '\n'
+          )
+        )
+        .digest('base64')}'`
+    : '';
+
 const githubStarsDisabled =
   process.env.DISABLE_GITHUB_STARS === 'true' ||
   process.env.SIMPLE_MODE === 'true';
@@ -98,7 +115,7 @@ const githubApiSource = githubStarsDisabled ? '' : ' https://api.github.com';
 
 const directives = [
   `default-src 'self'`,
-  `script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval'${scriptSrcUnsafeInline} blob: ${scriptOrigins.join(' ')}`.trim(),
+  `script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval'${scriptSrcUnsafeInline}${themeHashSource} blob: ${scriptOrigins.join(' ')}`.trim(),
   `worker-src 'self' blob:`,
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
   `img-src 'self' data: blob: https:`,
