@@ -728,6 +728,12 @@ body.lp ::selection {
   animation-delay: 0.32s;
 }
 
+/* Judul hero adalah elemen LCP: tanpa animasi masuk agar langsung terlihat
+   saat paint pertama, tidak menunggu frame animasi di tengah eksekusi JS. */
+.lp-hero-content > .lp-h1 {
+  animation: none;
+}
+
 .lp-logos {
   display: grid;
   grid-template-columns: 1fr 1fr;
