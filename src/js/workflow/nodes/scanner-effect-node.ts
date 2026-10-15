@@ -6,6 +6,7 @@ import { requirePdfInput, processBatch } from '../types';
 import { applyScannerEffect } from '../../utils/image-effects';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import '../../utils/setup-pdf-worker.js';
 import type { ScanSettings } from '../../types/scanner-effect-type';
 import { wfError } from '../errors';
 

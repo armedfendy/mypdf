@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import '../../utils/setup-pdf-worker.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 import { wfError } from '../errors';
 
