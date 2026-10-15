@@ -215,7 +215,13 @@ export const applyTranslations = (): void => {
     const key = element.getAttribute('data-i18n');
     if (key) {
       const translation = t(key);
-      if (translation && translation !== key) {
+      // Lewati teks yang sudah sama: menulis ulang textContent membuat node
+      // teks baru yang dihitung Chrome sebagai paint LCP baru.
+      if (
+        translation &&
+        translation !== key &&
+        element.textContent !== translation
+      ) {
         element.textContent = translation;
       }
     }

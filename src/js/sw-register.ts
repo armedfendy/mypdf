@@ -103,7 +103,14 @@ if (isDevelopment) {
       sendTrustedHostsToSw(registration.active);
     });
 
+    // Muat ulang hanya bila SW lama digantikan versi baru. Pada kunjungan
+    // pertama belum ada controller; clients.claim() memicu controllerchange
+    // dan reload di sini membuat halaman dimuat dua kali.
+    const hadController = !!navigator.serviceWorker.controller;
+    let reloading = false;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadController || reloading) return;
+      reloading = true;
       console.log('[SW] New service worker activated, reloading...');
       window.location.reload();
     });
