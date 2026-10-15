@@ -2182,15 +2182,19 @@ html[data-theme='dark'] .mp-theme-toggle .mp-icon-moon {
   color: var(--mp-dim);
 }
 
-/* Slot iklan Adsterra: wadah kosong sampai kode slot dipasang (Fase 3c) */
+/* Slot iklan Adsterra: tersembunyi secara default; ads.ts menambahkan
+   .mp-ad-slot--on hanya bila iklan diaktifkan (VITE_ADS_ENABLED=true). */
 .mp-ad-slot {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   gap: 0.375rem;
   margin: 1.25rem auto;
   max-width: 100%;
   overflow: hidden;
+}
+.mp-ad-slot.mp-ad-slot--on {
+  display: flex;
 }
 .mp-ad-label {
   font-size: 0.6875rem;

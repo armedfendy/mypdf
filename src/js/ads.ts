@@ -46,6 +46,10 @@ const NATIVE_BANNER = {
     'https://pl31840967.profitableratecpmnetwork.com/b1d6750fe7f7752de90a6bd2ce41ec96/invoke.js',
 };
 
+// Saklar utama iklan. Kode Adsterra tetap disimpan, tapi tidak aktif kecuali
+// build memakai VITE_ADS_ENABLED=true (lihat script `build:mypdf:ads`).
+const ADS_ENABLED = import.meta.env.VITE_ADS_ENABLED === 'true';
+
 const MOBILE_MEDIA_QUERY = '(max-width: 640px)';
 const PAGE_AD_SLOT_IDS = ['ad-slot-top', 'ad-slot-bottom'] as const;
 const SUCCESS_AD_SLOT_ID = 'alert-ad-slot';
@@ -109,8 +113,10 @@ function renderAdCreative(el: HTMLElement, slotId: string): void {
 }
 
 function loadSlot(id: string): void {
+  if (!ADS_ENABLED) return;
   const el = document.getElementById(id);
   if (!el) return;
+  el.classList.add('mp-ad-slot--on');
   el.innerHTML = '';
   renderAdCreative(el, id);
 }
@@ -132,6 +138,7 @@ export function refreshPageAdSlots(): void {
 
 /** Tampilkan dan muat slot iklan di dalam modal alert (hanya untuk sukses). */
 export function showSuccessAdSlot(): void {
+  if (!ADS_ENABLED) return;
   const el = document.getElementById(SUCCESS_AD_SLOT_ID);
   if (!el) return;
   el.classList.remove('hidden');
