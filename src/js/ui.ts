@@ -135,6 +135,11 @@ export const showAlert = (
 
     newOkBtn.addEventListener('click', () => {
       hideAlert();
+      if (type === 'success') {
+        // Muat ulang 2 slot iklan halaman via AJAX (tanpa reload) saat
+        // pengguna kembali ke tampilan awal alat setelah proses selesai.
+        refreshPageAdSlots();
+      }
       if (callback) callback();
     });
   }
