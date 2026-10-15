@@ -5,9 +5,9 @@
   function read() {
     try {
       var v = localStorage.getItem(KEY);
-      return v === 'dark' ? 'dark' : 'light';
+      return v === 'light' ? 'light' : 'dark';
     } catch (e) {
-      return 'light';
+      return 'dark';
     }
   }
 

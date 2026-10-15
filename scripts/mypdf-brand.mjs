@@ -283,6 +283,32 @@ function transform(html, pageKey) {
     });
   }
 
+  // Landmark <main>: isi halaman berada di antara slot iklan atas dan bawah
+  // (atau topbar dan footer) sebagai anak langsung <body>. Dibungkus <main
+  // class="mp-main"> yang memakai display: contents agar tata letak tetap.
+  if (!document.querySelector('main, [role="main"]')) {
+    const { body } = document;
+    const start =
+      body.querySelector(':scope > #ad-slot-top') ||
+      body.querySelector(':scope > header.mp-topbar');
+    const end =
+      body.querySelector(':scope > #ad-slot-bottom') ||
+      body.querySelector(':scope > footer');
+    if (
+      start &&
+      end &&
+      start.compareDocumentPosition(end) &
+        dom.window.Node.DOCUMENT_POSITION_FOLLOWING
+    ) {
+      const main = document.createElement('main');
+      main.className = 'mp-main';
+      while (start.nextSibling && start.nextSibling !== end) {
+        main.appendChild(start.nextSibling);
+      }
+      body.insertBefore(main, end);
+    }
+  }
+
   // Preload font Geist: tanpa ini font baru diminta setelah style.css selesai
   // diurai (rantai CSS -> font), yang di mobile lambat menunda LCP.
   if (!document.querySelector('link[rel="preload"][href*="Geist-Variable"]')) {

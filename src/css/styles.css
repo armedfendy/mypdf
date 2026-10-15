@@ -2577,3 +2577,9 @@ html {
     display: none;
   }
 }
+
+/* mypdf.id: pembungkus landmark <main> (scripts/mypdf-brand.mjs), tidak
+   memengaruhi tata letak. */
+.mp-main {
+  display: contents;
+}
