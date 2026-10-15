@@ -1134,12 +1134,15 @@ const init = async () => {
   const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
 
   if (scrollToTopBtn) {
-    let lastScrollY = window.scrollY;
+    // Dibaca saat event scroll pertama, bukan saat init: membaca scrollY di
+    // sini memaksa reflow sinkron setelah createIcons membuat layout kotor.
+    let lastScrollY: number | null = null;
 
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY;
+      const previousScrollY = lastScrollY ?? currentScrollY;
 
-      if (currentScrollY < lastScrollY && currentScrollY > 300) {
+      if (currentScrollY < previousScrollY && currentScrollY > 300) {
         scrollToTopBtn.classList.add('visible');
       } else {
         scrollToTopBtn.classList.remove('visible');
