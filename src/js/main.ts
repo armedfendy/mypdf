@@ -29,6 +29,7 @@ import {
   setStoredItem,
   removeStoredItem,
 } from './utils/safe-storage.js';
+import { initPageAdSlots } from './ads.js';
 declare const __BRAND_NAME__: string;
 
 const init = async () => {
@@ -1157,6 +1158,8 @@ const init = async () => {
 
   // Rewrite links after all dynamic content is fully loaded
   rewriteLinks();
+
+  initPageAdSlots();
 };
 
 window.addEventListener('load', init);
