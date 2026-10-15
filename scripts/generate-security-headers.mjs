@@ -81,6 +81,16 @@ const connectOrigins = uniq([
 ]);
 const fontOrigins = uniq([ocrFontOrigin].filter(Boolean));
 
+// Format Banner Adsterra butuh blok <script> inline untuk atOptions
+// (lihat src/js/ads.ts). 'unsafe-inline' di script-src hanya ditambahkan
+// saat Adsterra memang dikonfigurasi, supaya CSP tidak melemah bagi yang
+// belum memasang iklan.
+const adsterraConfigured =
+  adsterraScriptOrigins.length > 0 ||
+  adsterraConnectOrigins.length > 0 ||
+  adsterraFrameOrigins.length > 0;
+const scriptSrcUnsafeInline = adsterraConfigured ? " 'unsafe-inline'" : '';
+
 const githubStarsDisabled =
   process.env.DISABLE_GITHUB_STARS === 'true' ||
   process.env.SIMPLE_MODE === 'true';
@@ -88,7 +98,7 @@ const githubApiSource = githubStarsDisabled ? '' : ' https://api.github.com';
 
 const directives = [
   `default-src 'self'`,
-  `script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval' blob: ${scriptOrigins.join(' ')}`.trim(),
+  `script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval'${scriptSrcUnsafeInline} blob: ${scriptOrigins.join(' ')}`.trim(),
   `worker-src 'self' blob:`,
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
   `img-src 'self' data: blob: https:`,
