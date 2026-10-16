@@ -19,6 +19,12 @@ import {
   areAdsEnabledAtRuntime,
   loadRuntimeConfig,
 } from './utils/disabled-tools.js';
+import {
+  bindCookieSettings,
+  getAdsConsent,
+  onAdsConsentChange,
+  showConsentBanner,
+} from './consent.js';
 
 // Saklar iklan:
 // 1. Build: VITE_ADS_ENABLED=true (aktif di `build:mypdf`; `build:mypdf:noads`
@@ -26,11 +32,14 @@ import {
 // 2. Runtime: "adsEnabled": false di public/config.json (atau config.json di
 //    server) mematikan iklan seketika tanpa build ulang, mis. bila iklan
 //    ilegal muncul. config.json diambil dengan cache: 'no-cache'.
+// 3. Persetujuan: iklan baru dimuat setelah pengunjung menekan "Terima" pada
+//    banner cookie (consent.ts); "Tolak" berarti iklan tidak dimuat.
 // Halaman ber-COEP (crossOriginIsolated, mis. konversi Office) tidak memuat
 // iklan: browser memblokir iframe pihak ketiga di dalamnya.
 const ADS_ENABLED = import.meta.env.VITE_ADS_ENABLED === 'true';
-const adsActive = () =>
+const adsAllowed = () =>
   ADS_ENABLED && areAdsEnabledAtRuntime() && !window.crossOriginIsolated;
+const adsActive = () => adsAllowed() && getAdsConsent() === 'granted';
 
 // Cloudflare Pages mengalihkan /ads/frame.html ke /ads/frame (308); di
 // produksi langsung pakai URL tanpa ekstensi agar tidak ada round-trip ekstra.
@@ -133,11 +142,31 @@ function loadSlot(id: string): void {
 
 /** Dipanggil sekali saat halaman selesai dimuat. */
 export async function initPageAdSlots(): Promise<void> {
+  bindCookieSettings();
   if (!ADS_ENABLED) return;
   // Biasanya sudah dimuat oleh init() di main.ts; dipanggil lagi di sini agar
   // saklar runtime tetap berlaku bila urutan pemanggilan berubah.
   await loadRuntimeConfig();
-  PAGE_AD_SLOT_IDS.forEach(loadSlot);
+  if (!adsAllowed()) return;
+
+  onAdsConsentChange((consent) => {
+    if (consent === 'granted') {
+      PAGE_AD_SLOT_IDS.forEach(loadSlot);
+    } else {
+      // Pilihan berubah menjadi "Tolak": lepas semua iklan yang sudah tampil.
+      [...PAGE_AD_SLOT_IDS, SUCCESS_AD_SLOT_ID, INLINE_SUCCESS_AD_ID].forEach(
+        (id) => {
+          const el = document.getElementById(id);
+          if (el) hideSlot(el);
+        }
+      );
+      activeFrames.clear();
+    }
+  });
+
+  const consent = getAdsConsent();
+  if (consent === null) showConsentBanner();
+  else if (consent === 'granted') PAGE_AD_SLOT_IDS.forEach(loadSlot);
 }
 
 /**
