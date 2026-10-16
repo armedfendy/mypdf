@@ -1,11 +1,11 @@
 /**
- * BentoPDF Service Worker
+ * mypdf.id Service Worker (berbasis BentoPDF)
  * Caches WASM files and static assets for offline support and faster loading
  * Supports both local and CDN delivery with deduplication
  * Version: 1.1.0
  */
 
-const CACHE_VERSION = 'bentopdf-v11';
+const CACHE_VERSION = 'mypdf-v1';
 const CACHE_NAME = `${CACHE_VERSION}-static`;
 
 const trustedCdnOrigins = new Set(['https://cdn.jsdelivr.net']);

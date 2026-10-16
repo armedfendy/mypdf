@@ -43,6 +43,64 @@ function sendTrustedHostsToSw(target: ServiceWorker | null | undefined) {
   target.postMessage({ type: 'SET_TRUSTED_CDN_HOSTS', hosts });
 }
 
+// Pemberitahuan versi baru yang tidak memblokir halaman. SW sudah memanggil
+// skipWaiting() sendiri, jadi halaman tidak di-reload paksa (pekerjaan
+// pengguna yang sedang berjalan tidak hilang); reload hanya bila diklik.
+function showUpdateToast(worker: ServiceWorker) {
+  if (document.getElementById('sw-update-toast')) return;
+  const toast = document.createElement('div');
+  toast.id = 'sw-update-toast';
+  toast.setAttribute('role', 'status');
+  toast.style.cssText =
+    'position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));' +
+    'transform:translateX(-50%);z-index:9999;display:flex;align-items:center;' +
+    'gap:12px;max-width:calc(100vw - 32px);padding:10px 12px 10px 16px;' +
+    'border-radius:12px;background:#1f2937;color:#f9fafb;font-size:14px;' +
+    'box-shadow:0 8px 24px rgba(0,0,0,.25)';
+
+  const text = document.createElement('span');
+  text.textContent = 'Versi baru mypdf.id tersedia.';
+
+  const reload = document.createElement('button');
+  reload.type = 'button';
+  reload.textContent = 'Muat ulang';
+  reload.style.cssText =
+    'border:0;border-radius:8px;padding:6px 12px;background:#4f46e5;' +
+    'color:#fff;font:inherit;font-weight:600;cursor:pointer';
+  reload.addEventListener('click', () => {
+    worker.postMessage({ type: 'SKIP_WAITING' });
+    window.location.reload();
+  });
+
+  const close = document.createElement('button');
+  close.type = 'button';
+  close.textContent = '×';
+  close.setAttribute('aria-label', 'Tutup');
+  close.style.cssText =
+    'border:0;background:transparent;color:inherit;font-size:20px;' +
+    'line-height:1;padding:0 4px;cursor:pointer';
+  close.addEventListener('click', () => toast.remove());
+
+  toast.append(text, reload, close);
+  document.body.appendChild(toast);
+}
+
+// Setelah deploy baru, chunk ber-hash dari build lama sudah dihapus dari
+// Cloudflare Pages; tab lama yang memuat chunk dinamis akan gagal. Muat
+// ulang sekali (dibatasi agar tidak berulang-ulang bila galatnya menetap).
+window.addEventListener('vite:preloadError', (event) => {
+  const key = 'mypdf-preload-reload';
+  try {
+    const last = Number(sessionStorage.getItem(key) || 0);
+    if (Date.now() - last < 10_000) return;
+    sessionStorage.setItem(key, String(Date.now()));
+  } catch {
+    return;
+  }
+  event.preventDefault();
+  window.location.reload();
+});
+
 if (isDevelopment) {
   console.log('[Dev Mode] Service Worker registration skipped in development');
   console.log('Service Worker will be active in production builds');
@@ -87,15 +145,7 @@ if (isDevelopment) {
                 navigator.serviceWorker.controller
               ) {
                 console.log('[SW] New version available! Reload to update.');
-
-                if (
-                  confirm(
-                    'A new version of BentoPDF is available. Reload to update?'
-                  )
-                ) {
-                  newWorker.postMessage({ type: 'SKIP_WAITING' });
-                  window.location.reload();
-                }
+                showUpdateToast(newWorker);
               }
             });
           }
@@ -107,18 +157,6 @@ if (isDevelopment) {
 
     navigator.serviceWorker.ready.then((registration) => {
       sendTrustedHostsToSw(registration.active);
-    });
-
-    // Muat ulang hanya bila SW lama digantikan versi baru. Pada kunjungan
-    // pertama belum ada controller; clients.claim() memicu controllerchange
-    // dan reload di sini membuat halaman dimuat dua kali.
-    const hadController = !!navigator.serviceWorker.controller;
-    let reloading = false;
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (!hadController || reloading) return;
-      reloading = true;
-      console.log('[SW] New service worker activated, reloading...');
-      window.location.reload();
     });
   });
 }
