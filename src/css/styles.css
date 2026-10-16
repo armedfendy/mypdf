@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+/* Subset ikon Phosphor (scripts/generate-phosphor-subset.mjs) */
+@import './phosphor-subset.css';
 
 @font-face {
   font-family: 'Geist Fallback';

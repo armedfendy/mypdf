@@ -5,3 +5,6 @@ blog/posts/
 
 # Frontmatter JSON artikel panduan tidak boleh diubah menjadi YAML oleh Prettier
 content/panduan/
+
+# Dibuat oleh scripts/generate-phosphor-subset.mjs
+src/css/phosphor-subset.css

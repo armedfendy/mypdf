@@ -1,0 +1,655 @@
+/* Dibuat oleh scripts/generate-phosphor-subset.mjs. Jangan disunting manual.
+   Subset ikon Phosphor (regular) yang dipakai situs; font-display: swap agar
+   teks tidak menunggu font ikon. */
+@font-face {
+  font-family: "Phosphor";
+  src: url("../../node_modules/@phosphor-icons/web/src/regular/Phosphor.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.ph {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "Phosphor" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ph.ph-align-bottom:before {
+  content: "\e506";
+}
+
+.ph.ph-align-center-horizontal:before {
+  content: "\e50a";
+}
+
+.ph.ph-align-center-vertical:before {
+  content: "\e50c";
+}
+
+.ph.ph-align-left:before {
+  content: "\e50e";
+}
+
+.ph.ph-align-right:before {
+  content: "\e510";
+}
+
+.ph.ph-align-top:before {
+  content: "\e512";
+}
+
+.ph.ph-archive:before {
+  content: "\e00c";
+}
+
+.ph.ph-arrow-clockwise:before {
+  content: "\e036";
+}
+
+.ph.ph-arrow-counter-clockwise:before {
+  content: "\e038";
+}
+
+.ph.ph-arrow-left:before {
+  content: "\e058";
+}
+
+.ph.ph-arrow-line-down:before {
+  content: "\e05c";
+}
+
+.ph.ph-arrow-line-up:before {
+  content: "\e066";
+}
+
+.ph.ph-arrow-right:before {
+  content: "\e06c";
+}
+
+.ph.ph-arrow-square-out:before {
+  content: "\e5de";
+}
+
+.ph.ph-arrow-u-up-left:before {
+  content: "\e08a";
+}
+
+.ph.ph-arrow-u-up-right:before {
+  content: "\e08c";
+}
+
+.ph.ph-arrows-clockwise:before {
+  content: "\e094";
+}
+
+.ph.ph-arrows-out:before {
+  content: "\e0a2";
+}
+
+.ph.ph-arrows-out-line-horizontal:before {
+  content: "\e534";
+}
+
+.ph.ph-arrows-out-line-vertical:before {
+  content: "\e536";
+}
+
+.ph.ph-arrows-vertical:before {
+  content: "\eb04";
+}
+
+.ph.ph-barcode:before {
+  content: "\e0b8";
+}
+
+.ph.ph-book-bookmark:before {
+  content: "\e0e4";
+}
+
+.ph.ph-book-open:before {
+  content: "\e0e6";
+}
+
+.ph.ph-book-open-text:before {
+  content: "\e8f2";
+}
+
+.ph.ph-bookmark:before {
+  content: "\e0e8";
+}
+
+.ph.ph-broom:before {
+  content: "\ec54";
+}
+
+.ph.ph-browsers:before {
+  content: "\e0f6";
+}
+
+.ph.ph-caret-double-down:before {
+  content: "\e126";
+}
+
+.ph.ph-caret-double-up:before {
+  content: "\e12c";
+}
+
+.ph.ph-caret-down:before {
+  content: "\e136";
+}
+
+.ph.ph-caret-left:before {
+  content: "\e138";
+}
+
+.ph.ph-caret-right:before {
+  content: "\e13a";
+}
+
+.ph.ph-caret-up:before {
+  content: "\e13c";
+}
+
+.ph.ph-certificate:before {
+  content: "\e766";
+}
+
+.ph.ph-check:before {
+  content: "\e182";
+}
+
+.ph.ph-circle:before {
+  content: "\e18a";
+}
+
+.ph.ph-circle-half:before {
+  content: "\e18c";
+}
+
+.ph.ph-clipboard-text:before {
+  content: "\e198";
+}
+
+.ph.ph-clock:before {
+  content: "\e19a";
+}
+
+.ph.ph-columns:before {
+  content: "\e546";
+}
+
+.ph.ph-copy:before {
+  content: "\e1ca";
+}
+
+.ph.ph-crop:before {
+  content: "\e1d4";
+}
+
+.ph.ph-currency-circle-dollar:before {
+  content: "\e54c";
+}
+
+.ph.ph-cursor-text:before {
+  content: "\e7d8";
+}
+
+.ph.ph-device-mobile:before {
+  content: "\e1e0";
+}
+
+.ph.ph-dots-three:before {
+  content: "\e1fe";
+}
+
+.ph.ph-download:before {
+  content: "\e20a";
+}
+
+.ph.ph-download-simple:before {
+  content: "\e20c";
+}
+
+.ph.ph-drop:before {
+  content: "\e210";
+}
+
+.ph.ph-envelope:before {
+  content: "\e214";
+}
+
+.ph.ph-eraser:before {
+  content: "\e21e";
+}
+
+.ph.ph-export:before {
+  content: "\eaf0";
+}
+
+.ph.ph-eye-slash:before {
+  content: "\e224";
+}
+
+.ph.ph-eyedropper:before {
+  content: "\e568";
+}
+
+.ph.ph-file:before {
+  content: "\e230";
+}
+
+.ph.ph-file-code:before {
+  content: "\e914";
+}
+
+.ph.ph-file-csv:before {
+  content: "\eb1c";
+}
+
+.ph.ph-file-image:before {
+  content: "\ea24";
+}
+
+.ph.ph-file-jpg:before {
+  content: "\eb1a";
+}
+
+.ph.ph-file-minus:before {
+  content: "\e234";
+}
+
+.ph.ph-file-pdf:before {
+  content: "\e702";
+}
+
+.ph.ph-file-plus:before {
+  content: "\e236";
+}
+
+.ph.ph-file-png:before {
+  content: "\eb18";
+}
+
+.ph.ph-file-svg:before {
+  content: "\ed08";
+}
+
+.ph.ph-file-text:before {
+  content: "\e23a";
+}
+
+.ph.ph-file-x:before {
+  content: "\e23c";
+}
+
+.ph.ph-file-zip:before {
+  content: "\e958";
+}
+
+.ph.ph-files:before {
+  content: "\e710";
+}
+
+.ph.ph-flip-horizontal:before {
+  content: "\ed6a";
+}
+
+.ph.ph-flip-vertical:before {
+  content: "\ed6c";
+}
+
+.ph.ph-floppy-disk:before {
+  content: "\e248";
+}
+
+.ph.ph-folder-open:before {
+  content: "\e256";
+}
+
+.ph.ph-frame-corners:before {
+  content: "\e626";
+}
+
+.ph.ph-gauge:before {
+  content: "\e628";
+}
+
+.ph.ph-git-branch:before {
+  content: "\e278";
+}
+
+.ph.ph-git-diff:before {
+  content: "\e27c";
+}
+
+.ph.ph-hash:before {
+  content: "\e2a2";
+}
+
+.ph.ph-image:before {
+  content: "\e2ca";
+}
+
+.ph.ph-image-square:before {
+  content: "\e2cc";
+}
+
+.ph.ph-images:before {
+  content: "\e836";
+}
+
+.ph.ph-infinity:before {
+  content: "\e634";
+}
+
+.ph.ph-info:before {
+  content: "\e2ce";
+}
+
+.ph.ph-lightning:before {
+  content: "\e2de";
+}
+
+.ph.ph-link-break:before {
+  content: "\e2e4";
+}
+
+.ph.ph-list:before {
+  content: "\e2f0";
+}
+
+.ph.ph-list-bullets:before {
+  content: "\e2f2";
+}
+
+.ph.ph-list-numbers:before {
+  content: "\e2f6";
+}
+
+.ph.ph-lock:before {
+  content: "\e2fa";
+}
+
+.ph.ph-lock-open:before {
+  content: "\e306";
+}
+
+.ph.ph-magnifying-glass:before {
+  content: "\e30c";
+}
+
+.ph.ph-magnifying-glass-minus:before {
+  content: "\e30e";
+}
+
+.ph.ph-markdown-logo:before {
+  content: "\e508";
+}
+
+.ph.ph-microsoft-excel-logo:before {
+  content: "\eb6c";
+}
+
+.ph.ph-microsoft-powerpoint-logo:before {
+  content: "\eace";
+}
+
+.ph.ph-microsoft-word-logo:before {
+  content: "\eb6a";
+}
+
+.ph.ph-minus:before {
+  content: "\e32a";
+}
+
+.ph.ph-minus-circle:before {
+  content: "\e32c";
+}
+
+.ph.ph-notepad:before {
+  content: "\e63e";
+}
+
+.ph.ph-palette:before {
+  content: "\e6c8";
+}
+
+.ph.ph-paperclip:before {
+  content: "\e39a";
+}
+
+.ph.ph-paperclip-horizontal:before {
+  content: "\e592";
+}
+
+.ph.ph-paragraph:before {
+  content: "\e960";
+}
+
+.ph.ph-path:before {
+  content: "\e39c";
+}
+
+.ph.ph-pen-nib:before {
+  content: "\e3ac";
+}
+
+.ph.ph-pencil-line:before {
+  content: "\e3b2";
+}
+
+.ph.ph-pencil-ruler:before {
+  content: "\e906";
+}
+
+.ph.ph-pencil-simple:before {
+  content: "\e3b4";
+}
+
+.ph.ph-perspective:before {
+  content: "\ebe6";
+}
+
+.ph.ph-play:before {
+  content: "\e3d0";
+}
+
+.ph.ph-plus:before {
+  content: "\e3d4";
+}
+
+.ph.ph-plus-circle:before {
+  content: "\e3d6";
+}
+
+.ph.ph-presentation:before {
+  content: "\e654";
+}
+
+.ph.ph-prohibit:before {
+  content: "\e3de";
+}
+
+.ph.ph-question:before {
+  content: "\e3e8";
+}
+
+.ph.ph-rows:before {
+  content: "\e5a2";
+}
+
+.ph.ph-ruler:before {
+  content: "\e6b8";
+}
+
+.ph.ph-scan:before {
+  content: "\ebb6";
+}
+
+.ph.ph-scissors:before {
+  content: "\eae0";
+}
+
+.ph.ph-seal-check:before {
+  content: "\e606";
+}
+
+.ph.ph-selection-all:before {
+  content: "\e746";
+}
+
+.ph.ph-shapes:before {
+  content: "\ec5e";
+}
+
+.ph.ph-shield-check:before {
+  content: "\e40c";
+}
+
+.ph.ph-shuffle:before {
+  content: "\e422";
+}
+
+.ph.ph-sidebar-simple:before {
+  content: "\ec24";
+}
+
+.ph.ph-sliders-horizontal:before {
+  content: "\e434";
+}
+
+.ph.ph-sort-descending:before {
+  content: "\e446";
+}
+
+.ph.ph-sparkle:before {
+  content: "\e6a2";
+}
+
+.ph.ph-squares-four:before {
+  content: "\e464";
+}
+
+.ph.ph-stack:before {
+  content: "\e466";
+}
+
+.ph.ph-stack-simple:before {
+  content: "\e468";
+}
+
+.ph.ph-stamp:before {
+  content: "\ea48";
+}
+
+.ph.ph-table:before {
+  content: "\e476";
+}
+
+.ph.ph-tag:before {
+  content: "\e478";
+}
+
+.ph.ph-text-aa:before {
+  content: "\e6ee";
+}
+
+.ph.ph-text-align-center:before {
+  content: "\e480";
+}
+
+.ph.ph-text-align-justify:before {
+  content: "\e482";
+}
+
+.ph.ph-text-align-left:before {
+  content: "\e484";
+}
+
+.ph.ph-text-align-right:before {
+  content: "\e486";
+}
+
+.ph.ph-text-b:before {
+  content: "\e5be";
+}
+
+.ph.ph-text-indent:before {
+  content: "\ea1e";
+}
+
+.ph.ph-text-italic:before {
+  content: "\e5c0";
+}
+
+.ph.ph-text-outdent:before {
+  content: "\ea1c";
+}
+
+.ph.ph-text-strikethrough:before {
+  content: "\e5c2";
+}
+
+.ph.ph-text-subscript:before {
+  content: "\ec98";
+}
+
+.ph.ph-text-superscript:before {
+  content: "\ec9a";
+}
+
+.ph.ph-text-t:before {
+  content: "\e48a";
+}
+
+.ph.ph-text-underline:before {
+  content: "\e5c4";
+}
+
+.ph.ph-textbox:before {
+  content: "\eb0a";
+}
+
+.ph.ph-trash:before {
+  content: "\e4a6";
+}
+
+.ph.ph-tree-structure:before {
+  content: "\e67c";
+}
+
+.ph.ph-upload-simple:before {
+  content: "\e4c0";
+}
+
+.ph.ph-user-minus:before {
+  content: "\e4ce";
+}
+
+.ph.ph-wrench:before {
+  content: "\e5d4";
+}
+
+.ph.ph-x:before {
+  content: "\e4f6";
+}

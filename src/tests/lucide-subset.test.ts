@@ -38,6 +38,34 @@ describe('subset ikon lucide (lucide-icons.ts)', () => {
     expect([...missing]).toEqual([]);
   });
 
+  it('subset Phosphor memuat setiap ikon ph-* di HTML dan config/tools.ts', () => {
+    const subset = readFileSync(
+      join(ROOT, 'src', 'css', 'phosphor-subset.css'),
+      'utf8'
+    );
+    const full = readFileSync(
+      join(ROOT, 'node_modules/@phosphor-icons/web/src/regular/style.css'),
+      'utf8'
+    );
+    const files = [
+      ...readdirSync(ROOT)
+        .filter((f) => f.endsWith('.html'))
+        .map((f) => join(ROOT, f)),
+      ...collect(join(ROOT, 'src', 'pages'), ['.html']),
+      join(ROOT, 'src', 'js', 'config', 'tools.ts'),
+    ];
+    const missing = new Set<string>();
+    for (const file of files) {
+      const text = readFileSync(file, 'utf8');
+      for (const m of text.matchAll(/\bph-([a-z0-9]+(?:-[a-z0-9]+)*)/g)) {
+        const rule = `.ph.ph-${m[1]}:before`;
+        if (full.includes(rule) && !subset.includes(rule)) missing.add(m[1]);
+      }
+    }
+    expect([...missing]).toEqual([]);
+    expect(subset).toContain('font-display: swap');
+  });
+
   it('createIcons ringan mengganti <i data-lucide> dengan SVG', () => {
     document.body.innerHTML =
       '<div id="r"><i data-lucide="x" class="w-4"></i></div>';
