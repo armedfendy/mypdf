@@ -321,24 +321,6 @@ function transform(html, pageKey) {
     document.head.insertBefore(pl, document.head.firstChild);
   }
 
-  // Preload font ikon Phosphor (145 KiB) agar diunduh paralel dengan CSS, dan
-  // font-display: swap agar teks tidak menunggu font ikon.
-  const phosphor = fs
-    .readdirSync(path.join(DIST_DIR, 'assets'))
-    .find((f) => /^Phosphor-.*\.woff2$/.test(f));
-  if (
-    phosphor &&
-    !document.querySelector('link[rel="preload"][href*="Phosphor"]')
-  ) {
-    const pl = document.createElement('link');
-    pl.setAttribute('rel', 'preload');
-    pl.setAttribute('as', 'font');
-    pl.setAttribute('type', 'font/woff2');
-    pl.setAttribute('href', `/assets/${phosphor}`);
-    pl.setAttribute('crossorigin', '');
-    document.head.insertBefore(pl, document.head.firstChild);
-  }
-
   // Penginisialisasi tema (terang/gelap), di-inline agar tidak jadi permintaan
   // pemblokir render dan tidak berkedip. Karena CSP tidak mengizinkan
   // 'unsafe-inline', hash skripnya didaftarkan di script-src oleh
@@ -362,6 +344,32 @@ function transform(html, pageKey) {
       style.textContent = fs.readFileSync(cssPath, 'utf-8');
       link.replaceWith(style);
     });
+
+  // Urutan awal <head>: meta charset (wajib dalam 1.024 byte pertama),
+  // viewport, skrip tema, stylesheet pemblokir render, lalu preload Geist.
+  // Stylesheet didahulukan dari preload font dan modul JS agar tidak berebut
+  // bandwidth di jaringan lambat. Stylesheet yang didahului <style> (beberapa
+  // halaman alat) tidak dipindah agar urutan cascade tidak berubah.
+  const head = document.head;
+  const firstStyle = head.querySelector('style');
+  const movableSheets = [
+    ...head.querySelectorAll('link[rel="stylesheet"]'),
+  ].filter(
+    (link) =>
+      !firstStyle ||
+      !(
+        firstStyle.compareDocumentPosition(link) &
+        dom.window.Node.DOCUMENT_POSITION_FOLLOWING
+      )
+  );
+  const ordered = [
+    head.querySelector('meta[charset]'),
+    head.querySelector('meta[name="viewport"]'),
+    head.querySelector('script[data-mp-theme]'),
+    ...movableSheets,
+    head.querySelector('link[rel="preload"][href*="Geist-Variable"]'),
+  ].filter(Boolean);
+  for (const el of ordered.reverse()) head.insertBefore(el, head.firstChild);
 
   const result = dom.serialize();
   dom.window.close();

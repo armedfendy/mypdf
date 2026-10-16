@@ -1,5 +1,6 @@
 // Modal pencarian alat (Ctrl+K / \u2318K) untuk semua halaman mypdf.id.
-import { createIcons, icons } from 'lucide';
+import { createIcons } from './utils/lucide-lite.js';
+import { icons } from './utils/lucide-icons.js';
 
 interface ToolItem {
   n: string;
@@ -18,7 +19,6 @@ let countEl: HTMLElement;
 let results: ToolItem[] = [];
 let active = 0;
 let lastFocus: Element | null = null;
-let phosphorLoaded = false;
 
 const normalize = (v: string) =>
   v
@@ -36,13 +36,6 @@ async function loadTools(): Promise<ToolItem[]> {
     tools = [];
   }
   return tools;
-}
-
-function loadPhosphor() {
-  if (phosphorLoaded) return;
-  phosphorLoaded = true;
-  // @ts-expect-error modul CSS tanpa deklarasi tipe
-  void import('@phosphor-icons/web/regular');
 }
 
 function iconEl(name: string): HTMLElement {
@@ -205,7 +198,6 @@ async function openPalette() {
   if (!root) root = build();
   if (!root.hidden) return;
   lastFocus = document.activeElement;
-  loadPhosphor();
   root.hidden = false;
   document.body.style.overflow = 'hidden';
   input.value = '';
