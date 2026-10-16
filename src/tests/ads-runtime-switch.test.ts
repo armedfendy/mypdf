@@ -1,6 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 function mockConfig(body: unknown) {
+  // Konstanta build-time dari vite.config.ts (define); tidak ada di vitest.
+  vi.stubGlobal('__DISABLED_TOOLS__', []);
   vi.stubGlobal(
     'fetch',
     vi.fn().mockResolvedValue({
