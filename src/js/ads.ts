@@ -29,9 +29,11 @@ import {
 // Saklar iklan:
 // 1. Build: VITE_ADS_ENABLED=true (aktif di `build:mypdf`; `build:mypdf:noads`
 //    membuat build tanpa iklan).
-// 2. Runtime: "adsEnabled": false di public/config.json (atau config.json di
-//    server) mematikan iklan seketika tanpa build ulang, mis. bila iklan
-//    ilegal muncul. config.json diambil dengan cache: 'no-cache'.
+// 2. Runtime: "adsEnabled" di /config.json. Di Cloudflare Pages nilainya
+//    diambil dari kunci KV ADS_ENABLED (functions/config.json.js), sehingga
+//    iklan bisa dimatikan dari dasbor Cloudflare tanpa build ulang, mis. bila
+//    iklan ilegal muncul (lihat cloudflare/ADS-SWITCH.md). config.json
+//    diambil dengan cache: 'no-cache'.
 // 3. Persetujuan: iklan baru dimuat setelah pengunjung menekan "Terima" pada
 //    banner cookie (consent.ts); "Tolak" berarti iklan tidak dimuat.
 // Halaman ber-COEP (crossOriginIsolated, mis. konversi Office) tidak memuat
