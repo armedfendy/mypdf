@@ -14,7 +14,7 @@
 import fs from 'fs';
 import path from 'path';
 import zlib from 'zlib';
-import { JSDOM } from 'jsdom';
+import { JSDOM, VirtualConsole } from 'jsdom';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -108,8 +108,16 @@ function setMeta(document, selector, value) {
 
 const CONTENT_DIR = path.join(ROOT, 'content', 'pages');
 
+// Parser CSS jsdom tidak mengenal sintaks CSS modern (Tailwind v4) di <style>
+// yang di-inline; isinya tetap diserialisasi apa adanya, jadi peringatan itu
+// diredam. Galat jsdom lain tetap ditampilkan.
+const virtualConsole = new VirtualConsole();
+virtualConsole.on('jsdomError', (err) => {
+  if (!/Could not parse CSS stylesheet/.test(err.message)) console.error(err);
+});
+
 function transform(html, pageKey) {
-  const dom = new JSDOM(html);
+  const dom = new JSDOM(html, { virtualConsole });
   const { document } = dom.window;
   const page = config.pages[pageKey] || {};
 
@@ -381,6 +389,22 @@ function transform(html, pageKey) {
     insights,
   ].filter(Boolean);
   for (const el of ordered.reverse()) head.insertBefore(el, head.firstChild);
+
+  // Beranda: CSS utama (~22 KiB gzip) di-inline agar tidak ada permintaan
+  // pemblokir render sama sekali; beranda adalah halaman masuk utama. Halaman
+  // lain tetap memakai berkas CSS yang bisa di-cache. url() di CSS hasil build
+  // berupa path absolut (/assets/...), jadi tetap benar saat di-inline.
+  if (pageKey === 'index') {
+    head
+      .querySelectorAll('link[rel="stylesheet"][href^="/assets/"]')
+      .forEach((link) => {
+        const cssPath = path.join(DIST_DIR, link.getAttribute('href'));
+        if (!fs.existsSync(cssPath)) return;
+        const style = document.createElement('style');
+        style.textContent = fs.readFileSync(cssPath, 'utf-8');
+        link.replaceWith(style);
+      });
+  }
 
   const result = dom.serialize();
   dom.window.close();

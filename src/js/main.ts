@@ -1163,4 +1163,10 @@ const init = async () => {
   initPageAdSlots();
 };
 
-window.addEventListener('load', init);
+// Ditunda sampai setelah frame pertama tergambar: fetch locale/config dan
+// kerja DOM di init tidak perlu mendahului tampilan awal. Di HP event load
+// bisa terjadi sebelum paint pertama, sehingga semua permintaan ini ikut
+// terhitung dalam LCP.
+window.addEventListener('load', () => {
+  requestAnimationFrame(() => setTimeout(init, 0));
+});
