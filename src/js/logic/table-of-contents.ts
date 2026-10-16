@@ -7,6 +7,7 @@ import {
 } from '../utils/wasm-provider.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { t } from '../i18n/index.js';
+import { showInlineSuccessAd, hideInlineSuccessAd } from '../ads.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/table-of-contents.worker.js'
@@ -62,10 +63,13 @@ function showStatus(
         : 'bg-blue-900 text-blue-200'
   }`;
   statusMessage.classList.remove('hidden');
+  if (type === 'success') showInlineSuccessAd(statusMessage);
+  else hideInlineSuccessAd();
 }
 
 function hideStatus() {
   statusMessage.classList.add('hidden');
+  hideInlineSuccessAd();
 }
 
 function renderFileDisplay(file: File) {

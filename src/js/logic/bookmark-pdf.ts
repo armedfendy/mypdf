@@ -32,6 +32,7 @@ import {
   HEX_COLOR_MAP,
   PDF_COLOR_MAP,
 } from '@/types';
+import { showInlineSuccessAd } from '../ads.js';
 
 const modalContainer = document.getElementById(
   'modal-container'
@@ -867,7 +868,11 @@ function showConfirmModal(message: string): Promise<boolean> {
   });
 }
 
-function showAlertModal(title: string, message: string): Promise<boolean> {
+function showAlertModal(
+  title: string,
+  message: string,
+  withSuccessAd = false
+): Promise<boolean> {
   return new Promise((resolve) => {
     const previousActiveEl = document.activeElement as HTMLElement | null;
     const overlay = document.createElement('div');
@@ -888,6 +893,7 @@ function showAlertModal(title: string, message: string): Promise<boolean> {
 
     overlay.appendChild(modal);
     modalContainer?.appendChild(overlay);
+    if (withSuccessAd) showInlineSuccessAd(modal.querySelector('p'));
 
     const okBtn = modal.querySelector('#modal-ok') as HTMLButtonElement | null;
     okBtn?.focus();
@@ -2340,7 +2346,7 @@ downloadBtn?.addEventListener('click', async () => {
     });
     downloadFile(blob, `${originalFileName}.pdf`);
 
-    await showAlertModal('Success', 'PDF saved successfully!');
+    await showAlertModal('Success', 'PDF saved successfully!', true);
 
     setTimeout(() => {
       resetToUploader();

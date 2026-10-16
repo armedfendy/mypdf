@@ -116,6 +116,9 @@ const staticPaths = fs
   .readdirSync(DIST_DIR, { withFileTypes: true })
   .filter((e) => !e.name.startsWith('_'))
   .filter((e) => e.isDirectory() || !e.name.endsWith('.html'))
+  // Halaman iklan tidak boleh ber-COEP: kreatif Adsterra adalah iframe
+  // pihak ketiga tanpa COEP/CORP dan akan diblokir.
+  .filter((e) => e.name !== 'ads')
   .map((e) => (e.isDirectory() ? `/${e.name}/*` : `/${e.name}`))
   .sort();
 // Satu blok per path: Cloudflare tidak menggabungkan dua blok dengan path
@@ -136,6 +139,16 @@ isolatedPages.forEach((page) => {
   addRule(`/${page}.html`, isolationHeaders);
 });
 staticPaths.forEach((p) => addRule(p, isolationHeaders));
+// /ads/frame.html (lihat src/js/ads.ts): CSP longgar khusus halaman iklan,
+// karena Adsterra memuat skrip, iframe, dan gambar dari domain yang
+// berganti-ganti. Halaman ini hanya dimuat dalam <iframe sandbox> tanpa
+// allow-same-origin, dan frame-ancestors 'self' mencegah situs lain
+// menyematkannya. "! Header" melepas CSP ketat dari blok /* di atas.
+addRule('/ads/*', [
+  '  ! Content-Security-Policy',
+  "  Content-Security-Policy: default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'",
+  `  ${CACHE_REVALIDATE}`,
+]);
 Object.entries(cacheRules).forEach(([p, h]) => addRule(p, [`  ${h}`]));
 
 const headers = [

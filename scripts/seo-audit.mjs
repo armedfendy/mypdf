@@ -16,6 +16,7 @@ const HOST = new URL(SITE_URL).hostname;
 
 const NOINDEX_ALLOWLIST = new Set(['404.html', 'wasm-settings.html']);
 const SKIP_DIRS = new Set([
+  'ads', // /ads/frame.html: halaman iframe iklan, bukan halaman situs
   'assets',
   'docs',
   'pdfjs-viewer',

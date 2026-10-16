@@ -18,6 +18,7 @@ import { convertImagesToPdfFile } from '../utils/images-to-pdf-lib.js';
 import { t } from '../i18n/i18n';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { showInlineSuccessAd, hideInlineSuccessAd } from '../ads.js';
 
 interface PageData {
   id: string; // Unique ID for DOM reconciliation
@@ -106,6 +107,8 @@ function showModal(
   modalIcon.appendChild(iconEl);
   modal.classList.remove('hidden');
   createIcons({ icons });
+  if (type === 'success') showInlineSuccessAd(modalMessage);
+  else hideInlineSuccessAd();
 }
 
 function hideModal() {

@@ -1,0 +1,123 @@
+<!doctype html>
+<!--
+  mypdf.id: halaman khusus satu slot iklan Adsterra (?slot=...).
+
+  Dimuat oleh src/js/ads.ts dalam <iframe sandbox> tanpa allow-same-origin dan
+  tanpa allow-top-navigation, sehingga iklan tidak bisa membaca data situs
+  (localStorage, cookie) dan tidak bisa mengalihkan halaman. Halaman ini
+  punya CSP longgar sendiri (lihat /ads/* di scripts/mypdf-cloudflare.mjs)
+  karena Adsterra memuat kreatif dari domain yang berganti-ganti; CSP halaman
+  utama tetap ketat. Skrip ditulis inline (bukan berkas .js terpisah) agar
+  tidak tertahan cache-first service worker.
+
+  Pesan ke halaman induk: { type: 'mp-ad', height } saat ukuran berubah,
+  { type: 'mp-ad', empty: true } bila tidak ada iklan setelah 10 detik.
+-->
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Iklan</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        overflow: hidden;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      body.native {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      (function () {
+        // Unit dari dashboard Adsterra (dicek 2026-10-16).
+        var BANNER_HOST = 'https://www.highrevenueformat.com/';
+        var BANNERS = {
+          'top-desktop': {
+            key: 'cb9519efa134a074c24729247bd01d28',
+            w: 728,
+            h: 90,
+          },
+          'top-mobile': {
+            key: '18e6b47cdb4a2baf20786ac4c6e68b1a',
+            w: 320,
+            h: 50,
+          },
+          modal: { key: 'eed0030c47d35648d0bbc0f7431e3569', w: 300, h: 250 },
+        };
+        var NATIVE_ID = 'b1d6750fe7f7752de90a6bd2ce41ec96';
+        var NATIVE_SRC =
+          'https://pl31840967.profitableratecpmnetwork.com/' +
+          NATIVE_ID +
+          '/invoke.js';
+
+        var slot = new URLSearchParams(location.search).get('slot');
+        var post = function (msg) {
+          msg.type = 'mp-ad';
+          // Asal frame ini "null" (sandbox), jadi targetOrigin harus '*';
+          // pesan hanya berisi tinggi/status, induk memeriksa event.source.
+          parent.postMessage(msg, '*');
+        };
+
+        if (BANNERS[slot]) {
+          var b = BANNERS[slot];
+          window.atOptions = {
+            key: b.key,
+            format: 'iframe',
+            height: b.h,
+            width: b.w,
+            params: {},
+          };
+          document.write(
+            '<script src="' + BANNER_HOST + b.key + '/invoke.js"><\/script>'
+          );
+        } else if (slot === 'native') {
+          document.body.className = 'native';
+          document.write(
+            '<div id="container-' +
+              NATIVE_ID +
+              '"><\/div>' +
+              '<script async data-cfasync="false" src="' +
+              NATIVE_SRC +
+              '"><\/script>'
+          );
+        } else {
+          post({ empty: true });
+          return;
+        }
+
+        var filled = false;
+        var lastHeight = -1;
+        var check = function () {
+          var height = Math.ceil(document.body.scrollHeight);
+          var hasCreative = document.body.querySelector('iframe, img, a, ins');
+          if (hasCreative && height > 10) filled = true;
+          if (filled && height !== lastHeight) {
+            lastHeight = height;
+            post({ height: height });
+          }
+        };
+        new MutationObserver(check).observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+        if (window.ResizeObserver)
+          new ResizeObserver(check).observe(document.body);
+        setTimeout(function () {
+          check();
+          if (!filled) post({ empty: true });
+        }, 10000);
+      })();
+    </script>
+  </body>
+</html>
