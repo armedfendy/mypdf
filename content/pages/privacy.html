@@ -20,58 +20,57 @@
 
     <h2>2. File dan dokumen Anda</h2>
     <p>
-      Semua alat PDF di mypdf.id berjalan di browser Anda menggunakan JavaScript
-      dan WebAssembly. File yang Anda pilih dibaca dan diproses di perangkat
-      Anda sendiri, lalu hasilnya diunduh langsung ke perangkat Anda. Kami tidak
-      menerima, melihat, menyimpan, atau membagikan isi file Anda, dan tidak ada
-      salinan file yang tersimpan di server.
+      Seluruh alat PDF di mypdf.id berjalan langsung di browser Anda
+      (client-side) menggunakan teknologi JavaScript dan WebAssembly. File yang
+      Anda pilih dibaca dan diproses sepenuhnya di dalam memori perangkat Anda
+      sendiri, lalu hasilnya disimpan langsung ke perangkat Anda. Kami tidak
+      pernah menerima, melihat, menyimpan, atau membagikan file, nama file,
+      maupun metadata dokumen Anda. Begitu Anda menutup tab browser, seluruh
+      data pemrosesan file tersebut otomatis terhapus dari memori.
     </p>
     <p>
-      Untuk beberapa alat, browser Anda mengunduh komponen pemrosesan (misalnya
-      modul WebAssembly) dari layanan CDN jsDelivr. Yang diunduh hanyalah
-      komponen program; file Anda tidak pernah dikirim ke CDN tersebut.
+      Untuk beberapa fitur, browser Anda mungkin mengunduh komponen pemrosesan
+      tambahan (seperti modul WebAssembly atau font) dari jaringan distribusi
+      konten (CDN) seperti jsDelivr. Proses ini murni satu arah untuk mengunduh
+      komponen program ke browser Anda: file maupun dokumen Anda tidak pernah
+      dikirim ke layanan CDN tersebut.
     </p>
 
     <h2 id="iklan">3. Iklan dan cookie</h2>
     <p>
-      mypdf.id menampilkan iklan dari jaringan iklan pihak ketiga Adsterra untuk
-      membiayai layanan gratis ini.
-    </p>
-    <p>
-      Iklan baru dimuat setelah Anda menekan <strong>Terima</strong> pada
-      pemberitahuan cookie yang muncul saat pertama kali membuka situs. Jika
-      Anda menekan <strong>Tolak</strong>, iklan tidak dimuat dan tidak ada
-      cookie iklan yang dipasang. Anda dapat mengubah pilihan kapan saja melalui
-      <button type="button" data-cookie-settings class="mp-cookie-settings">
-        <u>Pengaturan Cookie</u></button
-      >, yang juga tersedia di bagian bawah setiap halaman.
+      mypdf.id sendiri tidak menggunakan cookie pelacak (tracking cookies).
+      Namun, untuk membiayai operasional layanan gratis ini, kami menampilkan
+      ruang iklan dari jaringan pihak ketiga, yaitu Adsterra.
     </p>
     <ul>
       <li>
-        Iklan dimuat di dalam bingkai (iframe) terpisah yang diisolasi dari
-        situs. Iklan tidak dapat membaca file Anda, data yang disimpan mypdf.id
-        di browser Anda, maupun mengalihkan halaman yang sedang Anda buka.
+        <strong>Isolasi Keamanan:</strong> Iklan dimuat di dalam bingkai
+        (sandboxed iframe) terpisah yang diisolasi secara teknis dari aplikasi
+        utama. Skrip iklan tidak memiliki akses untuk membaca file Anda, memori
+        pemrosesan PDF, maupun mengalihkan halaman yang sedang Anda gunakan.
       </li>
       <li>
-        Adsterra dan mitranya dapat menggunakan cookie atau teknologi serupa di
-        dalam bingkai iklan untuk menayangkan iklan, membatasi frekuensi tayang,
-        mengukur kinerja iklan, dan mencegah penipuan. Penggunaan data tersebut
-        diatur oleh
+        <strong>Cookie Pihak Ketiga:</strong> Adsterra dan mitranya dapat
+        menggunakan cookie atau teknologi serupa di dalam bingkai iklan mereka
+        untuk menayangkan iklan, membatasi frekuensi tayang, mengukur kinerja
+        iklan, dan mencegah klik palsu (fraud). Pemrosesan ini dilakukan
+        langsung oleh Adsterra dan diatur sepenuhnya oleh
         <a
           href="https://adsterra.com/privacy-policy/"
           target="_blank"
           rel="noopener noreferrer"
-          >kebijakan privasi Adsterra</a
+          >Kebijakan Privasi Adsterra</a
         >.
       </li>
       <li>
-        Anda dapat memblokir atau menghapus cookie pihak ketiga kapan saja
-        melalui pengaturan browser. Iklan tetap dapat tampil, tetapi tidak
-        menggunakan cookie yang diblokir.
+        <strong>Kendali Anda:</strong> Anda dapat memblokir atau menghapus
+        cookie pihak ketiga kapan saja melalui pengaturan browser Anda tanpa
+        mengganggu fungsi alat PDF di situs ini.
       </li>
       <li>
-        Kami tidak menjual data pribadi Anda dan tidak membagikan isi file Anda
-        kepada pengiklan.
+        <strong>Tanpa Pembagian Data:</strong> Karena kami tidak mengumpulkan
+        data pribadi maupun menerima file Anda, tidak ada data atau dokumen apa
+        pun dari kami yang dapat dijual atau dibagikan kepada pengiklan.
       </li>
     </ul>
 
