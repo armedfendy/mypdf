@@ -2,7 +2,8 @@ import './utils/map-upsert-polyfill.js';
 import { categories } from './config/tools.js';
 import { dom, switchView, hideAlert } from './ui-core.js';
 import { ShortcutsManager } from './logic/shortcuts.js';
-import { createIcons, icons } from 'lucide';
+import { createIcons } from './utils/lucide-lite.js';
+import { icons } from './utils/lucide-icons.js';
 import '@phosphor-icons/web/regular';
 import '../css/styles.css';
 import {
