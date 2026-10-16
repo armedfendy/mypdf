@@ -101,7 +101,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (isLocal && url.pathname.includes('/locales/')) {
+  // config.json berisi saklar runtime (mis. adsEnabled) yang harus berlaku
+  // seketika, jadi tidak boleh disajikan dari cache bila jaringan tersedia.
+  if (
+    isLocal &&
+    (url.pathname.includes('/locales/') ||
+      url.pathname.endsWith('/config.json'))
+  ) {
     event.respondWith(networkFirstStrategy(event.request));
   } else if (shouldCache(url.pathname, isCDN)) {
     event.respondWith(cacheFirstStrategyWithDedup(event.request, isCDN));

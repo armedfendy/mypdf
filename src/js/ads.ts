@@ -11,6 +11,11 @@
 // bukan menjalankan ulang document.write di dokumen utama (yang berisiko
 // menghapus seluruh isi halaman).
 //
+import {
+  areAdsEnabledAtRuntime,
+  loadRuntimeConfig,
+} from './utils/disabled-tools.js';
+
 interface BannerAdConfig {
   key: string;
   width: number;
@@ -46,9 +51,14 @@ const NATIVE_BANNER = {
     'https://pl31840967.profitableratecpmnetwork.com/b1d6750fe7f7752de90a6bd2ce41ec96/invoke.js',
 };
 
-// Saklar utama iklan. Kode Adsterra tetap disimpan, tapi tidak aktif kecuali
-// build memakai VITE_ADS_ENABLED=true (lihat script `build:mypdf:ads`).
+// Saklar iklan:
+// 1. Build: VITE_ADS_ENABLED=true (aktif di `build:mypdf`; `build:mypdf:noads`
+//    membuat build tanpa iklan dan tanpa domain Adsterra di CSP).
+// 2. Runtime: "adsEnabled": false di public/config.json (atau config.json di
+//    server) mematikan iklan seketika tanpa build ulang, mis. bila iklan
+//    ilegal muncul. config.json diambil dengan cache: 'no-cache'.
 const ADS_ENABLED = import.meta.env.VITE_ADS_ENABLED === 'true';
+const adsActive = () => ADS_ENABLED && areAdsEnabledAtRuntime();
 
 const MOBILE_MEDIA_QUERY = '(max-width: 640px)';
 const PAGE_AD_SLOT_IDS = ['ad-slot-top', 'ad-slot-bottom'] as const;
@@ -113,7 +123,7 @@ function renderAdCreative(el: HTMLElement, slotId: string): void {
 }
 
 function loadSlot(id: string): void {
-  if (!ADS_ENABLED) return;
+  if (!adsActive()) return;
   const el = document.getElementById(id);
   if (!el) return;
   el.classList.add('mp-ad-slot--on');
@@ -122,7 +132,11 @@ function loadSlot(id: string): void {
 }
 
 /** Dipanggil sekali saat halaman selesai dimuat. */
-export function initPageAdSlots(): void {
+export async function initPageAdSlots(): Promise<void> {
+  if (!ADS_ENABLED) return;
+  // Biasanya sudah dimuat oleh init() di main.ts; dipanggil lagi di sini agar
+  // saklar runtime tetap berlaku bila urutan pemanggilan berubah.
+  await loadRuntimeConfig();
   PAGE_AD_SLOT_IDS.forEach(loadSlot);
 }
 
@@ -138,7 +152,7 @@ export function refreshPageAdSlots(): void {
 
 /** Tampilkan dan muat slot iklan di dalam modal alert (hanya untuk sukses). */
 export function showSuccessAdSlot(): void {
-  if (!ADS_ENABLED) return;
+  if (!adsActive()) return;
   const el = document.getElementById(SUCCESS_AD_SLOT_ID);
   if (!el) return;
   el.classList.remove('hidden');
