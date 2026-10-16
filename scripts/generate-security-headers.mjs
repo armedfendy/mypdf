@@ -67,6 +67,8 @@ const adsterraConnectOrigins = originListOf(
 const adsterraFrameOrigins = originListOf(
   process.env.VITE_ADSTERRA_FRAME_ORIGINS
 );
+// Frame iklan milik situs di origin terpisah (lihat src/js/ads.ts).
+const adsFrameOrigins = originListOf(process.env.VITE_ADS_FRAME_ORIGIN);
 
 const scriptOrigins = uniq([
   ...wasmOrigins,
@@ -123,7 +125,7 @@ const directives = [
   `connect-src 'self' blob:${githubApiSource} https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
   `object-src 'none'`,
   `base-uri 'self'`,
-  `frame-src 'self' blob: ${adsterraFrameOrigins.join(' ')}`.trim(),
+  `frame-src 'self' blob: ${uniq([...adsFrameOrigins, ...adsterraFrameOrigins]).join(' ')}`.trim(),
   `frame-ancestors 'self'`,
   `form-action 'self'`,
 ];

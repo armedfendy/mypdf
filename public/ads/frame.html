@@ -2,9 +2,11 @@
 <!--
   mypdf.id: halaman khusus satu slot iklan Adsterra (?slot=...).
 
-  Dimuat oleh src/js/ads.ts dalam <iframe sandbox> tanpa allow-same-origin dan
-  tanpa allow-top-navigation, sehingga iklan tidak bisa membaca data situs
-  (localStorage, cookie) dan tidak bisa mengalihkan halaman. Halaman ini
+  Dimuat oleh src/js/ads.ts dalam <iframe sandbox> tanpa allow-top-navigation
+  (iklan tidak bisa mengalihkan halaman). Di produksi frame ini disajikan dari
+  origin terpisah (https://ads.mypdf.id) dengan allow-same-origin: skrip
+  Adsterra butuh localStorage/cookie, sedangkan origin yang berbeda menjaga
+  iklan tetap tidak bisa membaca data situs utama. Halaman ini
   punya CSP longgar sendiri (lihat /ads/* di scripts/mypdf-cloudflare.mjs)
   karena Adsterra memuat kreatif dari domain yang berganti-ganti; CSP halaman
   utama tetap ketat. Skrip ditulis inline (bukan berkas .js terpisah) agar
@@ -64,8 +66,9 @@
         var slot = new URLSearchParams(location.search).get('slot');
         var post = function (msg) {
           msg.type = 'mp-ad';
-          // Asal frame ini "null" (sandbox), jadi targetOrigin harus '*';
-          // pesan hanya berisi tinggi/status, induk memeriksa event.source.
+          // Asal frame bisa "null" (sandbox) atau subdomain iklan, jadi
+          // targetOrigin '*'; pesan hanya berisi tinggi/status, induk
+          // memeriksa event.source dan event.origin.
           parent.postMessage(msg, '*');
         };
 
