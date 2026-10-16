@@ -47,7 +47,13 @@ if (isDevelopment) {
   console.log('[Dev Mode] Service Worker registration skipped in development');
   console.log('Service Worker will be active in production builds');
 } else if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
+  // Registrasi (dan unduhan precache SW) ditunda sampai setelah frame
+  // pertama tergambar agar tidak berebut jaringan dengan tampilan awal.
+  const afterFirstPaint = (fn: () => void) =>
+    window.addEventListener('load', () =>
+      requestAnimationFrame(() => setTimeout(fn, 0))
+    );
+  afterFirstPaint(() => {
     const swPath = `${import.meta.env.BASE_URL}sw.js`;
     console.log('[SW] Registering Service Worker at:', swPath);
     navigator.serviceWorker
