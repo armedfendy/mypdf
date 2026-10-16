@@ -16,17 +16,14 @@
 [![Docker Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Falam00000%2Fbentopdf%2Fbadges%2Fdocker-downloads.json&cacheSeconds=3600)](https://github.com/alam00000/bentopdf/pkgs/container/bentopdf-simple) [![Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?logo=kofi&style=flat-square)](https://ko-fi.com/alio01) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
 [![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ff69b4)](https://github.com/sponsors/alam00000)
 
-![BentoPDF Tools](public/images/bentopdf-tools.png)
+![mypdf.id](.github/readme/mypdf-dashboard.png)
 
 ---
 
 ## Table of Contents
 
-- [Join Us on Discord](#-join-us-on-discord)
 - [Documentation](#-documentation)
 - [Licensing](#-licensing)
-- [Stargazers over time](#-stargazers-over-time)
-- [Thank You to Our Sponsors](#-thank-you-to-our-sponsors)
 - [Why BentoPDF?](#-why-bentopdf)
 - [Features / Tools Supported](#️-features--tools-supported)
   - [Organize & Manage PDFs](#organize--manage-pdfs)
@@ -58,14 +55,6 @@
 - [Roadmap](#️-roadmap)
 - [Contributing](#-contributing)
 - [Special Thanks](#special-thanks)
-
----
-
-## 📢 Join Us on Discord
-
-[![Discord](https://img.shields.io/badge/Discord-Join%20Server-7289da?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Bgq3Ay3f2w)
-
-Have questions, feature requests, or want to chat with the community? Join our Discord server!
 
 ---
 
@@ -116,24 +105,6 @@ BentoPDF does **not** bundle AGPL-licensed processing libraries in its source co
 > **Zero-config by default.** WASM modules are loaded at runtime from jsDelivr CDN. No manual configuration is needed. For custom deployments (air-gapped, self-hosted), see [WASM Configuration](#wasm-configuration) below.
 
 <hr>
-
-## ⭐ Stargazers over time
-
-[![Star History Chart](https://star-history.dera.page/svg?repos=alam00000/bentopdf&type=Date)](https://github.com/alam00000/bentopdf/stargazers)
-
----
-
-## 💖 Thank You to Our Sponsors
-
-We're incredibly grateful to all our sponsors and supporters who help keep BentoPDF free and open source!
-
-[![Sponsor me on GitHub](https://img.shields.io/badge/Become%20a%20Sponsor-%E2%9D%A4-ff69b4?style=for-the-badge)](https://github.com/sponsors/alam00000)
-[![Buy me a Coffee](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?style=for-the-badge&logo=kofi)](https://ko-fi.com/alio01)
-
-<!-- sponsors -->
-<!-- sponsors -->
-
----
 
 ## ✨ Why BentoPDF?
 
