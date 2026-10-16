@@ -9667,7 +9667,7 @@ function wireUI() {
     loadSystemFonts(true);
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     navigator.serviceWorker
-      .register('sw.js', { updateViaCache: 'none' })
+      .register(`${import.meta.env.BASE_URL}sw.js`, { updateViaCache: 'none' })
       .then((reg) => reg.update().catch(() => {}))
       .catch(() => {});
   }
