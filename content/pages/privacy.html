@@ -89,17 +89,27 @@
 
     <h2>5. Data teknis oleh penyedia hosting</h2>
     <p>
-      Situs ini di-hosting di Cloudflare. Seperti layanan web pada umumnya,
-      Cloudflare memproses data teknis seperti alamat IP dan jenis browser untuk
-      mengirimkan halaman serta melindungi situs dari serangan.
+      Situs ini di-hosting menggunakan layanan statis Cloudflare Pages dan
+      memuat sejumlah pustaka pemrosesan dari CDN jsDelivr. Sebagaimana cara
+      kerja internet pada umumnya, ketika browser Anda meminta halaman atau
+      komponen aplikasi, penyedia infrastruktur tersebut secara otomatis
+      memproses data jaringan standar, seperti alamat IP dan informasi teknis
+      browser (User-Agent), semata-mata untuk mengirimkan halaman ke perangkat
+      Anda serta melindungi jaringan dari serangan keamanan (seperti DDoS).
+      mypdf.id sendiri tidak mengumpulkan, mengakses, maupun menyimpan catatan
+      (log) alamat IP pengunjung.
     </p>
 
     <h2>6. Penyimpanan di browser Anda</h2>
     <p>
-      Beberapa pengaturan, misalnya preferensi tampilan atau pengaturan alat,
-      disimpan di penyimpanan lokal browser (localStorage) agar tidak perlu
-      diatur ulang. Data ini tetap berada di perangkat Anda dan bisa dihapus
-      kapan saja melalui pengaturan browser.
+      Untuk kenyamanan penggunaan, beberapa preferensi teknis antarmuka, seperti
+      pilihan tema tampilan (mode terang/gelap) atau konfigurasi pengaturan
+      alat, disimpan secara lokal di browser Anda menggunakan fitur penyimpanan
+      bawaan browser (localStorage). Data ini tidak berisi informasi pribadi
+      maupun isi dokumen Anda, serta tidak pernah dikirim atau disinkronkan ke
+      server kami. Seluruh pengaturan lokal tersebut berada sepenuhnya di
+      perangkat Anda dan dapat Anda hapus kapan saja dengan membersihkan data
+      situs melalui pengaturan browser.
     </p>
 
     <h2>7. Email yang Anda kirim</h2>
