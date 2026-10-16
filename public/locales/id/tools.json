@@ -1257,7 +1257,7 @@
       "testing": "Menguji...",
       "customOverride": "Penimpaan Kustom",
       "preConfigured": "Sudah Dikonfigurasi",
-      "notConfigured": "Belum Dikonfigurasi"
+      "notConfigured": "Default konfigurasi"
     },
     "preconfiguredTitle": "Sudah dikonfigurasi dan siap digunakan.",
     "preconfiguredDescription": "Modul pemrosesan lanjutan dimuat secara otomatis dari CDN. Anda dapat menimpa URL di bawah ini jika perlu menggunakan sumber kustom (mis., untuk penyebaran air-gapped atau self-hosted).",

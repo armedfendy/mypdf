@@ -41,6 +41,7 @@ const THEME_JS = fs
   .readFileSync(path.join(ROOT, 'public', 'theme.js'), 'utf-8')
   .replace(/\r\n/g, '\n');
 const SKIP_DIRS = new Set([
+  'ads', // /ads/frame.html: halaman iframe iklan, bukan halaman situs
   'assets',
   'docs',
   'pdfjs-viewer',

@@ -1,128 +1,144 @@
 // Integrasi slot iklan Adsterra.
 //
-// Format "Banner" Adsterra memakai document.write() lewat invoke.js, dengan
-// konfigurasi lewat variabel GLOBAL window.atOptions. Karena ada lebih dari
-// satu slot Banner di halaman yang sama (atas + modal), atOptions akan
-// saling menimpa bila dimuat langsung di dokumen utama -- slot kedua akan
-// membuat slot pertama rusak/kosong. Solusinya: setiap slot dirender di
-// dalam <iframe srcdoc> sendiri, sehingga atOptions dan document.write
-// masing-masing terisolasi di window iframe-nya sendiri. Ini juga membuat
-// refresh (refreshPageAdSlots) aman: iframe lama diganti dengan yang baru,
-// bukan menjalankan ulang document.write di dokumen utama (yang berisiko
-// menghapus seluruh isi halaman).
+// Setiap slot dirender sebagai <iframe sandbox> ke /ads/frame.html?slot=...,
+// halaman milik situs yang berisi kode unit Adsterra. Alasannya:
+// - Adsterra memuat kreatif dari domain yang berganti-ganti. Dengan srcdoc
+//   (sebelumnya) iframe mewarisi CSP halaman utama, sehingga iklan dari domain
+//   yang tidak ada di daftar terblokir dan slot kadang tampil kosong/rusak.
+//   /ads/frame.html punya CSP longgar sendiri; CSP halaman utama tetap ketat.
+// - sandbox tanpa allow-same-origin: iklan berjalan di origin "null", tidak
+//   bisa membaca localStorage/cookie situs. Tanpa allow-top-navigation: iklan
+//   tidak bisa mengalihkan halaman. allow-popups agar klik iklan membuka tab.
+// - atOptions/document.write Banner tetap terisolasi per slot, dan refresh
+//   aman karena iframe lama diganti dengan yang baru.
 //
-interface BannerAdConfig {
-  key: string;
-  width: number;
-  height: number;
-}
+// Frame mengirim { type: 'mp-ad', height } dan { type: 'mp-ad', empty: true };
+// slot tanpa iklan (no-fill/terblokir) disembunyikan, bukan tampil kosong.
+//
+import {
+  areAdsEnabledAtRuntime,
+  loadRuntimeConfig,
+} from './utils/disabled-tools.js';
 
-// Domain & key unit Banner dari dashboard Adsterra (dicek 2026-10-15).
-const AD_SCRIPT_HOST = 'www.highrevenueformat.com';
-
-const BANNER_DESKTOP: BannerAdConfig = {
-  key: 'cb9519efa134a074c24729247bd01d28',
-  width: 728,
-  height: 90,
-};
-const BANNER_MOBILE: BannerAdConfig = {
-  key: '18e6b47cdb4a2baf20786ac4c6e68b1a',
-  width: 320,
-  height: 50,
-};
-const BANNER_MODAL: BannerAdConfig = {
-  key: 'eed0030c47d35648d0bbc0f7431e3569',
-  width: 300,
-  height: 250,
-};
-
-// Unit Native Banner (4:1, font-size/color inherit). Format ini tidak
-// memakai atOptions/document.write -- cukup skrip async yang mencari div
-// dengan id ini dan merender kreatifnya di situ, jadi aman dirender
-// langsung di dokumen utama (tidak perlu isolasi iframe seperti Banner).
-const NATIVE_BANNER = {
-  containerId: 'container-b1d6750fe7f7752de90a6bd2ce41ec96',
-  scriptSrc:
-    'https://pl31840967.profitableratecpmnetwork.com/b1d6750fe7f7752de90a6bd2ce41ec96/invoke.js',
-};
-
-// Saklar utama iklan. Kode Adsterra tetap disimpan, tapi tidak aktif kecuali
-// build memakai VITE_ADS_ENABLED=true (lihat script `build:mypdf:ads`).
+// Saklar iklan:
+// 1. Build: VITE_ADS_ENABLED=true (aktif di `build:mypdf`; `build:mypdf:noads`
+//    membuat build tanpa iklan).
+// 2. Runtime: "adsEnabled" di /config.json. Di Cloudflare Pages nilainya
+//    diambil dari kunci KV ADS_ENABLED (functions/config.json.js), sehingga
+//    iklan bisa dimatikan dari dasbor Cloudflare tanpa build ulang, mis. bila
+//    iklan ilegal muncul (lihat cloudflare/ADS-SWITCH.md). config.json
+//    diambil dengan cache: 'no-cache'.
+// Halaman ber-COEP (crossOriginIsolated, mis. konversi Office) tidak memuat
+// iklan: browser memblokir iframe pihak ketiga di dalamnya.
 const ADS_ENABLED = import.meta.env.VITE_ADS_ENABLED === 'true';
+const adsActive = () =>
+  ADS_ENABLED && areAdsEnabledAtRuntime() && !window.crossOriginIsolated;
 
+// Cloudflare Pages mengalihkan /ads/frame.html ke /ads/frame (308); di
+// produksi langsung pakai URL tanpa ekstensi agar tidak ada round-trip ekstra.
+const FRAME_URL = `${import.meta.env.BASE_URL}ads/${
+  import.meta.env.DEV ? 'frame.html' : 'frame'
+}`;
+const FRAME_SANDBOX =
+  'allow-scripts allow-popups allow-popups-to-escape-sandbox';
 const MOBILE_MEDIA_QUERY = '(max-width: 640px)';
 const PAGE_AD_SLOT_IDS = ['ad-slot-top', 'ad-slot-bottom'] as const;
 const SUCCESS_AD_SLOT_ID = 'alert-ad-slot';
 
-function bannerIframeDoc(cfg: BannerAdConfig): string {
-  const atOptions = JSON.stringify({
-    key: cfg.key,
-    format: 'iframe',
-    height: cfg.height,
-    width: cfg.width,
-    params: {},
-  });
-  return (
-    '<!DOCTYPE html><html><head><style>' +
-    'body{margin:0;padding:0;display:flex;align-items:center;justify-content:center;}' +
-    '</style></head><body>' +
-    `<script>atOptions=${atOptions};</script>` +
-    `<script src="//${AD_SCRIPT_HOST}/${cfg.key}/invoke.js"></script>` +
-    '</body></html>'
-  );
+interface FrameSpec {
+  slot: string;
+  width: number | '100%';
+  height: number;
 }
 
-function renderBanner(el: HTMLElement, cfg: BannerAdConfig): void {
+function frameSpecFor(slotId: string): FrameSpec | null {
+  if (slotId === 'ad-slot-top') {
+    return window.matchMedia(MOBILE_MEDIA_QUERY).matches
+      ? { slot: 'top-mobile', width: 320, height: 50 }
+      : { slot: 'top-desktop', width: 728, height: 90 };
+  }
+  if (slotId === SUCCESS_AD_SLOT_ID) {
+    return { slot: 'modal', width: 300, height: 250 };
+  }
+  if (slotId === 'ad-slot-bottom') {
+    // Tinggi Native Banner bergantung kreatif; disesuaikan lewat pesan frame.
+    // Tinggi awal 1 px: iframe lazy setinggi 0 bisa tidak pernah dimuat.
+    return { slot: 'native', width: '100%', height: 1 };
+  }
+  return null;
+}
+
+// iframe aktif -> elemen slot, untuk mencocokkan event.source pesan frame.
+const activeFrames = new Map<
+  Window,
+  { el: HTMLElement; iframe: HTMLIFrameElement }
+>();
+
+function hideSlot(el: HTMLElement): void {
+  el.innerHTML = '';
+  if (el.id === SUCCESS_AD_SLOT_ID) el.classList.add('hidden');
+  else el.classList.remove('mp-ad-slot--on');
+}
+
+window.addEventListener('message', (event) => {
+  const data = event.data as {
+    type?: string;
+    height?: number;
+    empty?: boolean;
+  };
+  if (!data || data.type !== 'mp-ad' || !event.source) return;
+  const entry = activeFrames.get(event.source as Window);
+  if (!entry) return;
+  if (data.empty) {
+    activeFrames.delete(event.source as Window);
+    hideSlot(entry.el);
+  } else if (typeof data.height === 'number' && data.height > 0) {
+    entry.iframe.style.height = `${Math.min(data.height, 1200)}px`;
+  }
+});
+
+function renderFrame(el: HTMLElement, spec: FrameSpec): void {
+  for (const [win, entry] of activeFrames) {
+    if (entry.el === el) activeFrames.delete(win);
+  }
+  const label = document.createElement('span');
+  label.className = 'mp-ad-label';
+  label.textContent = 'Iklan';
+
   const iframe = document.createElement('iframe');
-  iframe.srcdoc = bannerIframeDoc(cfg);
-  iframe.width = String(cfg.width);
-  iframe.height = String(cfg.height);
-  iframe.style.border = '0';
-  iframe.style.maxWidth = '100%';
+  iframe.src = `${FRAME_URL}?slot=${spec.slot}`;
+  iframe.setAttribute('sandbox', FRAME_SANDBOX);
   iframe.setAttribute('scrolling', 'no');
   iframe.setAttribute('loading', 'lazy');
+  iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
   iframe.title = 'Iklan';
-  el.appendChild(iframe);
-}
+  iframe.style.border = '0';
+  iframe.style.maxWidth = '100%';
+  iframe.style.width = spec.width === '100%' ? '100%' : `${spec.width}px`;
+  iframe.style.height = `${spec.height}px`;
 
-function renderTopBanner(el: HTMLElement): void {
-  const isMobile = window.matchMedia(MOBILE_MEDIA_QUERY).matches;
-  renderBanner(el, isMobile ? BANNER_MOBILE : BANNER_DESKTOP);
-}
-
-function renderNativeBanner(el: HTMLElement): void {
-  const container = document.createElement('div');
-  container.id = NATIVE_BANNER.containerId;
-  el.appendChild(container);
-
-  const script = document.createElement('script');
-  script.async = true;
-  script.dataset.cfasync = 'false';
-  script.src = NATIVE_BANNER.scriptSrc;
-  el.appendChild(script);
-}
-
-function renderAdCreative(el: HTMLElement, slotId: string): void {
-  if (slotId === 'ad-slot-top') {
-    renderTopBanner(el);
-  } else if (slotId === SUCCESS_AD_SLOT_ID) {
-    renderBanner(el, BANNER_MODAL);
-  } else if (slotId === 'ad-slot-bottom') {
-    renderNativeBanner(el);
+  el.append(label, iframe);
+  if (iframe.contentWindow) {
+    activeFrames.set(iframe.contentWindow, { el, iframe });
   }
 }
 
 function loadSlot(id: string): void {
-  if (!ADS_ENABLED) return;
+  if (!adsActive()) return;
   const el = document.getElementById(id);
-  if (!el) return;
+  const spec = frameSpecFor(id);
+  if (!el || !spec) return;
   el.classList.add('mp-ad-slot--on');
   el.innerHTML = '';
-  renderAdCreative(el, id);
+  renderFrame(el, spec);
 }
 
 /** Dipanggil sekali saat halaman selesai dimuat. */
-export function initPageAdSlots(): void {
+export async function initPageAdSlots(): Promise<void> {
+  if (!ADS_ENABLED) return;
+  // Biasanya sudah dimuat oleh init() di main.ts; dipanggil lagi di sini agar
+  // saklar runtime tetap berlaku bila urutan pemanggilan berubah.
+  await loadRuntimeConfig();
   PAGE_AD_SLOT_IDS.forEach(loadSlot);
 }
 
@@ -138,7 +154,7 @@ export function refreshPageAdSlots(): void {
 
 /** Tampilkan dan muat slot iklan di dalam modal alert (hanya untuk sukses). */
 export function showSuccessAdSlot(): void {
-  if (!ADS_ENABLED) return;
+  if (!adsActive()) return;
   const el = document.getElementById(SUCCESS_AD_SLOT_ID);
   if (!el) return;
   el.classList.remove('hidden');
@@ -151,4 +167,32 @@ export function hideSuccessAdSlot(): void {
   if (!el) return;
   el.classList.add('hidden');
   el.innerHTML = '';
+}
+
+// Slot iklan sukses untuk halaman alat tanpa alert-modal bersama (mis.
+// json-to-pdf, pdf-multi-tool, form-creator, bookmark, add-stamps) yang
+// memakai pesan status atau modal sendiri. Satu slot per halaman, disisipkan
+// tepat setelah elemen pesan sukses; memakai unit dan iframe sandbox yang sama
+// dengan slot di alert-modal.
+const INLINE_SUCCESS_AD_ID = 'mp-inline-success-ad';
+
+/** Tampilkan iklan sukses tepat setelah `anchor` (pesan/elemen sukses). */
+export function showInlineSuccessAd(anchor: Element | null): void {
+  if (!anchor || !adsActive()) return;
+  let el = document.getElementById(INLINE_SUCCESS_AD_ID);
+  if (!el) {
+    el = document.createElement('div');
+    el.id = INLINE_SUCCESS_AD_ID;
+    el.className = 'mp-ad-slot';
+  }
+  anchor.insertAdjacentElement('afterend', el);
+  el.classList.add('mp-ad-slot--on');
+  el.innerHTML = '';
+  renderFrame(el, { slot: 'modal', width: 300, height: 250 });
+}
+
+/** Sembunyikan iklan sukses inline (mis. saat pesan berganti ke error). */
+export function hideInlineSuccessAd(): void {
+  const el = document.getElementById(INLINE_SUCCESS_AD_ID);
+  if (el) hideSlot(el);
 }

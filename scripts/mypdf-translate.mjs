@@ -40,6 +40,7 @@ if (process.env.MYPDF !== 'true' || !LANG) {
 }
 
 const SKIP_DIRS = new Set([
+  'ads', // /ads/frame.html: halaman iframe iklan, bukan halaman situs
   'assets',
   'docs',
   'pdfjs-viewer',

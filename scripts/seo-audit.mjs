@@ -16,6 +16,7 @@ const HOST = new URL(SITE_URL).hostname;
 
 const NOINDEX_ALLOWLIST = new Set(['404.html', 'wasm-settings.html']);
 const SKIP_DIRS = new Set([
+  'ads', // /ads/frame.html: halaman iframe iklan, bukan halaman situs
   'assets',
   'docs',
   'pdfjs-viewer',
@@ -288,7 +289,10 @@ function auditHtml(file, knownSlugs) {
       }
     }
 
-    if (html.includes('faq-d') && !html.includes('"FAQPage"')) {
+    // Cari elemen yang benar-benar memakai kelas faq-d, bukan sekadar teks
+    // "faq-d": beranda meng-inline CSS yang memuat selektor .faq-d.
+    const hasVisibleFaq = /<[a-z]+\b[^>]*\bclass="[^"]*\bfaq-d\b/i.test(html);
+    if (hasVisibleFaq && !html.includes('"FAQPage"')) {
       fail(
         'faq-schema',
         `${file.rel}: visible FAQ section without FAQPage JSON-LD`

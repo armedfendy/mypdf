@@ -13,13 +13,18 @@ function normalizeToolId(toolId: string): string {
 const disabledToolsSet = new Set<string>(
   __DISABLED_TOOLS__.map(normalizeToolId)
 );
-let runtimeConfigLoaded = false;
+let runtimeConfigPromise: Promise<void> | null = null;
 let editorDisabledCategories: string[] = [];
+let runtimeAdsEnabled = true;
 
-export async function loadRuntimeConfig(): Promise<void> {
-  if (runtimeConfigLoaded) return;
-  runtimeConfigLoaded = true;
+// Satu promise bersama: pemanggil kedua (mis. ads.ts) menunggu fetch yang
+// sama selesai, bukan langsung kembali sebelum config terbaca.
+export function loadRuntimeConfig(): Promise<void> {
+  runtimeConfigPromise ??= fetchRuntimeConfig();
+  return runtimeConfigPromise;
+}
 
+async function fetchRuntimeConfig(): Promise<void> {
   try {
     const response = await fetch(`${import.meta.env.BASE_URL}config.json`, {
       cache: 'no-cache',
@@ -39,6 +44,9 @@ export async function loadRuntimeConfig(): Promise<void> {
         }
       }
     }
+    if (config.adsEnabled === false) {
+      runtimeAdsEnabled = false;
+    }
     if (Array.isArray(config.editorDisabledCategories)) {
       editorDisabledCategories = config.editorDisabledCategories.filter(
         (c): c is string => typeof c === 'string'
@@ -47,6 +55,11 @@ export async function loadRuntimeConfig(): Promise<void> {
   } catch (err) {
     console.warn('[LOAD_RUNTIME_CONFIG] Skipped runtime config:', err);
   }
+}
+
+/** false bila config.json berisi "adsEnabled": false. */
+export function areAdsEnabledAtRuntime(): boolean {
+  return runtimeAdsEnabled;
 }
 
 export function isToolDisabled(toolId: string): boolean {

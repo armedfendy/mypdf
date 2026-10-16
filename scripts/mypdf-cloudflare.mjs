@@ -116,6 +116,12 @@ const staticPaths = fs
   .readdirSync(DIST_DIR, { withFileTypes: true })
   .filter((e) => !e.name.startsWith('_'))
   .filter((e) => e.isDirectory() || !e.name.endsWith('.html'))
+  // Berkas .br/.gz hasil build dihapus di langkah 4; tanpa filter ini setiap
+  // berkas itu menjadi satu aturan dan _headers melewati batas Cloudflare.
+  .filter((e) => e.isDirectory() || !/\.(br|gz)$/.test(e.name))
+  // Halaman iklan tidak boleh ber-COEP: kreatif Adsterra adalah iframe
+  // pihak ketiga tanpa COEP/CORP dan akan diblokir.
+  .filter((e) => e.name !== 'ads')
   .map((e) => (e.isDirectory() ? `/${e.name}/*` : `/${e.name}`))
   .sort();
 // Satu blok per path: Cloudflare tidak menggabungkan dua blok dengan path
@@ -136,17 +142,44 @@ isolatedPages.forEach((page) => {
   addRule(`/${page}.html`, isolationHeaders);
 });
 staticPaths.forEach((p) => addRule(p, isolationHeaders));
+// /ads/frame.html (lihat src/js/ads.ts): CSP longgar khusus halaman iklan,
+// karena Adsterra memuat skrip, iframe, dan gambar dari domain yang
+// berganti-ganti. Halaman ini hanya dimuat dalam <iframe sandbox> tanpa
+// allow-same-origin, dan frame-ancestors 'self' mencegah situs lain
+// menyematkannya. "! Header" melepas CSP ketat dari blok /* di atas.
+addRule('/ads/*', [
+  '  ! Content-Security-Policy',
+  "  Content-Security-Policy: default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'",
+  `  ${CACHE_REVALIDATE}`,
+]);
 Object.entries(cacheRules).forEach(([p, h]) => addRule(p, [`  ${h}`]));
 
+// Cloudflare Pages hanya memakai 100 aturan pertama di _headers; sisanya
+// diabaikan tanpa peringatan (sebelumnya /ads/* di urutan 197 tidak berlaku).
+// /ads/* didahulukan, dan build gagal bila batas terlampaui.
+const MAX_HEADER_RULES = 100;
+const orderedRules = [...rules].sort(
+  ([a], [b]) => Number(b === '/ads/*') - Number(a === '/ads/*')
+);
+const ruleCount = 1 + orderedRules.length;
+if (ruleCount > MAX_HEADER_RULES) {
+  console.error(
+    `[mypdf-cloudflare] _headers berisi ${ruleCount} aturan, melebihi batas ` +
+      `Cloudflare Pages (${MAX_HEADER_RULES}); aturan setelahnya diabaikan.`
+  );
+  process.exit(1);
+}
 const headers = [
   '# Dibuat otomatis oleh scripts/mypdf-cloudflare.mjs. Jangan diedit manual.',
   '/*',
   ...securityHeaders,
   '',
-  ...[...rules].flatMap(([p, lines]) => [p, ...lines, '']),
+  ...orderedRules.flatMap(([p, lines]) => [p, ...lines, '']),
 ].join('\n');
 fs.writeFileSync(path.join(DIST_DIR, '_headers'), headers);
-console.log('[mypdf-cloudflare] dist/_headers ditulis.');
+console.log(
+  `[mypdf-cloudflare] dist/_headers ditulis (${ruleCount}/${MAX_HEADER_RULES} aturan).`
+);
 
 // 2. _redirects
 const redirects = [

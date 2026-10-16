@@ -13,6 +13,7 @@ import {
 } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { initI18n, t } from '../i18n/i18n';
+import { showInlineSuccessAd, hideInlineSuccessAd } from '../ads.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/pdf-to-json.worker.js'
@@ -43,10 +44,13 @@ function showStatus(
         : 'bg-blue-900 text-blue-200'
   }`;
   statusMessage.classList.remove('hidden');
+  if (type === 'success') showInlineSuccessAd(statusMessage);
+  else hideInlineSuccessAd();
 }
 
 function hideStatus() {
   statusMessage.classList.add('hidden');
+  hideInlineSuccessAd();
 }
 
 function updateFileList() {

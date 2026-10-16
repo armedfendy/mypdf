@@ -216,7 +216,7 @@
     },
     "analytics": {
       "question": "Apakah Anda menggunakan cookie atau analitik?",
-      "answer": "File Anda tidak pernah dilacak atau dikirim ke mana pun. Agar tetap gratis, mypdf.id dibiayai iklan Google AdSense dan memakai statistik kunjungan anonim. Iklan dan statistik tersebut dapat menggunakan cookie. Selengkapnya ada di halaman Kebijakan Privasi."
+      "answer": "File Anda tidak pernah dilacak atau dikirim ke mana pun. Agar tetap gratis, mypdf.id dibiayai iklan dari jaringan Adsterra dan memakai statistik kunjungan anonim dari Cloudflare Web Analytics, yang tidak menggunakan cookie. Iklan dimuat di bingkai terpisah dan dapat menggunakan cookie. Selengkapnya ada di halaman Kebijakan Privasi."
     }
   },
   "testimonials": {

@@ -6,6 +6,7 @@ import {
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
 import { createIcons, icons } from 'lucide';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { showInlineSuccessAd, hideInlineSuccessAd } from '../ads.js';
 
 let selectedFile: File | null = null;
 let viewerIframe: HTMLIFrameElement | null = null;
@@ -145,6 +146,7 @@ async function loadPdfInViewer(file: File) {
 
   if (viewerCard) {
     viewerCard.classList.remove('hidden');
+    hideInlineSuccessAd();
   }
 
   // Clear existing iframe and blob URL
@@ -325,7 +327,10 @@ if (saveStampedBtn) {
           result
             .then(() => {
               // Reset state after successful export
-              setTimeout(() => resetState(), 500);
+              setTimeout(() => {
+                resetState();
+                showInlineSuccessAd(document.getElementById('drop-zone'));
+              }, 500);
             })
             .catch((err: unknown) => {
               console.error(

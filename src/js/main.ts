@@ -1160,7 +1160,7 @@ const init = async () => {
   // Rewrite links after all dynamic content is fully loaded
   rewriteLinks();
 
-  initPageAdSlots();
+  void initPageAdSlots();
 };
 
 // Ditunda sampai setelah frame pertama tergambar: fetch locale/config dan

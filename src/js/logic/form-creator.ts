@@ -40,6 +40,7 @@ import {
 import { extractExistingFields as extractExistingPdfFields } from './form-creator-extraction.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { showInlineSuccessAd, hideInlineSuccessAd } from '../ads.js';
 
 let fields: FormField[] = [];
 let selectedField: FormField | null = null;
@@ -2708,10 +2709,12 @@ downloadBtn.addEventListener('click', async () => {
       'Your PDF has been downloaded successfully.',
       'info',
       () => {
+        hideInlineSuccessAd();
         resetToInitial();
       },
       'Okay'
     );
+    showInlineSuccessAd(errorModalMessage);
   } catch (error) {
     console.error('Error generating PDF:', error);
     const errorMessage = (error as Error).message;
@@ -3127,6 +3130,7 @@ function showModal(
 
   modalCloseCallback = onClose || null;
   errorModal.classList.remove('hidden');
+  hideInlineSuccessAd();
 }
 
 if (errorModalClose) {
