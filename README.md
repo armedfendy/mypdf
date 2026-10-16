@@ -1,22 +1,18 @@
 <p align="center"><img src="public/images/favicon-no-bg.svg" width="80"></p>
-<h1 align="center">BentoPDF</h1>
-<p align="center"><sub>Supported by</sub></p>
+<h1 align="center">mypdf.id</h1>
 <p align="center">
-  <a href="https://vercel.com/open-source-program">
-    <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge-2026.svg" height="30" />
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://www.digitalocean.com/?refcode=d93c189ef6d0&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge">
-    <img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%203.svg" alt="DigitalOcean Referral Badge" height="44">
-  </a>
+  Toolkit PDF gratis yang berjalan sepenuhnya di browser. File Anda tidak pernah diunggah.<br />
+  <a href="https://mypdf.id">https://mypdf.id</a>
 </p>
 
-**BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that is self-hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
-
-[![Docker Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Falam00000%2Fbentopdf%2Fbadges%2Fdocker-downloads.json&cacheSeconds=3600)](https://github.com/alam00000/bentopdf/pkgs/container/bentopdf-simple) [![Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?logo=kofi&style=flat-square)](https://ko-fi.com/alio01) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
-[![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ff69b4)](https://github.com/sponsors/alam00000)
-
 ![mypdf.id](.github/readme/mypdf-dashboard.png)
+
+> [!NOTE]
+> **mypdf.id adalah versi modifikasi dari [BentoPDF](https://github.com/alam00000/bentopdf)**, dimodifikasi sejak 8 Oktober 2026 oleh pengelola mypdf.id. Karya ini didistribusikan di bawah lisensi [AGPL-3.0](LICENSE), dan kode sumber lengkap versi yang berjalan di https://mypdf.id tersedia di repositori ini. mypdf.id bukan produk resmi BentoPDF dan tidak berafiliasi dengan pengembangnya.
+>
+> Perubahan utama: antarmuka dan konten berbahasa Indonesia, branding mypdf.id, halaman panduan, iklan Adsterra di iframe terisolasi, optimasi performa, dan deployment di Cloudflare Pages. Riwayat lengkap perubahan tersedia di riwayat git repositori ini.
+>
+> Dokumentasi teknis di bawah ini berasal dari BentoPDF (upstream) dan sebagian besar menjelaskan proyek tersebut.
 
 ---
 
@@ -62,7 +58,7 @@
 
 [![Documentation](https://img.shields.io/badge/Docs-VitePress-646cff?style=for-the-badge&logo=vite&logoColor=white)](https://bentopdf.com/docs/)
 
-Visit our [Documentation](https://bentopdf.com/docs/) for:
+Visit the upstream [BentoPDF Documentation](https://bentopdf.com/docs/) for:
 
 - **Getting Started** guide
 - **Tools Reference** (50+ tools)
@@ -74,22 +70,9 @@ Visit our [Documentation](https://bentopdf.com/docs/) for:
 
 ## 📜 Licensing
 
-BentoPDF is **dual-licensed** to fit your needs:
+**mypdf.id** is distributed under the **AGPL-3.0** license (see [LICENSE](LICENSE)). The complete source code of the version running at https://mypdf.id, including all mypdf.id modifications, is published in this repository.
 
-| License        | Best For                                     | Price              |
-| -------------- | -------------------------------------------- | ------------------ |
-| **AGPL-3.0**   | Open-source projects with public source code | **Free**           |
-| **Commercial** | Proprietary / closed-source applications     | **$79** (lifetime) |
-
-<p align="center">
-  <a href="https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd">
-    <img src="https://img.shields.io/badge/🚀_Get_Commercial_License-$79_Lifetime-6366f1?style=for-the-badge&labelColor=1f2937" alt="Get Commercial License">
-  </a>
-</p>
-
-> **One-time purchase** · **Unlimited devices & users** · **Lifetime updates** · **No AGPL obligations**
-
-📖 For more details, see our [Licensing Page](https://bentopdf.com/licensing.html)
+The upstream project, BentoPDF, is dual-licensed by its developer: AGPL-3.0, or a commercial license for proprietary / closed-source use. A commercial license is sold by BentoPDF, not by mypdf.id. See the [BentoPDF licensing page](https://bentopdf.com/licensing.html) for details.
 
 ### AGPL Components (Pre-configured via CDN)
 
