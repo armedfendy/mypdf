@@ -404,8 +404,23 @@ const runtime = `/* Dibuat otomatis oleh scripts/mypdf-translate.mjs. Jangan die
     const w = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT);
     for (let n = w.nextNode(); n; n = w.nextNode()) n.nodeType === 3 ? textNode(n) : element(n);
   };
+  // Penelusuran awal seluruh body ditunda sampai setelah paint pertama dan
+  // dipecah per ±20 md: teks HTML statis sudah diterjemahkan saat build, dan
+  // menelusurinya sekaligus sebelum paint menunda FCP/LCP di HP. Perubahan DOM
+  // sejak awal tetap ditangani MutationObserver di bawah.
+  const walkLater = (root) => {
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT);
+    const step = () => {
+      const end = performance.now() + 20;
+      for (let n = w.nextNode(); n; n = w.nextNode()) {
+        n.nodeType === 3 ? textNode(n) : element(n);
+        if (performance.now() > end) return setTimeout(step, 0);
+      }
+    };
+    requestAnimationFrame(() => setTimeout(step, 0));
+  };
   const start = () => {
-    walk(document.body);
+    walkLater(document.body);
     new MutationObserver((muts) => {
       for (const m of muts) {
         if (m.type === 'characterData') textNode(m.target);

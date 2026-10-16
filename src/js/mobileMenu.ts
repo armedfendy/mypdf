@@ -1,4 +1,3 @@
-import '@phosphor-icons/web/regular';
 import './searchPalette.js';
 
 interface InstallPromptEvent extends Event {

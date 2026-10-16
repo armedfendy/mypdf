@@ -362,12 +362,23 @@ function transform(html, pageKey) {
         dom.window.Node.DOCUMENT_POSITION_FOLLOWING
       )
   );
+  // Beacon Cloudflare Web Analytics disisipkan Cloudflare saat halaman dikirim
+  // dan berjalan sebelum paint pertama; preconnect memangkas waktu koneksinya.
+  let insights = head.querySelector(
+    'link[rel="preconnect"][href="https://static.cloudflareinsights.com"]'
+  );
+  if (!insights) {
+    insights = document.createElement('link');
+    insights.setAttribute('rel', 'preconnect');
+    insights.setAttribute('href', 'https://static.cloudflareinsights.com');
+  }
   const ordered = [
     head.querySelector('meta[charset]'),
     head.querySelector('meta[name="viewport"]'),
     head.querySelector('script[data-mp-theme]'),
     ...movableSheets,
     head.querySelector('link[rel="preload"][href*="Geist-Variable"]'),
+    insights,
   ].filter(Boolean);
   for (const el of ordered.reverse()) head.insertBefore(el, head.firstChild);
 
