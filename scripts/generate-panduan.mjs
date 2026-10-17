@@ -238,6 +238,27 @@ ${scripts}
 `;
 }
 
+// Teks yang dicocokkan kotak pencarian di /panduan/ (src/js/panduan-search.ts):
+// judul, ringkasan, subjudul artikel, dan pertanyaan FAQ. Isi artikel lengkap
+// sengaja tidak disertakan agar halaman indeks tetap ringan.
+function searchText({ meta, body }) {
+  const headings = [...body.matchAll(/^#{2,3}\s+(.+)$/gm)].map((m) => m[1]);
+  const faqs = (meta.faqs || []).map((f) => f.q);
+  return [
+    meta.h1,
+    meta.breadcrumb,
+    meta.card,
+    meta.description,
+    ...headings,
+    ...faqs,
+  ]
+    .join(' ')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`#[\]()]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function renderIndex(posts) {
   const url = `${SITE_URL}/panduan/`;
   const title = `Panduan PDF Praktis | ${NAME}`;
@@ -245,13 +266,14 @@ function renderIndex(posts) {
     'Panduan langkah demi langkah memakai PDF: edit, tanda tangan, kecilkan ukuran, gabung, dan konversi Word. Semua tanpa upload file ke server.';
   const cards = posts
     .map(
-      ({ slug, meta }) => `        <a
-          href="/panduan/${slug}"
+      (post) => `        <a
+          href="/panduan/${post.slug}"
+          data-search="${escapeHtml(searchText(post))}"
           class="block bg-gray-800 border border-gray-700 rounded-xl p-6 hover:border-indigo-500 transition-colors"
         >
-          <h2 class="text-xl font-bold text-white mb-2">${escapeHtml(meta.h1)}</h2>
-          <p class="text-gray-400 mb-3">${escapeHtml(meta.card)}</p>
-          <span class="text-sm text-gray-500">${formatDate(meta.updated || meta.date)}</span>
+          <h2 class="text-xl font-bold text-white mb-2">${escapeHtml(post.meta.h1)}</h2>
+          <p class="text-gray-400 mb-3">${escapeHtml(post.meta.card)}</p>
+          <span class="text-sm text-gray-500">${formatDate(post.meta.updated || post.meta.date)}</span>
         </a>`
     )
     .join('\n\n');
@@ -275,13 +297,39 @@ ${headCommon(title, description, url, 'website')}
     </section>
 
     <section class="max-w-3xl mx-auto px-4 pb-16">
-      <div class="space-y-6">
+      <form role="search" class="mb-6" action="/panduan/" method="get">
+        <label for="panduan-search" class="sr-only">Cari panduan</label>
+        <div class="relative">
+          <i
+            data-lucide="search"
+            class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+          ></i>
+          <input
+            id="panduan-search"
+            name="q"
+            type="search"
+            placeholder="Cari panduan, mis. tanda tangan, kecilkan, CPNS..."
+            autocomplete="off"
+            spellcheck="false"
+            class="w-full bg-gray-800 border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500"
+          />
+        </div>
+        <p id="panduan-search-count" class="text-sm text-gray-400 mt-2" aria-live="polite"></p>
+      </form>
+
+      <div id="panduan-list" class="space-y-6">
 ${cards}
       </div>
+
+      <p id="panduan-search-empty" class="text-gray-400" hidden>
+        Tidak ada panduan yang cocok. Coba kata lain, atau cari alatnya lewat
+        menu <a href="/tools" class="${LINK_CLASS}">Semua Alat</a>.
+      </p>
     </section>
 
     {{> footer }}
 ${scripts}
+    <script type="module" src="/src/js/panduan-search.ts"></script>
 
     <script type="application/ld+json">
       ${JSON.stringify(
