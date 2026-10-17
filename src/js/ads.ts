@@ -6,9 +6,16 @@
 //   (sebelumnya) iframe mewarisi CSP halaman utama, sehingga iklan dari domain
 //   yang tidak ada di daftar terblokir dan slot kadang tampil kosong/rusak.
 //   /ads/frame.html punya CSP longgar sendiri; CSP halaman utama tetap ketat.
-// - sandbox tanpa allow-same-origin: iklan berjalan di origin "null", tidak
-//   bisa membaca localStorage/cookie situs. Tanpa allow-top-navigation: iklan
-//   tidak bisa mengalihkan halaman. allow-popups agar klik iklan membuka tab.
+// - Di produksi frame disajikan dari origin terpisah (VITE_ADS_FRAME_ORIGIN,
+//   mis. https://ads.mypdf.id) dengan sandbox allow-same-origin. Skrip
+//   Adsterra butuh localStorage/cookie; di origin "null" (sandbox tanpa
+//   allow-same-origin) skripnya batal diam-diam dan iklan tidak pernah tayang.
+//   Karena origin-nya berbeda dari situs, iklan tetap tidak bisa membaca DOM,
+//   localStorage, atau cookie situs. Bila origin belum di-set (dev), frame
+//   memakai origin situs dan allow-same-origin TIDAK diberikan, sebab
+//   kombinasi itu memungkinkan frame melepas sandbox-nya sendiri.
+//   Tanpa allow-top-navigation: iklan tidak bisa mengalihkan halaman.
+//   allow-popups agar klik iklan membuka tab.
 // - atOptions/document.write Banner tetap terisolasi per slot, dan refresh
 //   aman karena iframe lama diganti dengan yang baru.
 //
@@ -34,13 +41,29 @@ const ADS_ENABLED = import.meta.env.VITE_ADS_ENABLED === 'true';
 const adsActive = () =>
   ADS_ENABLED && areAdsEnabledAtRuntime() && !window.crossOriginIsolated;
 
+function frameOrigin(): string | null {
+  const raw = import.meta.env.VITE_ADS_FRAME_ORIGIN;
+  if (!raw) return null;
+  try {
+    const origin = new URL(raw).origin;
+    return origin === window.location.origin ? null : origin;
+  } catch {
+    return null;
+  }
+}
+const FRAME_ORIGIN = frameOrigin();
+
 // Cloudflare Pages mengalihkan /ads/frame.html ke /ads/frame (308); di
 // produksi langsung pakai URL tanpa ekstensi agar tidak ada round-trip ekstra.
-const FRAME_URL = `${import.meta.env.BASE_URL}ads/${
+const FRAME_URL = `${FRAME_ORIGIN ?? ''}${import.meta.env.BASE_URL}ads/${
   import.meta.env.DEV ? 'frame.html' : 'frame'
 }`;
-const FRAME_SANDBOX =
-  'allow-scripts allow-popups allow-popups-to-escape-sandbox';
+const FRAME_SANDBOX = `allow-scripts allow-popups allow-popups-to-escape-sandbox${
+  FRAME_ORIGIN ? ' allow-same-origin' : ''
+}`;
+// Frame yang gagal dimuat (mis. subdomain iklan belum aktif) tidak pernah
+// mengirim pesan; slotnya disembunyikan setelah batas ini sejak event load.
+const FRAME_SILENCE_MS = 12000;
 const MOBILE_MEDIA_QUERY = '(max-width: 640px)';
 const PAGE_AD_SLOT_IDS = ['ad-slot-top', 'ad-slot-bottom'] as const;
 const SUCCESS_AD_SLOT_ID = 'alert-ad-slot';
@@ -71,7 +94,7 @@ function frameSpecFor(slotId: string): FrameSpec | null {
 // iframe aktif -> elemen slot, untuk mencocokkan event.source pesan frame.
 const activeFrames = new Map<
   Window,
-  { el: HTMLElement; iframe: HTMLIFrameElement }
+  { el: HTMLElement; iframe: HTMLIFrameElement; heard: boolean }
 >();
 
 function hideSlot(el: HTMLElement): void {
@@ -87,8 +110,10 @@ window.addEventListener('message', (event) => {
     empty?: boolean;
   };
   if (!data || data.type !== 'mp-ad' || !event.source) return;
+  if (event.origin !== 'null' && event.origin !== FRAME_ORIGIN) return;
   const entry = activeFrames.get(event.source as Window);
   if (!entry) return;
+  entry.heard = true;
   if (data.empty) {
     activeFrames.delete(event.source as Window);
     hideSlot(entry.el);
@@ -113,13 +138,25 @@ function renderFrame(el: HTMLElement, spec: FrameSpec): void {
   iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
   iframe.title = 'Iklan';
   iframe.style.border = '0';
+  // Halaman induk bisa bertema gelap; bila color-scheme iframe berbeda dengan
+  // dokumen di dalamnya, Chrome melukis latar putih (kotak putih kosong).
+  iframe.style.colorScheme = 'normal';
   iframe.style.maxWidth = '100%';
   iframe.style.width = spec.width === '100%' ? '100%' : `${spec.width}px`;
   iframe.style.height = `${spec.height}px`;
 
   el.append(label, iframe);
-  if (iframe.contentWindow) {
-    activeFrames.set(iframe.contentWindow, { el, iframe });
+  const win = iframe.contentWindow;
+  if (win) {
+    const entry = { el, iframe, heard: false };
+    activeFrames.set(win, entry);
+    iframe.addEventListener('load', () => {
+      setTimeout(() => {
+        if (activeFrames.get(win) !== entry || entry.heard) return;
+        activeFrames.delete(win);
+        hideSlot(el);
+      }, FRAME_SILENCE_MS);
+    });
   }
 }
 

@@ -144,23 +144,42 @@ isolatedPages.forEach((page) => {
 staticPaths.forEach((p) => addRule(p, isolationHeaders));
 // /ads/frame.html (lihat src/js/ads.ts): CSP longgar khusus halaman iklan,
 // karena Adsterra memuat skrip, iframe, dan gambar dari domain yang
-// berganti-ganti. Halaman ini hanya dimuat dalam <iframe sandbox> tanpa
-// allow-same-origin, dan frame-ancestors 'self' mencegah situs lain
-// menyematkannya. "! Header" melepas CSP ketat dari blok /* di atas.
+// berganti-ganti. Di produksi frame ini disajikan dari subdomain iklan
+// (VITE_ADS_FRAME_ORIGIN) dan disematkan oleh situs utama, jadi
+// frame-ancestors memuat origin situs dan X-Frame-Options (SAMEORIGIN dari
+// blok /*) dilepas; situs lain tetap tidak bisa menyematkannya.
+// "! Header" melepas header dari blok /* di atas. no-transform mencegah
+// Cloudflare menyisipkan beacon Web Analytics dan skrip JS Detections ke
+// frame (keduanya gagal di frame dan tidak relevan untuk iklan).
+const SITE_URL = (process.env.SITE_URL || '').replace(/\/+$/, '');
+const ADS_FRAME_ORIGIN = originOf(process.env.VITE_ADS_FRAME_ORIGIN || '');
+const siteAncestors = SITE_URL
+  ? (() => {
+      const u = new URL(SITE_URL);
+      const bare = u.hostname.replace(/^www\./, '');
+      return [`${u.protocol}//${bare}`, `${u.protocol}//www.${bare}`];
+    })()
+  : [];
 addRule('/ads/*', [
   '  ! Content-Security-Policy',
-  "  Content-Security-Policy: default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'",
-  `  ${CACHE_REVALIDATE}`,
+  '  ! X-Frame-Options',
+  `  Content-Security-Policy: default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; object-src 'none'; base-uri 'none'; frame-ancestors ${["'self'", ...siteAncestors].join(' ')}`,
+  `  ${CACHE_REVALIDATE}, no-transform`,
 ]);
+// Subdomain iklan menyajikan deployment yang sama; selain /ads/* jangan
+// sampai diindeks sebagai duplikat situs.
+if (ADS_FRAME_ORIGIN) {
+  addRule(`${ADS_FRAME_ORIGIN}/*`, ['  X-Robots-Tag: noindex, nofollow']);
+}
 Object.entries(cacheRules).forEach(([p, h]) => addRule(p, [`  ${h}`]));
 
 // Cloudflare Pages hanya memakai 100 aturan pertama di _headers; sisanya
 // diabaikan tanpa peringatan (sebelumnya /ads/* di urutan 197 tidak berlaku).
-// /ads/* didahulukan, dan build gagal bila batas terlampaui.
+// /ads/* dan aturan subdomain iklan didahulukan, dan build gagal bila batas
+// terlampaui.
 const MAX_HEADER_RULES = 100;
-const orderedRules = [...rules].sort(
-  ([a], [b]) => Number(b === '/ads/*') - Number(a === '/ads/*')
-);
+const priority = (p) => (p === '/ads/*' || /^https?:/.test(p) ? 1 : 0);
+const orderedRules = [...rules].sort(([a], [b]) => priority(b) - priority(a));
 const ruleCount = 1 + orderedRules.length;
 if (ruleCount > MAX_HEADER_RULES) {
   console.error(

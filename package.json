@@ -8,7 +8,7 @@
     "dev": "vite",
     "dev:mypdf": "MYPDF=true VITE_LOCK_LANGUAGE=id VITE_DEFAULT_LANGUAGE=id VITE_BRAND_NAME=mypdf.id vite",
     "build": "node scripts/generate-blog.mjs && node scripts/generate-panduan.mjs && node scripts/generate-static-tool-links.mjs && node scripts/generate-sidebar-nav.mjs && node scripts/generate-lucide-subset.mjs && node scripts/generate-phosphor-subset.mjs && tsc && vite build && node scripts/enhance-seo-pages.mjs && NODE_OPTIONS='--max-old-space-size=3072' node scripts/generate-i18n-pages.mjs && node scripts/generate-sitemap.mjs && node scripts/mypdf-single-locale.mjs && node scripts/mypdf-translate.mjs && node scripts/mypdf-search-index.mjs && node scripts/mypdf-brand.mjs && node scripts/generate-security-headers.mjs && node scripts/mypdf-cloudflare.mjs && node scripts/seo-audit.mjs",
-    "build:mypdf": "VITE_ADS_ENABLED=true npm run build:mypdf:noads",
+    "build:mypdf": "VITE_ADS_ENABLED=true VITE_ADS_FRAME_ORIGIN=https://ads.mypdf.id npm run build:mypdf:noads",
     "build:mypdf:ads": "npm run build:mypdf",
     "build:mypdf:noads": "MYPDF=true DISABLE_GITHUB_STARS=true SITE_URL=https://mypdf.id VITE_LOCK_LANGUAGE=id VITE_DEFAULT_LANGUAGE=id VITE_BRAND_NAME=mypdf.id npm run build",
     "seo-audit": "node scripts/seo-audit.mjs",
