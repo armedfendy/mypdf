@@ -67,6 +67,12 @@ const FRAME_SILENCE_MS = 12000;
 const MOBILE_MEDIA_QUERY = '(max-width: 640px)';
 const PAGE_AD_SLOT_IDS = ['ad-slot-top', 'ad-slot-bottom'] as const;
 const SUCCESS_AD_SLOT_ID = 'alert-ad-slot';
+const INLINE_SUCCESS_AD_ID = 'mp-inline-success-ad';
+const INLINE_SUCCESS_SPEC: FrameSpec = {
+  slot: 'modal',
+  width: 300,
+  height: 250,
+};
 
 interface FrameSpec {
   slot: string;
@@ -98,6 +104,7 @@ const activeFrames = new Map<
 >();
 
 function hideSlot(el: HTMLElement): void {
+  rotation.delete(el);
   el.innerHTML = '';
   if (el.id === SUCCESS_AD_SLOT_ID) el.classList.add('hidden');
   else el.classList.remove('mp-ad-slot--on');
@@ -146,6 +153,7 @@ function renderFrame(el: HTMLElement, spec: FrameSpec): void {
   iframe.style.height = `${spec.height}px`;
 
   el.append(label, iframe);
+  scheduleRotation(el, spec);
   const win = iframe.contentWindow;
   if (win) {
     const entry = { el, iframe, heard: false };
@@ -158,6 +166,42 @@ function renderFrame(el: HTMLElement, spec: FrameSpec): void {
       }, FRAME_SILENCE_MS);
     });
   }
+}
+
+// Rotasi iklan: setiap slot yang sedang tampil (di halaman maupun di modal)
+// dimuat ulang lewat iframe baru ROTATE_MS setelah iklannya dimuat, tanpa
+// reload halaman dan tanpa melihat aktif/tidaknya pengguna. Hitungan per slot,
+// jadi iklan di modal yang baru dibuka tetap tampil penuh ROTATE_MS. Selama
+// tab tersembunyi rotasi ditahan (iklan tidak terlihat siapa pun); begitu tab
+// terlihat lagi, slot yang sudah lewat waktunya langsung diganti. Slot yang
+// disembunyikan (no-fill, modal ditutup) keluar dari rotasi.
+const ROTATE_MS = 30000;
+const ROTATE_CHECK_MS = 1000;
+const rotation = new Map<HTMLElement, { spec: FrameSpec; loadedAt: number }>();
+let rotateTimer: number | undefined;
+
+function rotateSlots(): void {
+  if (document.visibilityState !== 'visible') return;
+  if (!adsActive()) {
+    rotation.clear();
+    return;
+  }
+  const now = Date.now();
+  for (const [el, r] of rotation) {
+    if (!el.isConnected || el.closest('.hidden')) {
+      rotation.delete(el);
+      continue;
+    }
+    if (now - r.loadedAt < ROTATE_MS) continue;
+    el.innerHTML = '';
+    // Spesifikasi dihitung ulang: ukuran slot atas ikut lebar layar terkini.
+    renderFrame(el, frameSpecFor(el.id) ?? r.spec);
+  }
+}
+
+function scheduleRotation(el: HTMLElement, spec: FrameSpec): void {
+  rotation.set(el, { spec, loadedAt: Date.now() });
+  rotateTimer ??= window.setInterval(rotateSlots, ROTATE_CHECK_MS);
 }
 
 function loadSlot(id: string): void {
@@ -211,7 +255,6 @@ export function hideSuccessAdSlot(): void {
 // memakai pesan status atau modal sendiri. Satu slot per halaman, disisipkan
 // tepat setelah elemen pesan sukses; memakai unit dan iframe sandbox yang sama
 // dengan slot di alert-modal.
-const INLINE_SUCCESS_AD_ID = 'mp-inline-success-ad';
 
 /** Tampilkan iklan sukses tepat setelah `anchor` (pesan/elemen sukses). */
 export function showInlineSuccessAd(anchor: Element | null): void {
@@ -225,7 +268,7 @@ export function showInlineSuccessAd(anchor: Element | null): void {
   anchor.insertAdjacentElement('afterend', el);
   el.classList.add('mp-ad-slot--on');
   el.innerHTML = '';
-  renderFrame(el, { slot: 'modal', width: 300, height: 250 });
+  renderFrame(el, INLINE_SUCCESS_SPEC);
 }
 
 /** Sembunyikan iklan sukses inline (mis. saat pesan berganti ke error). */
