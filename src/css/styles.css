@@ -1932,6 +1932,8 @@ textarea::placeholder {
    Gelap dibuat lembut (bukan hitam pekat), lihat _local/design.md.
    ============================================================ */
 :root {
+  --mp-topbar-h: 3.5rem;
+  --mp-sidebar-w: 16.5rem;
   --mp-bg: #f5f7fa;
   --mp-surface: #ffffff;
   --mp-surface-2: #eef2f5;
@@ -2101,7 +2103,7 @@ html[data-theme='dark'] .mp-theme-toggle .mp-icon-moon {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  height: 3.5rem;
+  height: var(--mp-topbar-h);
   padding: 0 1rem;
   background: var(--mp-bg);
   border-bottom: 1px solid var(--mp-line);
@@ -2409,7 +2411,7 @@ html {
     display: none !important;
   }
   .mp-sidebar {
-    width: 16.5rem;
+    width: var(--mp-sidebar-w);
     transform: none;
     transition: none;
     box-shadow: none !important;
@@ -2418,7 +2420,7 @@ html {
     display: flex;
   }
   body:has(> .mp-sidebar) {
-    padding-left: 16.5rem;
+    padding-left: var(--mp-sidebar-w);
   }
   .mp-topbar {
     padding: 0 1.5rem;
