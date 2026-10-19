@@ -25,6 +25,17 @@
 #text-editor-app[hidden] {
   display: none;
 }
+/* Desktop: sisakan ruang untuk topbar dan sidebar mypdf, seperti alat lain */
+@media (min-width: 1024px) {
+  body:has(> .mp-sidebar) #text-editor-app {
+    top: var(--mp-topbar-h);
+    left: var(--mp-sidebar-w);
+  }
+  body:has(> .mp-sidebar) #text-editor-app #toast,
+  body:has(> .mp-sidebar) #text-editor-app .ectoast {
+    left: calc(50% + var(--mp-sidebar-w) / 2);
+  }
+}
 #text-editor-app * {
   box-sizing: border-box;
 }
