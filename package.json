@@ -106,7 +106,7 @@
     "heic2any": "^0.0.4",
     "highlight.js": "^11.11.1",
     "html2canvas": "^1.4.1",
-    "i18next": "^25.8.13",
+    "i18next": "^26.3.4",
     "i18next-browser-languagedetector": "^8.2.1",
     "i18next-http-backend": "^3.0.6",
     "jspdf": "^4.2.1",
